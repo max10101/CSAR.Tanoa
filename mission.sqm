@@ -8,7 +8,7 @@ class EditorData
 	toggles=65;
 	class ItemIDProvider
 	{
-		nextID=1568;
+		nextID=1596;
 	};
 	class MarkerIDProvider
 	{
@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=160;
+		nextID=175;
 	};
 	class Camera
 	{
-		pos[]={8364.7998,76.18586,10081.149};
-		dir[]={0.44407889,-0.25107312,0.86021632};
-		up[]={0.11519603,0.96795177,0.22314394};
-		aside[]={0.88867605,-1.8626451e-009,-0.45877916};
+		pos[]={10146.458,412.74817,11356.979};
+		dir[]={-0.87908942,-0.36910599,-0.30201048};
+		up[]={-0.34911591,0.92936969,-0.11994019};
+		aside[]={-0.32494792,6.2890467e-007,0.94587386};
 	};
 };
 binarizationWanted=0;
@@ -5579,6 +5579,7 @@ class Mission
 			name="CampPos_29";
 			id=1511;
 			type="Logic";
+			atlOffset=7.6293945e-006;
 		};
 		class Item116
 		{
