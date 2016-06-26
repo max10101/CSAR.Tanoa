@@ -1,0 +1,218 @@
+author="MattZig & MAAAX";
+OnLoadName = "CSAR";
+OnLoadMission = "Combat Search And Rescue";
+respawn = 3;
+respawnDelay = 5;
+respawnTemplates[] = {"MenuPosition","MenuInventory"};
+respawnOnStart = -1;
+disabledAI = 1;
+joinUnassigned = 0;
+enableDebugConsole = 2;
+
+#include "Support\mapDefine.hpp"
+#include "Support\casMenu.hpp"
+#include "Support\artMenu.hpp"
+#include "Support\SPTMenu.hpp"
+
+class CfgRespawnInventory
+{
+     class WEST1
+     {
+          displayName = "Light"; // Name visible in the menu
+          icon = "\A3\Ui_f\data\GUI\Cfg\Ranks\sergeant_gs.paa"; // Icon displayed next to the name
+
+          // Loadout definition, uses same entries as CfgVehicles classes
+          weapons[] = {
+               "arifle_MXC_F",
+               "Binocular"
+          };
+          magazines[] = {
+               "30Rnd_65x39_caseless_mag",
+               "30Rnd_65x39_caseless_mag",
+               "SmokeShell"
+          };
+          items[] = {
+               "FirstAidKit"
+          };
+          linkedItems[] = {
+               "V_Chestrig_khk",
+               "H_Watchcap_blk",
+               "optic_Aco",
+               "acc_flashlight",
+               "ItemMap",
+               "ItemCompass",
+               "ItemWatch",
+               "ItemRadio"
+          };
+          uniformClass = "U_B_CombatUniform_mcam_tshirt";
+          backpack = "B_AssaultPack_mcamo";
+     };
+     class WEST2
+     {
+          // Alternative configuration pointing to a CfgVehicles class. Loadout will be copied from it.
+          vehicle = "B_soldier_AR_F"
+     };
+};
+
+class CfgSounds
+	{
+	sounds[] = { "MYSOUND", "MYSOUND2","mysound4","cantDo","radio1", "radio2", "radio3", "radio4", "radio5", "radio6", "radio7", "radio8"};
+    class cantDo
+    {
+        name="cantDo";
+        sound[]={"Support\cantDo.ogg",1.0,1.0};
+        titles[]={};
+    };
+	class MYSOUND
+	{
+		name = "";
+		sound[] = {"Sound\MYSOUND.ogg", db+0, 1.0};
+		titles[] =
+		{
+		};
+	};
+	class MYSOUND2
+	{
+		name = "";
+		sound[] = {"Sound\MYSOUND2.ogg", db-10, 1.0};
+		titles[] =
+		{
+		};
+	};
+		class uns_song2
+	{
+		name = "";
+		sound[] = {"Sound\uns_song2.ogg", db-5, 1.0};
+		titles[] =
+		{
+		};
+	};
+
+class MYSOUND4
+	{
+		name = "";
+		sound[] = {"Sound\MYSOUND4.ogg", db+0, 1.0};
+		titles[] = {};
+	};
+	     class radio1
+     {
+          name = "";
+          sound[] = {"Sound\radio1.ogg", db+9, 1.0};
+		titles[] = {};
+     };
+
+     class radio2
+     {
+          name = "";
+          sound[] = {"Sound\radio2.ogg", db+9, 1.0};
+		titles[] = {};
+     };
+
+ class radio3
+     {
+          name = "";
+          sound[] = {"Sound\radio3.ogg", db+9, 1.0};
+		titles[] = {};
+     };
+ class radio4
+     {
+          name = "";
+          sound[] = {"Sound\radio4.ogg", db+9, 1.0};
+		titles[] = {};
+     };
+ class radio5
+     {
+          name = "";
+          sound[] = {"Sound\radio5.ogg", db+9, 1.0};
+		titles[] = {};
+     };
+class radio6
+     {
+          name = "";
+          sound[] ={"Sound\radio6.ogg", db+9, 1.0};
+		titles[] = {};
+     };
+class radio7
+     {
+          name = "";
+          sound[] ={"Sound\radio7.ogg", db+9, 1.0};
+		titles[] = {};
+     };
+class radio8
+     {
+          name = "";
+          sound[] ={"Sound\radio8.ogg", db+9, 1.0};
+		titles[] = {};
+     };
+
+};
+
+
+class CfgRadio
+{
+     sounds[] =
+     { radio1, radio2, radio3, radio4, radio5, radio6, radio7, radio8, radio9, radio10 };
+
+     class radio1
+     {
+          name = "";
+          sound[] = {"Sound\radio1.ogg", db-10, 1.0};
+          title = "JESTER 69 to SKY-SHADOW: -  MAYDAY! MAYDAY! I am taking fire and going down - I am taking fire and going down -  MAYDAY! Position Delta- Delta 5-0";
+     };
+
+     class radio2
+     {
+          name = "";
+          sound[] = {"Sound\radio2.ogg", db+0, 1.0};
+          title = "RESCUE-ONE This is SKY-SHADOW:   Request an Immediate CSAR.    Target JESTER 69.    Last known position Delta Delta 5-0";
+     };
+
+ class radio3
+     {
+          name = "";
+          sound[] = {"Sound\radio3.ogg", db+0, 1.0};
+          title = "SKY-SHADOW-this is RESCUE-ONE:  WILCO. ETA 5 Mikes. Request SITREP. OVER";
+     };
+ class radio4
+     {
+          name = "";
+          sound[] = {"Sound\radio4.ogg", db+0, 1.0};
+          title = "JESTER 69 This is SKY-SHADOW:  Authenticate with the sum of your first and last";
+     };
+ class radio5
+     {
+          name = "";
+          sound[] = {"Sound\radio5.ogg", db+0, 1.0};
+          title =  "SKY-SHADOW This is JESTER 69: Sum is 8. Sum is 8. Request authentication";
+     };
+class radio6
+     {
+          name = "";
+          sound[] ={"Sound\radio6.ogg", db+0, 1.0};
+          title = "JESTER 69 This is SKY-SHADOW:   RESCUE-ONE is inbound. ETA 5 Mikes. Request SITREP. Over";
+     };
+class radio7
+     {
+          name = "";
+          sound[] ={"Sound\radio7.ogg", db+0, 1.0};
+          title = "SKY-SHADOW: I am unable to ascertain my position. I am unable to POP SMOKE. LZ is clear. SKY-SHADOW I  have multiple inbound hostiles......MULTIPLE INBOUND HOSTILES....";
+     };
+class radio8
+     {
+          name = "";
+          sound[] ={"Sound\radio8.ogg", db+0, 1.0};
+          title = "RESCUE-ONE This is SKY-SHADOW. Proceed with extreme caution. LZ is HOT. Get our guy outa there!   SKY-SHADOW out!";
+     };
+class radio9
+     {
+          name = "";
+          sound[] ={"Sound\radio9.ogg", db+0, 1.0};
+          title = "SKY-SHADOW, This is RESCUE-ONE, We have JESTER 69 safe and sound and we are RTB. ETA 4 Mikes. OUT";
+     };
+class radio10
+     {
+          name = "";
+          sound[] ={"Sound\radio10.ogg", db+0, 1.0};
+          title = "RESCUE-ONE This is SKY-SHADOW.  GOOD JOB.       OUT";
+     };
+};

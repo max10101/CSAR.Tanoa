@@ -1,0 +1,12 @@
+mysound =Doors beaty funk
+mysound4 =Drill instructor -maggots
+radio1 = mayday call
+radio2 = request CSAR
+radio3 = rescue team wilco
+radio4 = Authenticate request SS to jester
+radio5 = Authentication reply
+radio6 = request sitrep
+radio 7 = sitrep + hostiles!
+radio8 =  lz is hot SS to rescue team
+radio9 =  got jester rtb
+radio10 = good job

@@ -1,0 +1,22 @@
+radio say "Mysound2"
+~13
+IF (!Skipradio) then {radio say3d ["radio1",25,1]}
+~12
+IF (!Skipradio) then {radio say3d ["radio2",25,1]}
+~10
+IF (!Skipradio) then {radio say3d ["radio3",25,1]}
+~11
+IF (!Skipradio) then {radio say3d ["radio4",25,1]}
+~10
+IF (!Skipradio) then {radio say3d ["radio5",25,1]}
+
+~12
+IF (!Skipradio) then {radio say3d ["radio6",25,1]}
+~10
+IF (!Skipradio) then {radio say3d ["radio7",25,1]}
+~17
+IF (!Skipradio) then {radio say3d ["radio8",25,1]}
+~14
+IF (!Skipradio) then {radio say "Mysound2"}
+;radio say3d ["uns_song2",25,1]
+exit

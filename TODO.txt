@@ -1,0 +1,4 @@
+check to see if napalm works MP/needs to be local or global
+create random patrols (at every camp-patrols 4 closest?)
+populate POW camp with enemies/patrols
+populate big camps with more vehicles/patrols

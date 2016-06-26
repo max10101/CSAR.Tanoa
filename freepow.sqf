@@ -1,0 +1,10 @@
+(_this select 0) removeaction POWAction;
+POWRescued = 1;publicvariable "POWRescued";
+POWRescuer = (_this select 1);publicvariable "POWRescuer";
+IF (!Alive (_this select 0)) exitwith {};
+[[(_this select 0),"Acts_AidlPsitMstpSsurWnonDnon_Out"], "PlayMoveMP"] call BIS_fnc_MP;
+[(_this select 0)] join group (_this select 1);
+sleep 5.5;
+(_this select 0) setbehaviour "COMBAT";
+(_this select 0) setcaptive false;
+[(_this select 0),"arifle_AKM_FL_F",4] call bis_fnc_addWeapon;
