@@ -1,4 +1,7 @@
 check to see if napalm works MP/needs to be local or global
-create random patrols (at every camp-patrols 4 closest?)
+test random patrols as they are - might be too many?
+add group reduction script - infantry only, ignore convoys + increase distance?
+change revive system? (check overhauled arma3 revive system - new setunconcious/lifestate command)
 populate POW camp with enemies/patrols
 populate big camps with more vehicles/patrols
+fuck bitches get money
