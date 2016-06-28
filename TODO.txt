@@ -1,4 +1,8 @@
 check to see if napalm works MP/needs to be local or global
+  create *master* patrol script which oversees all enemy unit groups and chooses to engate (as opposed to having each patrol script running on each group*
+  -needs to engage with flares/artillery/smoke
+  -needs to be appropriate response/call for backup
+  
 test random patrols as they are - might be too many?
 add group reduction script - infantry only, ignore convoys + increase distance?
 change revive system? (check overhauled arma3 revive system - new setunconcious/lifestate command)
