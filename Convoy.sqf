@@ -41,6 +41,7 @@ _dir = ((getpos _randomroad select 0)-((getPos _connected) select 0)) atan2 ((ge
 _vehicle setdir _dir;
 _grp = group (leader (driver _vehicle));
 _vehicle addeventhandler ["Dammaged",{_this execvm "brokenwheel.sqf"}];
+_vehicle setUnloadInCombat [true, false];
 
 //MAYBE SPAWN A BACKUP CAR
 sleep 0.1;
@@ -51,6 +52,7 @@ _vehicle2 = [_selection,_backuppos] call _spawncar;
 _dir = ((getpos _vehicle select 0)-(getPos _vehicle2 select 0)) atan2 ((getpos _vehicle select 1)-(getPos _vehicle2 select 1));
 _vehicle2 setdir _dir;
 _vehicle2 addeventhandler ["Dammaged",{_this execvm "brokenwheel.sqf"}];
+_vehicle2 setUnloadInCombat [true, false];
 
 //JOIN GROUP AND SET WAYPOINT
 (crew _vehicle2) join _grp;
