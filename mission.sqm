@@ -8,7 +8,7 @@ class EditorData
 	toggles=65;
 	class ItemIDProvider
 	{
-		nextID=1596;
+		nextID=1677;
 	};
 	class MarkerIDProvider
 	{
@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=175;
+		nextID=194;
 	};
 	class Camera
 	{
-		pos[]={10146.458,412.74817,11356.979};
-		dir[]={-0.87908942,-0.36910599,-0.30201048};
-		up[]={-0.34911591,0.92936969,-0.11994019};
-		aside[]={-0.32494792,6.2890467e-007,0.94587386};
+		pos[]={10505.134,180.42677,9578.4854};
+		dir[]={-0.9543705,-0.29887003,-0.0050764731};
+		up[]={-0.29892361,0.9542731,-0.0015909049};
+		aside[]={-0.0053246752,7.9200345e-007,1.0000652};
 	};
 };
 binarizationWanted=0;
@@ -359,7 +359,7 @@ class Mission
 		resistanceWest=0;
 		resistanceEast=1;
 		timeOfChanges=1800.0002;
-		startWeather=0.50182074;
+		startWeather=0.30077288;
 		startWind=0.1;
 		startWaves=0.1;
 		forecastWeather=0;
@@ -378,7 +378,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=117;
+		items=121;
 		class Item0
 		{
 			dataType="Object";
@@ -507,8 +507,8 @@ class Mission
 			dataType="Logic";
 			class PositionInfo
 			{
-				position[]={11296.924,227.23476,11120.482};
-				angles[]={6.2378831,0,0.02399601};
+				position[]={9088.6572,68.516373,11152.794};
+				angles[]={6.2060056,0,6.2805109};
 			};
 			name="CampPos_6";
 			id=116;
@@ -675,8 +675,8 @@ class Mission
 			dataType="Logic";
 			class PositionInfo
 			{
-				position[]={13586.396,142.20203,9549.8643};
-				angles[]={6.2485347,0,0.13516936};
+				position[]={13583.252,142.20049,9534.1084};
+				angles[]={0.12730642,0,0.15345138};
 			};
 			name="CampPos_23";
 			id=130;
@@ -748,13 +748,12 @@ class Mission
 			dataType="Logic";
 			class PositionInfo
 			{
-				position[]={6072.437,82.023773,11692.316};
-				angles[]={0.2330218,0,0.1009879};
+				position[]={6529.7461,22.566948,11050.673};
 			};
 			name="CampPos_22";
 			id=136;
 			type="Logic";
-			atlOffset=-7.6293945e-006;
+			atlOffset=8.211132;
 		};
 		class Item30
 		{
@@ -853,16 +852,15 @@ class Mission
 		class Item42
 		{
 			dataType="Marker";
-			position[]={9781.2822,7.0939584e+033,10008.844};
+			position[]={9749.8975,70.132851,10041.474};
 			name="marker_0";
 			markerType="ELLIPSE";
 			type="ellipse";
 			colorName="ColorRed";
 			alpha=0.19838946;
-			a=4511;
-			b=3511;
+			a=4011;
+			b=3011;
 			id=476;
-			atlOffset=7.0939584e+033;
 		};
 		class Item43
 		{
@@ -4571,7 +4569,7 @@ class Mission
 			};
 			id=739;
 			type="B_CTRG_LSV_01_light_F";
-			atlOffset=-9.5367432e-006;
+			atlOffset=-1.5258789e-005;
 		};
 		class Item74
 		{
@@ -4588,7 +4586,7 @@ class Mission
 			};
 			id=740;
 			type="B_CTRG_LSV_01_light_F";
-			atlOffset=-0.00010585785;
+			atlOffset=-0.0001115799;
 		};
 		class Item75
 		{
@@ -5078,7 +5076,7 @@ class Mission
 			};
 			id=772;
 			type="B_T_LSV_01_armed_F";
-			atlOffset=-0.0030407906;
+			atlOffset=-0.0030465126;
 		};
 		class Item86
 		{
@@ -5095,7 +5093,7 @@ class Mission
 			};
 			id=773;
 			type="B_T_LSV_01_armed_F";
-			atlOffset=-0.000415802;
+			atlOffset=-0.00042152405;
 		};
 		class Item87
 		{
@@ -5147,7 +5145,7 @@ class Mission
 			};
 			id=776;
 			type="B_CTRG_LSV_01_light_F";
-			atlOffset=-0.00046348572;
+			atlOffset=-0.00046920776;
 		};
 		class Item90
 		{
@@ -5634,6 +5632,34 @@ class Mission
 			};
 			id=1516;
 			atlOffset=-9.5367432e-007;
+		};
+		class Item117
+		{
+			dataType="Layer";
+			name="Roadblock";
+			id=1607;
+			atlOffset=-0.010307312;
+		};
+		class Item118
+		{
+			dataType="Layer";
+			name="Check Point (Small)";
+			id=1612;
+			atlOffset=-0.016639709;
+		};
+		class Item119
+		{
+			dataType="Layer";
+			name="Check Point (Large)";
+			id=1619;
+			atlOffset=0.020362854;
+		};
+		class Item120
+		{
+			dataType="Layer";
+			name="Camp Audacity";
+			id=1676;
+			atlOffset=-0.040222168;
 		};
 	};
 };

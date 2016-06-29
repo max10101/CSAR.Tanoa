@@ -92,10 +92,11 @@ IntelMap enableSimulationGlobal false;
 //_wpSAD setwaypointtype "HOLD";
 publicvariable "IntelMap";
 
-sleep 10;
+sleep 2;
 {_x execvm "smallcamp.sqf"} foreach EnemyCamps;
-sleep 5;
+sleep 2;
 {_x execvm "bigcamp.sqf"} foreach BigEnemyCamps;
-sleep 5;
+sleep 2;
 {_x execvm "camppatrol.sqf"} foreach EnemyCamps;
 POWCamp execvm "powcamp.sqf";
+player sidechat "campinit";
