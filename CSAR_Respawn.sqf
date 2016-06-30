@@ -6,7 +6,7 @@ CSAR_fnc_initSpawn = compile '
     if (local _unit) then {
         mattzig_earPlugsInUse = false;
         1 fadeSound 1;
-
+		_unit setunittrait ["Engineer",1];
         _unit addEventHandler ["HandleRating", "_rating = (_this select 1);if (_rating < 0) then {_rating = 0;}; _rating"];
         _unit enablefatigue false;
         _putEarOn = ["<t color=""#ffff33"">Put on ear plugs</t>",{1 fadeSound 0.3; mattzig_earPlugsInUse = true;},[],-90,false,true,"","!mattzig_earPlugsInUse && vehicle player == vehicle _target"];
@@ -21,7 +21,7 @@ CSAR_fnc_initSpawn = compile '
             };
          };
         [_unit] execVM "Support\addActions.sqf";
-        [] spawn FAR_Player_Init;
+        //[] spawn FAR_Player_Init;
     };
 ';
 

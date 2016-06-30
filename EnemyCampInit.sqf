@@ -14,7 +14,7 @@ _POWCamps = ["CampD","CampE","CampE","CampF"];
 _MilCamps = ["CampD","CampE","CampE","CampF"];
 _spawns = CSAR_CampLocations;
 _first = objnull;
-sleep 0.1;
+sleep 5;
 
 
 //SELECT AND PREP X 'LARGE' CAMPS NOT WITHIN CLOSE PROXIMITY TO OTHER LARGE CAMPS (possibility to halt everything here if dist is too big so move on after 25 conflict)
@@ -31,10 +31,10 @@ while {_i < _bigcamps} do {
 	IF (CSAR_DEBUG) then {_marker = createMarkerlocal[format ["POWCAMP (%1)",random 9999], getPos _pos];_marker setMarkerSizeLocal [200,200];_marker setMarkerColorLocal "ColorOrange";_marker setMarkerShapeLocal "ELLIPSE"};
 	_spawns = _spawns - [_pos];
 	_i = _i + 1;
-	sleep 0.01;
+	sleep 1;
 };
 
-
+sleep 5;
 
 //SELECT POW CAMP
 _POWCamp = selectrandom _spawns;
@@ -44,14 +44,14 @@ POWCamp = _POWCamp; Publicvariable "POWCamp";
 _angle = random 360;
 _dist = 1000 + (random 1000);
 CrashedHeli setpos [(getpos POWCamp select 0) + sin(_angle)*_dist,(getpos POWCamp select 1) + cos(_angle)*_dist,0];
-Sleep 0.1;
+Sleep 5;
 
 
 // PREP AND PLACE POW WITHIN CAMP
 _buildings = nearestObjects [_POWCamp, ["Land_d_Windmill01_F","Land_d_House_Small_02_V1_F","Land_d_Stone_HouseSmall_V1_F","Land_Unfinished_Building_02_F"], 25];
 _BuildingPositions = (Selectrandom _buildings) buildingpos -1;
 IF (count _buildingpositions == 0) then {_buildingpositions = [[(getpos _POWCamp select 0)+10,(getpos _POWCamp select 1)+10,0]]};
-sleep 0.1;
+sleep 1;
 IF (CSAR_DEBUG) then {_marker = createMarkerlocal[format ["POWCAMP (%1)",random 9999], getPos _POWCamp];_marker setMarkerSizeLocal [100,100];_marker setMarkerColorLocal "ColorBlue";_marker setMarkerShapeLocal "ELLIPSE"};
 
 POW setpos (SelectRandom _buildingpositions);
@@ -71,7 +71,7 @@ while {_i < _maxcamps} do {
 
 	_spawns = _spawns - [(_closestcamps select _i)];
 	_i = _i + 1;
-	sleep 0.1;
+	sleep 1;
 };
 
 //WHATS LEFT OF CAMP SPAWN LOCATIONS IS CHOSEN FOR INTEL POS
@@ -92,11 +92,11 @@ IntelMap enableSimulationGlobal false;
 //_wpSAD setwaypointtype "HOLD";
 publicvariable "IntelMap";
 
-sleep 2;
+sleep 5;
 {_x execvm "smallcamp.sqf"} foreach EnemyCamps;
-sleep 2;
+sleep 5;
 {_x execvm "bigcamp.sqf"} foreach BigEnemyCamps;
-sleep 2;
+sleep 5;
 {_x execvm "camppatrol.sqf"} foreach EnemyCamps;
 POWCamp execvm "powcamp.sqf";
 player sidechat "campinit";

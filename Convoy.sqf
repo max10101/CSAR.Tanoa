@@ -1,5 +1,5 @@
-
-_MaxConvoys = 1;
+sleep 10;
+_MaxConvoys = 12;
 _connected = 0;
 _ArmedCars = ["O_LSV_02_unarmed_F","I_G_Offroad_01_armed_F"];
 _Trucks = ["I_Truck_02_covered_F","I_Truck_02_transport_F"];
@@ -71,5 +71,5 @@ _wp setwaypointtype "MOVE";
 _wp setWaypointCompletionRadius 30;
 {_x limitspeed 30} foreach (units _grp);
 _i = _i + 1;
-sleep 1;
+sleep 5;
 };

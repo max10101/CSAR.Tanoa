@@ -1,5 +1,7 @@
 call compile preprocessFile "Support\init.sqf";
-call compileFinal preprocessFileLineNumbers "FAR_revive\FAR_revive_init.sqf";
+//call compileFinal preprocessFileLineNumbers "FAR_revive\FAR_revive_init.sqf";
+
+
 RecoilFunction = compile preprocessFile "recoil.sqf";
 blufor_fnc_initUnit = compile preprocessFile "blufor_fnc_initUnit.sqf";
 opfor_fnc_initUnit = compile preprocessFile "opfor_fnc_initUnit.sqf";
@@ -47,7 +49,7 @@ BIS_Effects_Burn=compile preprocessFileLineNumbers "burn.sqf";
 [crashedheli, 4, time, false, true] spawn BIS_Effects_Burn;
 
 [] execVM "CSAR_Respawn.sqf";
-[] execVM "real_weather.sqf";
+//[] execVM "real_weather.sqf";
 
 POWAction = POW addaction ["<t color='#FF0000'>Rescue POW</t>","FreePow.sqf",nil,0,true,true,"","PowRescued == 0"];
 
@@ -100,7 +102,7 @@ Skipradio = false;
 if (!radioMSG) then {radio setpos [getpos table select 0,getpos table select 1,(getpos table select 2)+1.01];[] exec "radiomsg.sqs"; radioMSG = true;radio addaction ["<t color='#FF0000'>Change Radio Station</t>","changeradiostation.sqf",nil,0,true,true,"","true",2]};
 
 setTerrainGrid 25;
-_groundViewDist = 3000;
+_groundViewDist = 2800;
 _flyingViewDist = 3500;
 setViewDistance _groundViewDist;
 
@@ -127,8 +129,8 @@ while {true} do {
     sleep 0.5;
 
     //Viewdist
-    if ((getPos (vehicle player) select 2) > 20 && local player) then {setViewDistance _flyingViewDist};
-    if ((getPos (vehicle player) select 2) < 20 && local player) then {setViewDistance _groundViewDist};
+   if ((getPos (vehicle player) select 2) > 20 && local player) then {setViewDistance _flyingViewDist};
+   if ((getPos (vehicle player) select 2) < 20 && local player) then {setViewDistance _groundViewDist};
 
     //Adding actions for CAS
     if (CASChangeText && local player) then {
