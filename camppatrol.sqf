@@ -35,3 +35,4 @@ _x setWaypointStatements ["true", ""];
 
 _group setbehaviour "AWARE";
 _group setvariable ["Patrol",1];
+[_group,3,1500] execvm "groupreduction.sqf";

@@ -3,7 +3,7 @@ _group = group _groupleader;
 _abandon = false;
 _camps = CSAR_CampLocations;
 //CHECK IF ALL UNITS ARE STILL IN A VEHICLE
-IF (({Vehicle _x == _x} count (units _group)) >= 1) then {_abandon = true;player sidechat str ({Vehicle _x != _x} count (units _group))};
+IF (({Vehicle _x == _x} count (units _group)) >= 1) then {_abandon = true;};
 
 IF (_abandon) then {
 //ABANDON VEHICLES AND MOVE TO NEAREST CAMP

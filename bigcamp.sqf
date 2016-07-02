@@ -20,7 +20,7 @@ _gun2 = [_gunpos2,((_gunpos2 select 0)-(getPos _camp select 0)) atan2 ((_gunpos2
 _group = [_pos, Independent, (configFile >> "CfgGroups" >> "Indep" >> "IND_C_F" >> "Infantry" >> "BanditCombatGroup")] call BIS_fnc_spawnGroup;
 _group addvehicle _gun;
 _group addvehicle _gun2;
-
+[_group,3,1500] execvm "groupreduction.sqf";
 _wp = _group addWaypoint [_pos, 0];
 _wp setwaypointtype "LOITER";
 _wp setWaypointLoiterRadius 100;

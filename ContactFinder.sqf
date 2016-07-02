@@ -49,17 +49,26 @@ _leaderarray = _spottedarray;
 //STEP 2 create the contact zone areas based off spotted units
 _first = _leaderArray select 0;
 
-_obj = createAgent ["Logic", [(getpos _first) select 0,(getpos _first) select 1, 0], [] , 0 , "CAN_COLLIDE"];
+_obj = "Logic" createvehiclelocal [(getpos _first) select 0,(getpos _first) select 1, 0];
 _leaderArray = _leaderarray - [_first];
 IF (CSAR_DEBUG) then {_marker = createMarkerlocal[format ["Detected (%1)",random 9999], getPos _first];_marker setMarkerSizeLocal [_Triggersize, _Triggersize];_marker setMarkerColorLocal "ColorRed";_marker setMarkerShapeLocal "ELLIPSE";_markerarray = _markerarray + [_marker]};
-_triggerarray = _triggerarray + [[_obj,_first]];
+_triggerarray = _triggerarray + [[_obj,0]];
 
 {IF (! ([_x,_TriggerArray,_Triggersize] call _Distcheck)) then {
-	_obj = createAgent ["Logic", [(getpos _x) select 0,(getpos _x) select 1, 0], [] , 0 , "CAN_COLLIDE"];
+	_obj = "Logic" createvehiclelocal [(getpos _x) select 0,(getpos _x) select 1, 0];
 	IF (CSAR_DEBUG) then {_marker = createMarkerlocal[format ["Detected (%1)",random 9999], getPos _x];_marker setMarkerSizeLocal [_Triggersize, _Triggersize];_marker setMarkerColorLocal "ColorRed";_marker setMarkerShapeLocal "ELLIPSE";_markerarray = _markerarray + [_marker]};
-	_triggerarray = _triggerarray + [[_obj,_x]];
+	_triggerarray = _triggerarray + [[_obj,0]];
 	}
 } foreach _LeaderArray;
+
+
+{
+_tmp = _x select 0;
+_num = {(_x distance _tmp) < _triggersize} count _spottedarray;
+_x set [1,_num];
+} foreach _triggerarray;
+//player sidechat str (_triggerarray);
+
 
 /* WIP but not necessary
 //STEP 3 readjust areas to average position across troops they cover instead of centering on random unit (optional but necessary for step 4)
