@@ -2,6 +2,12 @@ check to see if napalm works MP/needs to be local or global
   create *master* patrol script which oversees all enemy unit groups and chooses to engate (as opposed to having each patrol script running on each group*
   -needs to engage with flares/artillery/smoke
   -needs to be appropriate response/call for backup
+FORGET MASTER SCRIPT -  HAS TO RUN FOR EACH GROUP 
+csar_engagedgroups 
+All engaged group,targetpos 
+Use sortby to get all nearest attacking within x meters 
+That's total engaged amount 
+Boom 
   
 test random patrols as they are - might be too many?
 add group reduction script - infantry only, ignore convoys + increase distance?
