@@ -7,7 +7,7 @@ IF (({Vehicle _x == _x} count (units _group)) >= 1) then {_abandon = true;};
 
 IF (_abandon) then {
 //ABANDON VEHICLES AND MOVE TO NEAREST CAMP
-player sidechat format ["GROUP %1 IS ABANDONING VEHICLES",_group];
+
 _close = [_camps,[(leader _group)],{(leader _group) distance _x},"ASCEND",{(_input0 distance _x) < 500}] call BIS_fnc_sortBy;
 _closest = _close select 0;
 {Unassignvehicle _x} foreach units _group;
@@ -32,7 +32,7 @@ _group setformation "COLUMN";
 _group setbehaviour "SAFE";
 _group setspeedmode "LIMITED";
 _group setformation "COLUMN";
-player sidechat format ["NEW WP FOR GROUP %1",_group];
+
 _movepos = getpos (SelectRandom CSAR_ConvoyRoads);
 _wp = _group addWaypoint [_movepos, 0];
 _wp setWaypointStatements ["true", "this execvm ""ConvoyNewWaypoint.sqf"""];

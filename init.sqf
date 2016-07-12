@@ -1,5 +1,5 @@
 call compile preprocessFile "Support\init.sqf";
-//call compileFinal preprocessFileLineNumbers "FAR_revive\FAR_revive_init.sqf";
+call compileFinal preprocessFileLineNumbers "FAR_revive\FAR_revive_init.sqf";
 
 
 RecoilFunction = compile preprocessFile "recoil.sqf";
@@ -30,9 +30,34 @@ _group setcurrentwaypoint _newWP;
 _newWP
 ';
 
+CSAR_fnc_initSpawn = compile '
+    _unit = _this;
+    if (local _unit) then {
+        mattzig_earPlugsInUse = false;
+        1 fadeSound 1;
+		_unit setunittrait ["Engineer",1];
+        _unit addEventHandler ["HandleRating", "_rating = (_this select 1);if (_rating < 0) then {_rating = 0;}; _rating"];
+        _unit enablefatigue false;
+        _putEarOn = ["<t color=""#ffff33"">Put on ear plugs</t>",{1 fadeSound 0.3; mattzig_earPlugsInUse = true;},[],-90,false,true,"","!mattzig_earPlugsInUse && vehicle player == vehicle _target"];
+        _takeEarOff = ["<t color=""#ffff33"">Take off ear plugs</t>",{1 fadeSound 1; mattzig_earPlugsInUse = false;},[],-90,false,true,"","mattzig_earPlugsInUse && vehicle player == vehicle _target"];
+        _unit addAction _putEarOn;
+        _unit addAction _takeEarOff;
+        if (!(isPlayer (leader group _unit))) then {
+            if (local (leader group _unit)) then {
+                (group _unit) selectLeader _unit;
+            } else {
+                [group _unit, _unit] remoteExec ["selectLeader", leader group _unit];
+            };
+         };
+        [_unit] execVM "Support\addActions.sqf";
+        //[] spawn FAR_Player_Init;
+    };';
+
 CSAR_NapalmSize = 50;
 CSAR_NapalmTime = 50;
 CSAR_Debug = true;
+CampsInitialised = false;
+ConvoysInitialised = false;
 CSAR_ConvoyRoads = [];
 CSAR_CampLocations = [CampPos,CampPos_1,CampPos_2,CampPos_3,CampPos_4,CampPos_5,CampPos_6,CampPos_7,CampPos_8,CampPos_9,CampPos_10,CampPos_11,CampPos_12,CampPos_13,CampPos_14,CampPos_15,CampPos_16,CampPos_17,CampPos_18,CampPos_19,CampPos_20,CampPos_21,CampPos_22,CampPos_23,CampPos_24,CampPos_25,CampPos_26,CampPos_27,CampPos_28,CampPos_29];
 
@@ -102,8 +127,8 @@ Skipradio = false;
 if (!radioMSG) then {radio setpos [getpos table select 0,getpos table select 1,(getpos table select 2)+1.01];[] exec "radiomsg.sqs"; radioMSG = true;radio addaction ["<t color='#FF0000'>Change Radio Station</t>","changeradiostation.sqf",nil,0,true,true,"","true",2]};
 
 setTerrainGrid 25;
-_groundViewDist = 2800;
-_flyingViewDist = 3500;
+_groundViewDist = 2500;
+_flyingViewDist = 3200;
 setViewDistance _groundViewDist;
 
 sleep 2;

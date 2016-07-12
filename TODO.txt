@@ -13,7 +13,7 @@ test random patrols as they are - might be too many?
 add group reduction script - infantry only, ignore convoys + increase distance?
 **change revive system? (check overhauled arma3 revive system - new setunconcious/lifestate command)
 	test revive in mP
-
+	add dragging to bis revive from FAR actions
 
 populate POW camp with enemies/patrols
 populate big camps with more vehicles/patrols

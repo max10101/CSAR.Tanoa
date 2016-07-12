@@ -1,11 +1,11 @@
 //checks true if unit is within distance of any of the group units - [unit, group of units, distance] call _distcheck
+sleep 5;
 _Distcheck = compile '
 private ["_IsWithinDist"];
 _IsWithinDist = false;
 {IF (((_this select 0) distance (_x)) < (_this select 2)) then {_IsWithinDist = true}} foreach (_this select 1);
 _IsWithinDist
 ';
-
 
 _maxcamps = 12;
 _bigcamps = 4;
@@ -14,7 +14,6 @@ _POWCamps = ["CampD","CampE","CampE","CampF"];
 _MilCamps = ["CampD","CampE","CampE","CampF"];
 _spawns = CSAR_CampLocations;
 _first = objnull;
-sleep 5;
 
 
 //SELECT AND PREP X 'LARGE' CAMPS NOT WITHIN CLOSE PROXIMITY TO OTHER LARGE CAMPS (possibility to halt everything here if dist is too big so move on after 25 conflict)
@@ -34,7 +33,7 @@ while {_i < _bigcamps} do {
 	sleep 1;
 };
 
-sleep 5;
+sleep 1;
 
 //SELECT POW CAMP
 _POWCamp = selectrandom _spawns;
@@ -44,7 +43,7 @@ POWCamp = _POWCamp; Publicvariable "POWCamp";
 _angle = random 360;
 _dist = 1000 + (random 1000);
 CrashedHeli setpos [(getpos POWCamp select 0) + sin(_angle)*_dist,(getpos POWCamp select 1) + cos(_angle)*_dist,0];
-Sleep 5;
+Sleep 1;
 
 
 // PREP AND PLACE POW WITHIN CAMP
@@ -76,7 +75,7 @@ while {_i < _maxcamps} do {
 
 //WHATS LEFT OF CAMP SPAWN LOCATIONS IS CHOSEN FOR INTEL POS
 _Intelcamp = Selectrandom _spawns;
-	IF (CSAR_DEBUG) then {_marker = createMarkerlocal[format ["INTELCAMP (%1)",random 9999], getPos (_closestcamps select _i)];_marker setMarkerSizeLocal [100,100];_marker setMarkerColorLocal "ColorRed";_marker setMarkerShapeLocal "ELLIPSE"};
+	IF (CSAR_DEBUG) then {_marker = createMarkerlocal[format ["INTELCAMP (%1)",random 9999], getPos _Intelcamp];_marker setMarkerSizeLocal [100,100];_marker setMarkerColorLocal "ColorRed";_marker setMarkerShapeLocal "ELLIPSE"};
 [getpos _IntelCamp, west, (configFile >> "CfgGroups" >> "Empty" >> "Guerrilla" >> "Camps" >> (SelectRandom _POWCamps))] call CSAR_fnc_SpawnCamps;
 sleep 1;
 _buildings = nearestObjects [_Intelcamp, ["Land_d_House_Small_02_V1_F","Land_d_Stone_HouseSmall_V1_F","Land_Unfinished_Building_02_F"], 25];
@@ -91,6 +90,7 @@ IntelMap enableSimulationGlobal false;
 //_wpSAD = _grp addWaypoint [(SelectRandom _buildingpositions),0];
 //_wpSAD setwaypointtype "HOLD";
 publicvariable "IntelMap";
+CampsInitialised = true;
 
 sleep 5;
 {_x execvm "smallcamp.sqf"} foreach EnemyCamps;
@@ -99,4 +99,4 @@ sleep 5;
 sleep 5;
 {_x execvm "camppatrol.sqf"} foreach EnemyCamps;
 POWCamp execvm "powcamp.sqf";
-player sidechat "campinit";
+IF (CSAR_DEBUG) then {systemchat "Camps initialised"};

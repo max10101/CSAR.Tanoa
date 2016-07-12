@@ -1,6 +1,7 @@
 CSAR_fnc_respawnMenuposition_Killed = false;
 CSAR_fnc_findNearestUnit = compile preprocessFile "CSAR_Respawn_fn_FindNearestUnit.sqf";
 CSAR_Respawn_NearestUnit = compile preprocessFile "CSAR_Respawn_NearestUnit.sqf";
+/* MOVED TO INIT
 CSAR_fnc_initSpawn = compile '
     _unit = _this;
     if (local _unit) then {
@@ -24,7 +25,7 @@ CSAR_fnc_initSpawn = compile '
         //[] spawn FAR_Player_Init;
     };
 ';
-
+*/
  disableserialization;
 
 _markerSpawnNearest = createMarkerLocal["spawn_nearest",getpos Player];

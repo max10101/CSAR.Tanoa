@@ -1,10 +1,13 @@
-sleep 10;
+WaitUntil {CampsInitialised};
+sleep 3;
 _MaxConvoys = 12;
 _connected = 0;
 _ArmedCars = ["O_LSV_02_unarmed_F","I_G_Offroad_01_armed_F"];
 _Trucks = ["I_Truck_02_covered_F","I_Truck_02_transport_F"];
 _Cars = ["I_G_Offroad_01_F","I_G_Van_01_transport_F","I_C_Offroad_02_unarmed_F"];
-_spawns = CSAR_CampLocations;
+//_spawns = CSAR_CampLocations;
+//CHANGE CONVOYS TO ONLY SELECT OCCUPIED CAMPS AS CONVOY LOCATIONS INSTEAD OF ALL POSSIBLE CAMP LOCATIONS - LOCALISES AREA A BIT MORE
+_spawns = EnemyCamps + BigEnemyCamps + [POWCamp] + [IntelMap];
 _spawn = selectrandom _spawns;
 _ConvoyWaypoints = [];
 
@@ -24,7 +27,7 @@ private ["_vehicle","_grp","_leader","_gunner"];
 
 
 // COMPILE NEAREST ROADS TO POTENTIAL CAMP LOCATIONS
-{_NearRoads = (getpos _x) NearRoads 100;IF (count _NearRoads >= 1) then {_ConvoyWaypoints = _ConvoyWaypoints + [_NearRoads select 0]}} foreach _spawns;
+{_NearRoads = (getpos _x) NearRoads 150;IF (count _NearRoads >= 1) then {_ConvoyWaypoints = _ConvoyWaypoints + [_NearRoads select 0]}} foreach _spawns;
 CSAR_ConvoyRoads = _ConvoyWaypoints;
 IF (CSAR_DEBUG) then {{_marker = createMarker[format ["Road (%1)",random 9999], getPos _x];_marker setMarkerSize [0.7, 0.7];_marker setMarkerColor "ColorRed";_marker setMarkerType "o_motor_inf";} foreach _ConvoyWaypoints;};
 
@@ -73,3 +76,6 @@ _wp setWaypointCompletionRadius 30;
 _i = _i + 1;
 sleep 5;
 };
+
+ConvoysInitialised = true;
+IF (CSAR_DEBUG) then {systemchat "Convoys initialised"};

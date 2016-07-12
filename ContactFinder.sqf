@@ -4,7 +4,7 @@ _Triggersize = 150;
 CSAR_Debug = true;
 CSAR_ContactArray = [];
 _triggerarray = [];
-Sleep 1;
+Sleep 5;
 _markerarray = [];
 while {true} do {
 //current spotted west units
@@ -51,12 +51,12 @@ _first = _leaderArray select 0;
 
 _obj = "Logic" createvehiclelocal [(getpos _first) select 0,(getpos _first) select 1, 0];
 _leaderArray = _leaderarray - [_first];
-IF (CSAR_DEBUG) then {_marker = createMarkerlocal[format ["Detected (%1)",random 9999], getPos _first];_marker setMarkerSizeLocal [_Triggersize, _Triggersize];_marker setMarkerColorLocal "ColorRed";_marker setMarkerShapeLocal "ELLIPSE";_markerarray = _markerarray + [_marker]};
+//IF (CSAR_DEBUG) then {_marker = createMarkerlocal[format ["Detected (%1)",random 9999], getPos _first];_marker setMarkerSizeLocal [_Triggersize, _Triggersize];_marker setMarkerColorLocal "ColorRed";_marker setMarkerShapeLocal "ELLIPSE";_markerarray = _markerarray + [_marker]};
 _triggerarray = _triggerarray + [[_obj,0]];
 
 {IF (! ([_x,_TriggerArray,_Triggersize] call _Distcheck)) then {
 	_obj = "Logic" createvehiclelocal [(getpos _x) select 0,(getpos _x) select 1, 0];
-	IF (CSAR_DEBUG) then {_marker = createMarkerlocal[format ["Detected (%1)",random 9999], getPos _x];_marker setMarkerSizeLocal [_Triggersize, _Triggersize];_marker setMarkerColorLocal "ColorRed";_marker setMarkerShapeLocal "ELLIPSE";_markerarray = _markerarray + [_marker]};
+	//IF (CSAR_DEBUG) then {_marker = createMarkerlocal[format ["Detected (%1)",random 9999], getPos _x];_marker setMarkerSizeLocal [_Triggersize, _Triggersize];_marker setMarkerColorLocal "ColorRed";_marker setMarkerShapeLocal "ELLIPSE";_markerarray = _markerarray + [_marker]};
 	_triggerarray = _triggerarray + [[_obj,0]];
 	}
 } foreach _LeaderArray;
@@ -66,6 +66,8 @@ _triggerarray = _triggerarray + [[_obj,0]];
 _tmp = _x select 0;
 _num = {(_x distance _tmp) < _triggersize} count _spottedarray;
 _x set [1,_num];
+IF (CSAR_DEBUG) then {_marker = createMarkerlocal[format ["Detected (%1)",random 9999], getPos _tmp];_marker setMarkerSizeLocal [_Triggersize, _Triggersize];_marker setMarkerColorLocal "ColorRed";_marker setMarkerShapeLocal "ELLIPSE";_markerarray = _markerarray + [_marker]};
+IF (CSAR_DEBUG) then {_marker = createMarkerlocal[format ["Detected (%1)",random 9999], getPos _tmp];_marker setMarkerSizeLocal [1, 1];_marker setMarkerColorLocal "ColorRed";_marker setMarkerShapeLocal "ICON";_marker setmarkertypelocal "hd_dot";_marker setmarkertextlocal (str _num);_markerarray = _markerarray + [_marker]};
 } foreach _triggerarray;
 //player sidechat str (_triggerarray);
 
