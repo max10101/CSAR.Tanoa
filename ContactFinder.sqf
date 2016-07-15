@@ -4,7 +4,7 @@ _Triggersize = 150;
 CSAR_Debug = true;
 CSAR_ContactArray = [];
 _triggerarray = [];
-Sleep 5;
+Sleep 2;
 _markerarray = [];
 while {true} do {
 //current spotted west units
@@ -37,7 +37,8 @@ while {count _spottedarray <= 0} do {
 {IF (((_opfor knowsabout _x) > _MaxKnowsAbout) OR CSAR_Debug) then {_SpottedArray = _SpottedArray + [_x]}} foreach _westunits;
 sleep 0.1;
 };
-{deletevehicle (_x select 0)} foreach _triggerarray;_triggerarray = [];
+//{deletevehicle (_x select 0)} foreach _triggerarray;
+_triggerarray = [];
 IF ((count _markerarray) > 0) then {{deletemarker _x} foreach _markerarray;_markerrarray = []};
 //{IF (true) then {_SpottedArray = _SpottedArray + [_x]}} foreach _westunits;
 
@@ -49,13 +50,15 @@ _leaderarray = _spottedarray;
 //STEP 2 create the contact zone areas based off spotted units
 _first = _leaderArray select 0;
 
-_obj = "Logic" createvehiclelocal [(getpos _first) select 0,(getpos _first) select 1, 0];
+//_obj = "Logic" createvehiclelocal [(getpos _first) select 0,(getpos _first) select 1, 0];
+_obj = _first;
 _leaderArray = _leaderarray - [_first];
 //IF (CSAR_DEBUG) then {_marker = createMarkerlocal[format ["Detected (%1)",random 9999], getPos _first];_marker setMarkerSizeLocal [_Triggersize, _Triggersize];_marker setMarkerColorLocal "ColorRed";_marker setMarkerShapeLocal "ELLIPSE";_markerarray = _markerarray + [_marker]};
 _triggerarray = _triggerarray + [[_obj,0]];
 
 {IF (! ([_x,_TriggerArray,_Triggersize] call _Distcheck)) then {
-	_obj = "Logic" createvehiclelocal [(getpos _x) select 0,(getpos _x) select 1, 0];
+//	_obj = "Logic" createvehiclelocal [(getpos _x) select 0,(getpos _x) select 1, 0];
+	_obj = _x;
 	//IF (CSAR_DEBUG) then {_marker = createMarkerlocal[format ["Detected (%1)",random 9999], getPos _x];_marker setMarkerSizeLocal [_Triggersize, _Triggersize];_marker setMarkerColorLocal "ColorRed";_marker setMarkerShapeLocal "ELLIPSE";_markerarray = _markerarray + [_marker]};
 	_triggerarray = _triggerarray + [[_obj,0]];
 	}
