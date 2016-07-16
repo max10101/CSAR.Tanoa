@@ -1,4 +1,4 @@
-current random glitch that actually helps in favour: if spotted unit gets into a vehicle that vehicle becomes part of csar_contactarray, and stays as such when unit gets out (may cause groups to 'engage' empty vehicles - ie search party moving towards a landed chopper and sticking around) - seems to go away after a short time/unit moves a distance away though. maybe make it stay?
+current random glitch that actually helps in favour: if spotted unit gets into a vehicle that vehicle becomes part of csar_contactarray, and stays as such when unit gets out (may cause groups to 'engage' empty vehicles - ie search party moving towards a landed chopper and sticking around) - seems to go away after a short time/unit moves a distance away though. maybe make it stay somehow?
 
 check to see if napalm works MP/needs to be local or global
   create *master* patrol script which oversees all enemy unit groups and chooses to engate (as opposed to having each patrol script running on each group*

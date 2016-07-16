@@ -33,7 +33,7 @@ IF (Count _NearContacts >= 1) then {
 	
 	//THIRD - count how many OTHER groups are currently 'attacking' the general area (have a engaging WP within x meters (engageradius))
 	_EngagedGroups = [CSAR_EngagedGroups,[],{[(_x select 1),_Nearest select 0] call BIS_fnc_distance2D},"ASCEND",{([(_x select 1),_Nearest select 0] call BIS_fnc_distance2D) < _EngageRadius}] call BIS_fnc_sortBy;
-	player sidechat str _EngagedGroups;
+//	player sidechat str _EngagedGroups;
 	
 	//FOURTH - determine if current amount of reinforcing groups is enough to deal with the target threat value - if not proceed
 	

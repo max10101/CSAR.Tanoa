@@ -1,0 +1,1 @@
+player sidechat "OnPlayerRespawn with vars " + (str _this);

@@ -1,6 +1,9 @@
-call compile preprocessFile "Support\init.sqf";
-call compileFinal preprocessFileLineNumbers "FAR_revive\FAR_revive_init.sqf";
 
+call compile preprocessFile "Support\init.sqf";
+//call compileFinal preprocessFileLineNumbers "FAR_revive\FAR_revive_init.sqf";
+/*
+
+*/
 
 RecoilFunction = compile preprocessFile "recoil.sqf";
 blufor_fnc_initUnit = compile preprocessFile "blufor_fnc_initUnit.sqf";
@@ -36,12 +39,14 @@ CSAR_fnc_initSpawn = compile '
         mattzig_earPlugsInUse = false;
         1 fadeSound 1;
 		_unit setunittrait ["Engineer",1];
+		_unit setVariable ["#rev_enabled", true, true];
         _unit addEventHandler ["HandleRating", "_rating = (_this select 1);if (_rating < 0) then {_rating = 0;}; _rating"];
         _unit enablefatigue false;
         _putEarOn = ["<t color=""#ffff33"">Put on ear plugs</t>",{1 fadeSound 0.3; mattzig_earPlugsInUse = true;},[],-90,false,true,"","!mattzig_earPlugsInUse && vehicle player == vehicle _target"];
         _takeEarOff = ["<t color=""#ffff33"">Take off ear plugs</t>",{1 fadeSound 1; mattzig_earPlugsInUse = false;},[],-90,false,true,"","mattzig_earPlugsInUse && vehicle player == vehicle _target"];
         _unit addAction _putEarOn;
         _unit addAction _takeEarOff;
+		player sidechat "INITSPAWN";
         if (!(isPlayer (leader group _unit))) then {
             if (local (leader group _unit)) then {
                 (group _unit) selectLeader _unit;
@@ -73,7 +78,7 @@ SoundDelayTime = 8;
 BIS_Effects_Burn=compile preprocessFileLineNumbers "burn.sqf";
 [crashedheli, 4, time, false, true] spawn BIS_Effects_Burn;
 
-[] execVM "CSAR_Respawn.sqf";
+//[] execVM "CSAR_Respawn.sqf";
 //[] execVM "real_weather.sqf";
 
 POWAction = POW addaction ["<t color='#FF0000'>Rescue POW</t>","FreePow.sqf",nil,0,true,true,"","PowRescued == 0"];

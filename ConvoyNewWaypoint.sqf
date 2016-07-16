@@ -1,5 +1,6 @@
 _groupleader = _this;
 _group = group _groupleader;
+IF (!Local _groupleader) ExitWith {};
 _abandon = false;
 _camps = CSAR_CampLocations;
 //CHECK IF ALL UNITS ARE STILL IN A VEHICLE
