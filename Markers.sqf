@@ -44,11 +44,11 @@
 		            	 else {_marker setMarkerColorLocal "colorGrey"};
 		            };
 
-		            // * FAR REVIVE IMPLEMENTATION*
-		            if (alive _unit && isPlayer _unit) then {
+		            // *REVIVE IMPLEMENTATION*
+		            if (isPlayer _unit) then {
 		                if (vehicle _unit isKindOf "man") then {
-		                    _isUnconscious = _unit getVariable ["FAR_isUnconscious",0];
-		                    if (_isUnconscious >= 1) then {
+		                    _isUnconscious = lifestate _unit;
+		                    if (_isUnconscious == "INCAPACITATED") then {
 		                    	_marker setMarkerTypeLocal "KIA";
 		                	};
 		                };

@@ -1,30 +1,9 @@
 CSAR_fnc_respawnMenuposition_Killed = false;
 CSAR_fnc_findNearestUnit = compile preprocessFile "CSAR_Respawn_fn_FindNearestUnit.sqf";
 CSAR_Respawn_NearestUnit = compile preprocessFile "CSAR_Respawn_NearestUnit.sqf";
-/* MOVED TO INIT
+/* 
 CSAR_fnc_initSpawn = compile '
-    _unit = _this;
-    if (local _unit) then {
-        mattzig_earPlugsInUse = false;
-        1 fadeSound 1;
-		_unit setunittrait ["Engineer",1];
-        _unit addEventHandler ["HandleRating", "_rating = (_this select 1);if (_rating < 0) then {_rating = 0;}; _rating"];
-        _unit enablefatigue false;
-        _putEarOn = ["<t color=""#ffff33"">Put on ear plugs</t>",{1 fadeSound 0.3; mattzig_earPlugsInUse = true;},[],-90,false,true,"","!mattzig_earPlugsInUse && vehicle player == vehicle _target"];
-        _takeEarOff = ["<t color=""#ffff33"">Take off ear plugs</t>",{1 fadeSound 1; mattzig_earPlugsInUse = false;},[],-90,false,true,"","mattzig_earPlugsInUse && vehicle player == vehicle _target"];
-        _unit addAction _putEarOn;
-        _unit addAction _takeEarOff;
-        if (!(isPlayer (leader group _unit))) then {
-            if (local (leader group _unit)) then {
-                (group _unit) selectLeader _unit;
-            } else {
-                [group _unit, _unit] remoteExec ["selectLeader", leader group _unit];
-            };
-         };
-        [_unit] execVM "Support\addActions.sqf";
-        //[] spawn FAR_Player_Init;
-    };
-';
+MOVED TO INIT
 */
  disableserialization;
 

@@ -1,25 +1,38 @@
-current random glitch that actually helps in favour: if spotted unit gets into a vehicle that vehicle becomes part of csar_contactarray, and stays as such when unit gets out (may cause groups to 'engage' empty vehicles - ie search party moving towards a landed chopper and sticking around) - seems to go away after a short time/unit moves a distance away though. maybe make it stay somehow?
+BUGS: 
 
-check to see if napalm works MP/needs to be local or global
-  create *master* patrol script which oversees all enemy unit groups and chooses to engate (as opposed to having each patrol script running on each group*
-  -needs to engage with flares/artillery/smoke
-  -needs to be appropriate response/call for backup
-FORGET MASTER SCRIPT -  HAS TO RUN FOR EACH GROUP 
-csar_engagedgroups 
-All engaged group,targetpos 
-Use sortby to get all nearest attacking within x meters 
-That's total engaged amount 
-Boom 
+-current random glitch that actually helps in favour: if spotted unit gets into a vehicle that vehicle becomes part of csar_contactarray, and stays as such when unit gets out (may cause groups to 'engage' empty vehicles - ie search party moving towards a landed chopper and sticking around) - seems to go away after a short time/unit moves a distance away though. maybe make it stay somehow
+-Respawning as closestunit doesn't always put you in the unit right away - you spawn near the unit as default soldier. then sometimes move into the intended move guy 5 secs later
 
-CUSTOM fasttime script - 
-needs to accel through to 'brightest' time of night - then to dusk/dawn, then not as quick through day
-  
-test random patrols as they are - might be too many?
-add group reduction script - infantry only, ignore convoys + increase distance?
-**change revive system? (check overhauled arma3 revive system - new setunconcious/lifestate command)
-	test revive in mP
+TESTING:
+
+-check to see if napalm works MP/needs to be local or global
+-test random patrols as they are - might be too many? test to see how groupreduction functions more
+-new BIS revive system
+	test revive in mP more - make sure it functions after respawning as closestunit
 	add dragging to bis revive from FAR actions
 
-populate POW camp with enemies/patrols
-populate big camps with more vehicles/patrols
+ADD/FINISH:
+
+-Patrol script - working - running on each group individually
+  -needs to engage with flares/artillery/smoke
+  -needs to be appropriate response/call for backup
+
+-Custom fasttime script - 
+needs to accel through to 'brightest' time of night - then to dusk/dawn, then not as quick through day
+
+-populate POW camp with enemies/patrols
+
+-populate big camps with more vehicles/patrols
+
+-add in the 'find intel pos by searching a dead officer' functionality
+
+-add in opfor attack helo
+
+
+FUTURE: 
+
+*possible FOB at SW airport for tank/heavy vehicle assaults?
+
+*destroy radio tower for reduced enemy refo?
+
 fuck bitches get money

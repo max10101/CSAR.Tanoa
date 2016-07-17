@@ -55,7 +55,6 @@ CSAR_fnc_initSpawn = compile '
             };
          };
         [_unit] execVM "Support\addActions.sqf";
-        //[] spawn FAR_Player_Init;
     };';
 
 CSAR_NapalmSize = 50;
@@ -78,7 +77,7 @@ SoundDelayTime = 8;
 BIS_Effects_Burn=compile preprocessFileLineNumbers "burn.sqf";
 [crashedheli, 4, time, false, true] spawn BIS_Effects_Burn;
 
-//[] execVM "CSAR_Respawn.sqf";
+[] execVM "CSAR_Respawn.sqf";
 //[] execVM "real_weather.sqf";
 
 POWAction = POW addaction ["<t color='#FF0000'>Rescue POW</t>","FreePow.sqf",nil,0,true,true,"","PowRescued == 0"];

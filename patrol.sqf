@@ -39,10 +39,10 @@ IF (Count _NearContacts >= 1) then {
 	
 	IF (Count _EngagedGroups >= 1) then {
 		
+		//FIFTH - set waypoint to engage, add waypoint to csar_engagegroups as [group,waypointposition]
 		
 		
-		
-		
+		//SIXTH - wait - check completion status, re-engage?
 	};
 };
 
