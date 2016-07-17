@@ -46,7 +46,7 @@ CSAR_fnc_initSpawn = compile '
         _takeEarOff = ["<t color=""#ffff33"">Take off ear plugs</t>",{1 fadeSound 1; mattzig_earPlugsInUse = false;},[],-90,false,true,"","mattzig_earPlugsInUse && vehicle player == vehicle _target"];
         _unit addAction _putEarOn;
         _unit addAction _takeEarOff;
-		player sidechat "INITSPAWN";
+
         if (!(isPlayer (leader group _unit))) then {
             if (local (leader group _unit)) then {
                 (group _unit) selectLeader _unit;
@@ -118,9 +118,9 @@ if (isServer) then {
 
     POW setCaptive true; POW allowFleeing 0; removeAllWeapons POW; POW setBehaviour "Careless";
     [] execVM "CSAR_Init.sqf";
-	[] execvm "EnemyCampInit.sqf";
+	//[] execvm "EnemyCampInit.sqf";
 	[] execVM "ContactFinder.sqf";
-	[] execvm "convoy.sqf";
+	//[] execvm "convoy.sqf";
 };
 
 //This is all global

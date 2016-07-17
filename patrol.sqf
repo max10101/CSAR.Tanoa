@@ -1,6 +1,7 @@
 sleep 5;
 _group = _this;
 
+//how many contacts vs maximum groups that should be attacking
 _L1contact = 3;
 _L1refo = 1;
 _L2contact = 8;
@@ -23,6 +24,8 @@ CSAR_EngagedGroups = [[player,getpos player],[q1,getpos q1]];
 While {true} do {
 CSAR_EngagedGroups = [[player,getpos player],[q1,getpos q1]];
 sleep 1;
+
+
 //FIRST - opfor group finds nearest contact (that is within attackdistance, and not in the air)
 _NearContacts = ([CSAR_ContactArray,[],{_leader distance (_x select 0)},"ASCEND",{(((_x select 0) distance _leader) <= _AttackDistance) && ((getpos (_x select 0)) select 2) < 10 && (count CSAR_ContactArray >= 1)}] call BIS_fnc_sortBy);
 IF (Count _NearContacts >= 1) then {
@@ -35,7 +38,7 @@ IF (Count _NearContacts >= 1) then {
 	_EngagedGroups = [CSAR_EngagedGroups,[],{[(_x select 1),_Nearest select 0] call BIS_fnc_distance2D},"ASCEND",{([(_x select 1),_Nearest select 0] call BIS_fnc_distance2D) < _EngageRadius}] call BIS_fnc_sortBy;
 //	player sidechat str _EngagedGroups;
 	
-	//FOURTH - determine if current amount of reinforcing groups is enough to deal with the target threat value - if not proceed
+	//FOURTH - determine if current amount of reinforcing groups is enough to deal with the target threat value - if not then assist
 	
 	IF (Count _EngagedGroups >= 1) then {
 		

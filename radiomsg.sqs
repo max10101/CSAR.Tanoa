@@ -1,3 +1,4 @@
+exit
 radio say "Mysound2"
 ~13
 IF (!Skipradio) then {radio say3d ["radio1",25,1]}

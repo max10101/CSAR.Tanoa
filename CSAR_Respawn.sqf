@@ -1,5 +1,5 @@
 CSAR_fnc_respawnMenuposition_Killed = false;
-CSAR_fnc_findNearestUnit = compile preprocessFile "CSAR_Respawn_fn_FindNearestUnit.sqf";
+CSAR_fnc_findNearestUnit = compile preprocessFile "CSAR_Respawn_fn_FindNearestUnit2.sqf";
 CSAR_Respawn_NearestUnit = compile preprocessFile "CSAR_Respawn_NearestUnit.sqf";
 /* 
 CSAR_fnc_initSpawn = compile '
@@ -17,14 +17,14 @@ sleep 1;
 
 //[west, "WEST1"] call BIS_fnc_addRespawnInventory;
 //[west, "WEST2"] call BIS_fnc_addRespawnInventory;
-[west,"spawn_nearest","Closest Unit",-1,false] call BIS_fnc_addRespawnPosition;
+[west,"spawn_nearest","Group/Closest Unit",-1,false] call BIS_fnc_addRespawnPosition;
 [west, "spawn_airbase","Airbase",-1,false] call BIS_fnc_addRespawnPosition;
-[west, "spawn_fob", "FOB",-1,false] call BIS_fnc_addRespawnPosition;
+[west, "spawn_fob", "Airbase",-1,false] call BIS_fnc_addRespawnPosition;
 
 _justDied = false;
 _timeOfDeath = time;
 _corpse = objnull;
-_spawnMarker = "";
+_spawnmarker = "";
 _num = 1;
 
 while {true} do {
@@ -33,7 +33,7 @@ while {true} do {
 	if (local player) then {
         if (!alive player) then {
             if (!_justDied) then {
-                //player sideChat "Just Died";
+
                 _corpse = player;
                 _justDied = true;
                 _timeOfDeath = time;
@@ -45,7 +45,7 @@ while {true} do {
                 _curSel = if !(lbCurSel _list < 0) then {lbCurSel _list} else {0};
                 if !(isNil {uiNamespace getVariable "BIS_RscRespawnControls_posMetadata"}) then {
                     _metadata = ["get",_curSel] call BIS_fnc_showRespawnMenuPositionMetadata;
-                    _spawnMarker = (_metadata select 0) select 0;
+                    _spawnmarker = (_metadata select 0) select 0;
                 };
                 _nearestUnit = [player,player,list WestUnits] call CSAR_fnc_findNearestUnit;
                 if (!(isNull _nearestUnit)) then {
@@ -61,9 +61,11 @@ while {true} do {
                 };
             };
         } else {
+
             if (_justDied) then {
-                if (_spawnMarker == "spawn_nearest") then {
+                if (_spawnmarker == "spawn_nearest") then {
                     [player,_corpse] call CSAR_Respawn_NearestUnit;
+
                 };
                 _justDied = false;
                 if (markerAlpha "spawn_nearest" > 0) then {"spawn_nearest" setMarkerAlphaLocal 0;};

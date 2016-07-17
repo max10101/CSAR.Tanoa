@@ -1,4 +1,4 @@
-// extract from bis_fnc_reviveinit since using selectplayer would break revive functions
+// extract from bis_fnc_reviveinit since using selectplayer would break BIS revive functions
 // USAGE :  execute locally (no params) after a player switches into a new unit using selectplayer
 // DOES NOT NEED TO BE EXECUTED IF PLAYER JUST RESPAWNS AT BASE - vars and EH's seem to carry over if that's the case
 // todo : remove old bis eventhandlers if they exist (would they even? meh), not sure if JIP section is required

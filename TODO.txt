@@ -1,19 +1,18 @@
 BUGS: 
 
 -current random glitch that actually helps in favour: if spotted unit gets into a vehicle that vehicle becomes part of csar_contactarray, and stays as such when unit gets out (may cause groups to 'engage' empty vehicles - ie search party moving towards a landed chopper and sticking around) - seems to go away after a short time/unit moves a distance away though. maybe make it stay somehow
--Respawning as closestunit doesn't always put you in the unit right away - you spawn near the unit as default soldier. then sometimes move into the intended move guy 5 secs later
 
 TESTING:
 
 -check to see if napalm works MP/needs to be local or global
 -test random patrols as they are - might be too many? test to see how groupreduction functions more
 -new BIS revive system
-	test revive in mP more - make sure it functions after respawning as closestunit
+	test revive in mP more - need multiple players
 	add dragging to bis revive from FAR actions
 
 ADD/FINISH:
 
--Patrol script - working - running on each group individually
+-Patrol script - working - running on each group individually - still need to complete waypointinjection
   -needs to engage with flares/artillery/smoke
   -needs to be appropriate response/call for backup
 
@@ -28,6 +27,10 @@ needs to accel through to 'brightest' time of night - then to dusk/dawn, then no
 
 -add in opfor attack helo
 
+-add mass ejection script to planes
+
+-populate cities a bit
+
 
 FUTURE: 
 
@@ -35,4 +38,4 @@ FUTURE:
 
 *destroy radio tower for reduced enemy refo?
 
-fuck bitches get money
+get drunk at strippers
