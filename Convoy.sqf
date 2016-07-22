@@ -1,4 +1,18 @@
 WaitUntil {CampsInitialised};
+
+CSAR_fnc_InjectConvoyWP = compile '
+private ["_current","_newWP","_newpos","_group"];
+_group = _this select 0;
+_newpos = _this select 1;
+_current = currentWaypoint _group;
+[_group,_current] setWaypointStatements ["true",""];
+_newWP = _group addWaypoint [_newPos, 0];
+call compile format ["_newWP setWaypointStatements [""true"", ""group this setcurrentwaypoint [group this,%1];""]",_current];
+_group setcurrentwaypoint _newWP;
+[_group,_current] setWaypointStatements ["true", "this execvm ""ConvoyNewWaypoint.sqf"""];
+_newWP
+';
+
 sleep 3;
 _MaxConvoys = 12;
 _connected = 0;

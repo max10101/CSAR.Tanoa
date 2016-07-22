@@ -6,9 +6,9 @@ _Cars = ["I_G_Offroad_01_F","I_G_Van_01_transport_F","I_C_Offroad_02_unarmed_F"]
 _vehtype = selectrandom (_armedcars + _trucks + _cars);
 _pos = getpos _camp;
 _vehpos = [(_pos select 0)+25-random 50,(_pos select 1)+25-random 50,0];// findemptyposition [1,30,_vehtype];
-_gunpos = [(_pos select 0)+50-random 100,(_pos select 1)+50-random 100,0];// findemptyposition [1,30,"I_HMG_01_high_F"];
-_gunpos2 = [(_pos select 0)+50-random 100,(_pos select 1)+50-random 100,0];// findemptyposition [1,30,"I_HMG_01_high_F"];
-sleep 1;
+_gunpos = [(_pos select 0)+50-random 100,(_pos select 1)+50-random 100,0];// findemptyposition [1,20,"I_HMG_01_high_F"];
+_gunpos2 = [(_pos select 0)+50-random 100,(_pos select 1)+50-random 100,0];// findemptyposition [1,20,"I_HMG_01_high_F"];
+sleep 2;
 _veh = _vehtype createvehicle _vehpos;
 _veh setdir (random 360);
 _veh setfuel (random 0.3);

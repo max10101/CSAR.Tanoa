@@ -18,8 +18,8 @@ sleep 1;
 //[west, "WEST1"] call BIS_fnc_addRespawnInventory;
 //[west, "WEST2"] call BIS_fnc_addRespawnInventory;
 [west,"spawn_nearest","Group/Closest Unit",-1,false] call BIS_fnc_addRespawnPosition;
-[west, "spawn_airbase","Airbase",-1,false] call BIS_fnc_addRespawnPosition;
-[west, "spawn_fob", "Airbase",-1,false] call BIS_fnc_addRespawnPosition;
+[west, "spawn_airbase","West Airbase",-1,false] call BIS_fnc_addRespawnPosition;
+[west, "spawn_fob", "West Airbase",-1,false] call BIS_fnc_addRespawnPosition;
 
 _justDied = false;
 _timeOfDeath = time;

@@ -1,4 +1,4 @@
-player sidechat "CALL NEARESTUNIT";
+//no longer used
 _findNearestSoldier = compile '
     _corpse = _this select 0;
     _units = _this select 1;

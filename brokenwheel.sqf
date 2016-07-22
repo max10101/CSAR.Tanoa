@@ -8,7 +8,7 @@ IF (!Canmove _vehicle) then {_ct = false};
 
 IF ((["wheel",_part,false] call BIS_fnc_inString) && (_damage >= 0.97) && (count crew _vehicle >= 1) && _ct) then {
 
-_FixWP = [(group driver _vehicle),(getpos _vehicle)] call CSAR_fnc_InjectWP;
+_FixWP = [(group driver _vehicle),(getpos _vehicle)] call CSAR_fnc_InjectConvoyWP;
 _FixWP setwaypointtimeout [_timetofix,_timetofix,_timetofix];
 _crew = crew _vehicle;
 _crew ordergetin false;

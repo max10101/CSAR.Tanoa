@@ -3,8 +3,8 @@ _expire = time + (_this select 1);
 _size = _this select 2;
 _smokearray = [];
 _firearray = [];
-_MaxSmoke = 6;
-_Maxfire = 16;
+_MaxSmoke = 4;
+_Maxfire = 14;
 _color = [1, 1, 1];
 _velocity = wind;
 /*[coreIntensity, coreDistance, damageTime]: Array
@@ -43,7 +43,7 @@ CSAR_NapalmTMP = _obj;
   
 _i = 0;
 While {_i < _maxSmoke} do {
-_smoke = "#particlesource" createVehicle [(_pos select 0)-_size+(random (_size*2)),(_pos select 1)-_size+(random (_size*2)),0];
+_smoke = "#particlesource" createVehicleLocal [(_pos select 0)-_size+(random (_size*2)),(_pos select 1)-_size+(random (_size*2)),0];
 _smoke setParticleClass "BigDestructionSmoke";
 
 //[lifeTime, position, moveVelocity, rotationVelocity, size, color, randomDirectionPeriod, randomDirectionIntensity, {angle}, bounceOnSurface]
@@ -52,7 +52,7 @@ _smokearray = _smokearray + [_smoke];
 _i = _i + 1;
 };
 
-_ps1 = "#particlesource" createVehicle _pos;
+_ps1 = "#particlesource" createVehicleLocal _pos;
 _ps1 setParticleParams [["a3\data_f\ParticleEffects\Universal\Universal.p3d", 16, 1, 12, 0], "", "Billboard", 1, 4 + random 3, [0, 0, 5], _velocity, 1, 1.1, 1, 0, [.3 + (random 1)], [_color + [0], _color + [0.31], _color + [0]], [1000], 1, 0, "", "", 1];
 _ps1 setParticleRandom [3, [5 + (random 1), 4 + (random 1), 7], [random 4, random 4, 2], 14, 3, [0, 0, 0, .1], 1, 0];
 _ps1 setParticleCircle [1, [0.5, 0.5, 0]];
@@ -62,14 +62,14 @@ _firearray = _firearray + [_ps1];
 _i = 0;
 While {_i < _maxFire} do {
 _pos1 = [(_pos select 0)-_size+(random (_size*2)),(_pos select 1)-_size+(random (_size*2)),(random 10)];
-_ps1 = "#particlesource" createVehicle _pos1;
+_ps1 = "#particlesource" createVehicleLocal _pos1;
 _ps1 setParticleParams [["a3\data_f\ParticleEffects\Universal\Universal.p3d", 16, 1, 12, 0], "", "Billboard", 1, 4 + random 3, [0, 0, 5], _velocity, 1, 1.1, 1, 0, [.3 + (random 1)], [_color + [0], _color + [0.31], _color + [0]], [1000], 1, 0, "", "", 1];
 _ps1 setParticleRandom [3, [5 + (random 1), 4 + (random 1), 7], [random 4, random 4, 2], 14, 3, [0, 0, 0, .1], 1, 0];
 _ps1 setParticleCircle [1, [0.5, 0.5, 0]];
 _ps1 setDropInterval 0.022;
 _ps1 setParticleFire _fireintensity;
 
-_ps2 = "#particlesource" createVehicle _pos1;
+_ps2 = "#particlesource" createVehicleLocal _pos1;
 _ps2 setParticleParams [["a3\data_f\ParticleEffects\Universal\Universal.p3d", 16, 3, 12, 0], "", "Billboard", 1, 3 + random 1, [5, 5, 4], _velocity, 1, 1.1, 1, 0, [.5 + (random .5)], [_color + [0], _color + [0.35], _color + [0]], [1000], 1, 0, "", "", 1];
 _ps2 setParticleRandom [3, [1 + (random 1), 4 + (random 1), 9], [random 5, random 2, 1], 14, 3, [0, 0, 0, .1], 1, 0];
 _ps2 setParticleCircle [1, [0.5, 0.5, 0]];
@@ -80,13 +80,13 @@ _i = _i + 1;
 };
 
 _slight6i = 21.4;
-_slight6 = "#lightpoint" createVehicle [ _pos select 0, _pos select 1, 10];
+_slight6 = "#lightpoint" createVehicleLocal [ _pos select 0, _pos select 1, 10];
 _slight6 setlightBrightness _slight6i;
 _slight6 setlightAmbient[.3, .1, 0];
 _slight6 setlightColor[.3, .1, 0];
 
 _slight1i = 9.4;
-_slight1 = "#lightpoint" createVehicle [_pos select 0, _pos select 1, 10];
+_slight1 = "#lightpoint" createVehicleLocal [_pos select 0, _pos select 1, 10];
 _slight1 setlightBrightness _slight1i;
 _slight1 setlightAmbient[1, 1, 1];
 _slight1 setlightColor[1, 1, .9];

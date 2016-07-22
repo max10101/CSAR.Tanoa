@@ -1,9 +1,5 @@
 
 call compile preprocessFile "Support\init.sqf";
-//call compileFinal preprocessFileLineNumbers "FAR_revive\FAR_revive_init.sqf";
-/*
-
-*/
 
 RecoilFunction = compile preprocessFile "recoil.sqf";
 blufor_fnc_initUnit = compile preprocessFile "blufor_fnc_initUnit.sqf";
@@ -18,21 +14,6 @@ PlayMoveMP = compileFinal "_this select 0 PlayMove (_this select 1);";
 
 CSAR_fnc_Arsenal = compile preprocessFile "arsenalfnc.sqf"; 
 
-//add a waypoint that the unit will immediately follow - and then go back to original set of waypoints when completed continuing where they left off - DO NOT SETWPSTATEMENTS WITH NEW WP
-//call with [_group,_newWPpos] call CSAR_fnc_InjectWP - returns WP
-CSAR_fnc_InjectWP = compile '
-private ["_current","_newWP","_newpos","_group"];
-_group = _this select 0;
-_newpos = _this select 1;
-_current = currentWaypoint _group;
-[_group,_current] setWaypointStatements ["true",""];
-_newWP = _group addWaypoint [_newPos, 0];
-call compile format ["_newWP setWaypointStatements [""true"", ""group this setcurrentwaypoint [group this,%1];""]",_current];
-_group setcurrentwaypoint _newWP;
-[_group,_current] setWaypointStatements ["true", "this execvm ""ConvoyNewWaypoint.sqf"""];
-_newWP
-';
-
 CSAR_fnc_initSpawn = compile '
     _unit = _this;
     if (local _unit) then {
@@ -46,7 +27,7 @@ CSAR_fnc_initSpawn = compile '
         _takeEarOff = ["<t color=""#ffff33"">Take off ear plugs</t>",{1 fadeSound 1; mattzig_earPlugsInUse = false;},[],-90,false,true,"","mattzig_earPlugsInUse && vehicle player == vehicle _target"];
         _unit addAction _putEarOn;
         _unit addAction _takeEarOff;
-
+/*
         if (!(isPlayer (leader group _unit))) then {
             if (local (leader group _unit)) then {
                 (group _unit) selectLeader _unit;
@@ -54,6 +35,7 @@ CSAR_fnc_initSpawn = compile '
                 [group _unit, _unit] remoteExec ["selectLeader", leader group _unit];
             };
          };
+		 */
         [_unit] execVM "Support\addActions.sqf";
     };';
 
@@ -118,9 +100,9 @@ if (isServer) then {
 
     POW setCaptive true; POW allowFleeing 0; removeAllWeapons POW; POW setBehaviour "Careless";
     [] execVM "CSAR_Init.sqf";
-	//[] execvm "EnemyCampInit.sqf";
+	[] execvm "EnemyCampInit.sqf";
 	[] execVM "ContactFinder.sqf";
-	//[] execvm "convoy.sqf";
+	[] execvm "convoy.sqf";
 };
 
 //This is all global

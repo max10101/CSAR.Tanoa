@@ -4,7 +4,7 @@ BUGS:
 
 TESTING:
 
--check to see if napalm works MP/needs to be local or global
+-check to see if napalm works MP
 -test random patrols as they are - might be too many? test to see how groupreduction functions more
 -new BIS revive system
 	test revive in mP more - need multiple players
@@ -18,6 +18,8 @@ ADD/FINISH:
 
 -Custom fasttime script - 
 needs to accel through to 'brightest' time of night - then to dusk/dawn, then not as quick through day
+
+-increase bleedout time
 
 -populate POW camp with enemies/patrols
 

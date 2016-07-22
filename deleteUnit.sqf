@@ -1,5 +1,5 @@
 _exists = true;
-_timer = time + (60*15);
+_timer = time + (60*20);
 if ((_this select 0) isKindOf "Man") then {
     while {_exists} do {
         sleep 10;
