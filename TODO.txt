@@ -12,7 +12,9 @@ TESTING:
 
 ADD/FINISH:
 
--Patrol script - working - running on each group individually - still need to complete waypointinjection
+replace CBA script in recoil with added script - remove cba usage from mission
+
+-Patrol script - working - running on each group individually - needs fullon testing
   -needs to engage with flares/artillery/smoke
   -needs to be appropriate response/call for backup
 
@@ -22,6 +24,8 @@ needs to accel through to 'brightest' time of night - then to dusk/dawn, then no
 -increase bleedout time
 
 -populate POW camp with enemies/patrols
+
+-populate/defend intel
 
 -populate big camps with more vehicles/patrols
 

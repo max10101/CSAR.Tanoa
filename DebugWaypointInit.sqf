@@ -1,0 +1,1 @@
+{[_x] execvm "waypointmarkers.sqf"} foreach list eastunits
