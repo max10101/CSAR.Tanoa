@@ -17,8 +17,8 @@ _veh setfuel (random 0.3);
 _gun = [_gunpos,((_gunpos select 0)-(getPos _camp select 0)) atan2 ((_gunpos select 1)-(getPos _camp select 1)),"Gunbag"] call CSAR_fnc_CampGun;
 
 _group = [_pos, Independent, (configFile >> "CfgGroups" >> "Indep" >> "IND_C_F" >> "Infantry" >> "BanditCombatGroup")] call BIS_fnc_spawnGroup;
-_group addvehicle _gun;
-
+[_group, _pos, 100,3,true] call CSAR_CBA_fnc_taskDefend;
+/*
 _wp = _group addWaypoint [_pos, 0];
 _wp setwaypointtype "LOITER";
 _wp setWaypointLoiterRadius 100;
@@ -28,4 +28,5 @@ _group setbehaviour "SAFE";
 
 (units _group) select (count (units _Group)-1) assignasgunner _gun;
 [(units _group) select (count (units _Group)-1)] ordergetin TRUE;
+*/
 {[_x,true,false] call opfor_fnc_initUnit} forEach units _group;

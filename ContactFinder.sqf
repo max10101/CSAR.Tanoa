@@ -1,8 +1,5 @@
 _opfor = Independent;
 _MaxKnowsAbout = 3.95;
-CSAR_ContactAreaSize = 150;
-CSAR_Debug = true;
-CSAR_ContactArray = [];
 _triggerarray = [];
 Sleep 2;
 _markerarray = [];
@@ -37,29 +34,21 @@ while {count _spottedarray <= 0} do {
 {IF (((_opfor knowsabout _x) > _MaxKnowsAbout) OR CSAR_Debug) then {_SpottedArray = _SpottedArray + [_x]}} foreach _westunits;
 sleep 0.1;
 };
-//{deletevehicle (_x select 0)} foreach _triggerarray;
 _triggerarray = [];
 IF ((count _markerarray) > 0) then {{deletemarker _x} foreach _markerarray;_markerrarray = []};
-//{IF (true) then {_SpottedArray = _SpottedArray + [_x]}} foreach _westunits;
 
 //obsolete for now
 {IF (IsFormationleader _x) then {_LeaderArray = _LeaderArray + [_x]}} foreach _SpottedArray;
 _leaderarray = _spottedarray;
 
-
 //STEP 2 create the contact zone areas based off spotted units
 _first = _leaderArray select 0;
-
-//_obj = "Logic" createvehiclelocal [(getpos _first) select 0,(getpos _first) select 1, 0];
 _obj = _first;
 _leaderArray = _leaderarray - [_first];
-//IF (CSAR_DEBUG) then {_marker = createMarkerlocal[format ["Detected (%1)",random 9999], getPos _first];_marker setMarkerSizeLocal [CSAR_ContactAreaSize, CSAR_ContactAreaSize];_marker setMarkerColorLocal "ColorRed";_marker setMarkerShapeLocal "ELLIPSE";_markerarray = _markerarray + [_marker]};
 _triggerarray = _triggerarray + [[_obj,0]];
 
 {IF (! ([_x,_TriggerArray,CSAR_ContactAreaSize] call _Distcheck)) then {
-//	_obj = "Logic" createvehiclelocal [(getpos _x) select 0,(getpos _x) select 1, 0];
 	_obj = _x;
-	//IF (CSAR_DEBUG) then {_marker = createMarkerlocal[format ["Detected (%1)",random 9999], getPos _x];_marker setMarkerSizeLocal [CSAR_ContactAreaSize, CSAR_ContactAreaSize];_marker setMarkerColorLocal "ColorRed";_marker setMarkerShapeLocal "ELLIPSE";_markerarray = _markerarray + [_marker]};
 	_triggerarray = _triggerarray + [[_obj,0]];
 	}
 } foreach _LeaderArray;
@@ -68,7 +57,9 @@ _triggerarray = _triggerarray + [[_obj,0]];
 {
 _tmp = _x select 0;
 _num = {(_x distance _tmp) < CSAR_ContactAreaSize} count _spottedarray;
+_closeUnits = [_spottedarray,[_x select 0],{_input0 distance _obj},"ASCEND",{(_input0 distance _x) < CSAR_ContactAreaSize}] call BIS_fnc_sortBy;
 _x set [1,_num];
+_x set [2,_closeUnits];
 IF (CSAR_DEBUG) then {_marker = createMarkerlocal[format ["Detected (%1)",random 9999], getPos _tmp];_marker setMarkerSizeLocal [CSAR_ContactAreaSize, CSAR_ContactAreaSize];_marker setMarkerColorLocal "ColorRed";_marker setMarkerShapeLocal "ELLIPSE";_markerarray = _markerarray + [_marker]};
 IF (CSAR_DEBUG) then {_marker = createMarkerlocal[format ["Detected (%1)",random 9999], getPos _tmp];_marker setMarkerSizeLocal [1, 1];_marker setMarkerColorLocal "ColorRed";_marker setMarkerShapeLocal "ICON";_marker setmarkertypelocal "hd_dot";_marker setmarkertextlocal (str _num);_markerarray = _markerarray + [_marker]};
 } foreach _triggerarray;

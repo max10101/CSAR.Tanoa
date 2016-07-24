@@ -32,11 +32,18 @@ while {_i < _bigcamps} do {
 	_i = _i + 1;
 	sleep 1;
 };
+AACamp = (selectrandom BigEnemyCamps);
+BigEnemyCamps = BigEnemyCamps - [AACamp];
+AACamp execvm "aacamp.sqf";
+"AAMarker" setmarkerpos (getpos AACamp);
 
 sleep 1;
 
 //SELECT POW CAMP
-_POWCamp = selectrandom _spawns;
+//remove undesirable POW spawn locations along outer edges
+_POWSpawns = _spawns - [CampPos_17,CampPos_23,CampPos_20,CampPos_11,CampPos_24,CampPos_28,CampPos_18,CampPos_22,CampPos_29];
+_POWCamp = selectrandom _POWSpawns;
+
 _spawns = _spawns - [_POWCamp];
 [getpos _POWCamp, west, (configFile >> "CfgGroups" >> "Empty" >> "Guerrilla" >> "Camps" >> (SelectRandom _POWCamps))] call CSAR_fnc_SpawnCamps;
 POWCamp = _POWCamp; Publicvariable "POWCamp";
@@ -91,6 +98,8 @@ IntelMap enableSimulationGlobal false;
 //_wpSAD setwaypointtype "HOLD";
 publicvariable "IntelMap";
 CampsInitialised = true;
+_intelcamp execvm "intelcamp.sqf";
+
 
 sleep 5;
 {_x execvm "smallcamp.sqf"} foreach EnemyCamps;

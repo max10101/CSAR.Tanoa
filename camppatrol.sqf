@@ -16,10 +16,14 @@ while {_i < (_MaxWPs + 1)} do {
 	sleep 0.01;
 };
 _wps call BIS_fnc_arrayShuffle;
+_index = 0;
+_rand = random 1;
+IF (_rand > 0.33) then {_index = 1};
+IF (_rand > 0.66) then {_index = 2};
+IF ((_camp distance2d POWCamp) < 1500) then {_wps = _wps - [POWCamp];_wps set [_index,POWCamp]};
 _i = 0;
 while {_i < _MaxWPs} do {
 	_wp = _group addWaypoint [[((getpos (_wps select _i)) select 0)+50-random 100,((getpos (_wps select _i)) select 1)+50-random 100,0], 0];
-	//_wp = _group addWaypoint [[(_pos select 0)+50-random 100,(_pos select 1)+50-random 100,0], 0];
 	_i = _i + 1;
 	sleep 0.1;
 };

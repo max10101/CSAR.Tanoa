@@ -1,5 +1,4 @@
 //Reduces group size to sepcified value until enemy unit is within specified dist. Best used for infantry only groups
-// CURRENT PROBLEMS : IF THIS RUNS ON A GROUP CURRENTLY IN A VEHICLE (as cargo) ALL THE UNITS WILL DISEMBARK WHEN ONE UNIT IS DELETED AND STAY DISEMBARKED
 if (isServer) then {
     _group1 = _this select 0;
     _min = _this select 1;

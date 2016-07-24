@@ -41,7 +41,7 @@ private ["_vehicle","_grp","_leader","_gunner"];
 
 
 // COMPILE NEAREST ROADS TO POTENTIAL CAMP LOCATIONS
-{_NearRoads = (getpos _x) NearRoads 150;IF (count _NearRoads >= 1) then {_ConvoyWaypoints = _ConvoyWaypoints + [_NearRoads select 0]}} foreach _spawns;
+{_NearRoads = (getpos _x) NearRoads 125;IF (count _NearRoads >= 1) then {_ConvoyWaypoints = _ConvoyWaypoints + [_NearRoads select 0]}} foreach _spawns;
 CSAR_ConvoyRoads = _ConvoyWaypoints;
 IF (CSAR_DEBUG) then {{_marker = createMarker[format ["Road (%1)",random 9999], getPos _x];_marker setMarkerSize [0.7, 0.7];_marker setMarkerColor "ColorRed";_marker setMarkerType "o_motor_inf";} foreach _ConvoyWaypoints;};
 
@@ -89,6 +89,7 @@ _wp setWaypointCompletionRadius 30;
 {_x limitspeed 30} foreach (units _grp);
 _i = _i + 1;
 sleep 5;
+{[_x,false,false] call opfor_fnc_initUnit} forEach units _grp;
 };
 
 ConvoysInitialised = true;

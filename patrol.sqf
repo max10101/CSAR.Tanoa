@@ -15,14 +15,14 @@ _newWP
 ';
 
 //slider for how many known contacts vs maximum refo groups that should be attacking
-_refoarray = [[3,2],[8,3],[14,4],[20,6]];
+_refoarray = [[3,2],[8,3],[12,4],[20,6]];
 
 //CSAR_ContactArray
 _Defend = false;
 _CountWP = count (waypoints _Group);
 IF (_countWP <= 0) then {_Defend = true};
 _Origpatrol = waypoints _group;
-_AttackDistance = 10000;
+_AttackDistance = 1000;
 _BreakOffDistance = 250;
 _EngageRadius = CSAR_ContactAreaSize / 2;
 _leader = leader _group;
@@ -31,6 +31,7 @@ _group setvariable ["CSAR_ENGAGED",false];
 _Engageloop = false;
 _Engagepos = [0,0,0];
 _Engageunit = pow;
+_Engagelist = [];
 _WPIndex = 0;
 CSAR_EngagedGroups = [];
 _i = 0;
@@ -52,8 +53,8 @@ _i = 0;
 	
 		//THIRD - count how many OTHER groups are currently 'attacking' the general area (have a engaging WP within x meters (engageradius))
 		_EngagedGroups = [CSAR_EngagedGroups,[],{[(_x select 1),_Nearest select 0] call BIS_fnc_distance2D},"ASCEND",{([(_x select 1),_Nearest select 0] call BIS_fnc_distance2D) < (_EngageRadius * 2.5)}] call BIS_fnc_sortBy;
-		//player sidechat str _EngagedGroups;
-		systemchat ("Currently engaging: " + str (count _EngagedGroups));
+		//systemchat ("Currently engaging: " + str (count _EngagedGroups));
+		
 		//FOURTH - determine if current amount of reinforcing groups is enough to deal with the target threat value - if not then assist
 		_refo = 1;
 		{IF (_ContactSize >= (_x select 0)) then {_refo = (_x select 1)}} foreach _refoarray;
@@ -68,6 +69,7 @@ _i = 0;
 			_group setvariable ["CSAR_ENGAGED",true];
 			CSAR_EngagedGroups = CSAR_EngagedGroups + [[_group,_pos]];
 			_Engageloop = true;
+			_EngageList = _Nearest select 2;
 			//systemchat ("Creating Engage WP - " + str _EngageWP + " attacking" + str _pos);
 			sleep 0.01;
 			_WPIndex = currentwaypoint _group;
@@ -76,12 +78,14 @@ _i = 0;
 };
 	//SIXTH WHILE WP EXISTS WAIT IN ENGAGELOOP
 IF (_Engageloop) then {
-
+	IF (!Alive _Engageunit && (count _Engagelist) > 0) then {
+	_Engagelist = ([_Engagelist,[],{_x distance (leader _group)},"ASCEND",{Alive _x}] call BIS_fnc_sortBy);IF (count _Engagelist > 0) then {_Engageunit = _Engagelist select 0} else {_Engageloop = false;};
+	};
 	//if dead - quit
 	IF (({alive _x} count (units _group)) <= 0) Exitwith {};
 	
 	//if group to engage moves too far away - disengage
-	IF ((leader _Group) distance (_Nearest select 0) > (_BreakOffDistance + _AttackDistance)) then {deletewaypoint [_group,_WPIndex];_group setcurrentwaypoint [_group,(_group getvariable "CSAR_OldWP")];_Engageloop = false;_group setvariable ["CSAR_ENGAGED",false]};
+	IF ((leader _Group) distance _Engageunit > (_BreakOffDistance + _AttackDistance)) then {deletewaypoint [_group,_WPIndex];_group setcurrentwaypoint [_group,(_group getvariable "CSAR_OldWP")];_Engageloop = false;_group setvariable ["CSAR_ENGAGED",false]};
 
 	//if they've reached WP - disengage (will probably just re-engageWP anyway)
 	IF (!(_group getvariable "CSAR_ENGAGED") && _engageloop) then {deletewaypoint [_group,_WPIndex];_group setcurrentwaypoint [_group,(_group getvariable "CSAR_OldWP")];_Engageloop = false;};
@@ -89,8 +93,8 @@ IF (_Engageloop) then {
 	//if unit they are attacking is over 250m from his original position - disengage
 	IF (([waypointposition [_group,_WPIndex],_EngageUnit] call bis_fnc_distance2D) >= _BreakOffDistance && _engageloop) then {deletewaypoint [_group,_WPIndex];_group setcurrentwaypoint [_group,(_group getvariable "CSAR_OldWP")];_Engageloop = false};
 	
-	//if over 10 minutes pass, disengage to catch anything i missed
-	IF (_i > (60 * 10)) then {deletewaypoint [_group,_WPIndex];_group setcurrentwaypoint [_group,(_group getvariable "CSAR_OldWP")];_i = 0;_Engageloop = false} else {_i = _i + 30};
+	//if over x minutes pass, disengage to catch anything i missed
+	IF (_i > (60 * 6)) then {deletewaypoint [_group,_WPIndex];_group setcurrentwaypoint [_group,(_group getvariable "CSAR_OldWP")];_i = 0;_Engageloop = false} else {_i = _i + 10};
 
 	IF (_EngageLoop) then {sleep 10} else {sleep 1};
 };

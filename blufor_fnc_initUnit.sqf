@@ -5,7 +5,7 @@ if (!(_this getVariable ["CSAR_unitInitialized",false])) then {
 		_this setVariable["CSAR_unitInitialized",true];
 		_this enableFatigue false;
 		_this disableAI "AUTOCOMBAT";
-		_this addEventHandler ["Fired",{[_this] call RecoilFunction}];
+		//_this addEventHandler ["Fired",{[_this] call RecoilFunction}];
 		_this addEventHandler ["Local",{(_this select 0) disableAI "AUTOCOMBAT"}];
 		_this addeventhandler ["HandleRating", {_this execvm "sound_points.sqf"}];
 		_this addEventHandler ["Hit", {_this execvm "sound_hit.sqf"}];

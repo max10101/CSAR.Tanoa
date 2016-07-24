@@ -1,35 +1,21 @@
 BUGS: 
 
--current random glitch that actually helps in favour: if spotted unit gets into a vehicle that vehicle becomes part of csar_contactarray, and stays as such when unit gets out (may cause groups to 'engage' empty vehicles - ie search party moving towards a landed chopper and sticking around) - seems to go away after a short time/unit moves a distance away though. maybe make it stay somehow
+-current random glitch that actually helps in favour: if spotted unit gets into a vehicle that vehicle becomes part of csar_contactarray, and stays as such when unit gets out (may cause groups to 'engage' empty vehicles - ie search party moving towards a landed chopper and sticking around) - seems to go away after a short time/unit moves a distance away though. maybe make it stay somehow ** if units engage the vehicle with a WP - they will stay moving towards unit until patrol timeout - this is good
 
 TESTING:
 
--check to see if napalm works MP
--test random patrols as they are - might be too many? test to see how groupreduction functions more
+-check to see how napalm works MP
+
 -new BIS revive system
 	test revive in mP more - need multiple players
 	add dragging to bis revive from FAR actions
 
 ADD/FINISH:
 
-replace CBA script in recoil with added script - remove cba usage from mission
-
--Patrol script - working - running on each group individually - needs fullon testing
-  -needs to engage with flares/artillery/smoke
-  -needs to be appropriate response/call for backup
+enemy HQ script - calls arty, calls reinforcements, calls paradrop, etc
 
 -Custom fasttime script - 
 needs to accel through to 'brightest' time of night - then to dusk/dawn, then not as quick through day
-
--increase bleedout time
-
--populate POW camp with enemies/patrols
-
--populate/defend intel
-
--populate big camps with more vehicles/patrols
-
--add in the 'find intel pos by searching a dead officer' functionality
 
 -add in opfor attack helo
 

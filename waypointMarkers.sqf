@@ -1,24 +1,23 @@
-_unit = _this select 0;
-_group = group _unit;
-IF (_unit != leader _group OR IsNull _group) exitwith {};
+_group = _this select 0;
 _markers = [];
 _findAngle = compile preprocessFile "FindAngle.sqf";
-while {true} do {
+while {({alive _x} count units _group) > 0} do {
 sleep 1;
     {deleteMarker _x; _markers = _markers - [_x]} forEach _markers;
     if (count waypoints _group > 1) then {
 
         _marker = createMarkerLocal[format ["Waypoint %1",random 9999], getPos leader _group];
-        _marker setMarkerType 'o_inf';
-        _marker setMarkerSize[1, 1];
-        _marker setMarkerColor 'ColorRed';
+        _marker setMarkerTypeLocal 'o_inf';
+        _marker setMarkerSizeLocal[1, 1];
+        _marker setMarkerColorLocal 'ColorRed';
+		_marker setMarkerTextLocal format ["%1",count (units _group)];
         _markers = _markers + [_marker];
         {
             _marker = createMarkerLocal[format ["Waypoint %1",random 9999], waypointPosition _x];
-            _marker setMarkerType 'hd_end';
-            _marker setMarkerSize[1, 1];
-            _marker setMarkerColor 'ColorBlack';
-            _marker setMarkerText format ["%1 - %2",waypointType _x,waypointName _x];
+            _marker setMarkerTypeLocal 'hd_end';
+            _marker setMarkerSizeLocal[1, 1];
+            _marker setMarkerColorLocal 'ColorBlack';
+            _marker setMarkerTextLocal format ["%1 - %2",waypointType _x,waypointName _x];
             _markers = _markers + [_marker];
         } forEach (waypoints _group - [waypoints _group select 0]);
 
@@ -36,11 +35,11 @@ sleep 1;
             };
             _pos = [(waypointPosition _wp1 select 0) + (sin(_angle)*_dist/2),(waypointPosition _wp1 select 1) + (cos(_angle)*_dist/2)];
             _marker = createMarkerLocal[format ["Waypoint %1",random 9999], _pos];
-            _marker setMarkerShape 'rectangle';
-            _marker setMarkerSize[1.5, _dist*0.5];
-            _marker setMarkerColor 'ColorBlack';
-            _marker setMarkerBrush "Solid";
-            _marker setMarkerDir _angle;
+            _marker setMarkerShapeLocal 'rectangle';
+            _marker setMarkerSizeLocal[1.5, _dist*0.5];
+            _marker setMarkerColorLocal 'ColorBlack';
+            _marker setMarkerBrushLocal "Solid";
+            _marker setMarkerDirLocal _angle;
             _markers = _markers + [_marker];
         };
 		
@@ -50,11 +49,11 @@ sleep 1;
 		_angle = ((_angle % 360) + 360) % 360;		
         _pos = [((getpos (leader _group)) select 0) + (sin(_angle)*_dist/2),((getpos (leader _group)) select 1) + (cos(_angle)*_dist/2)];
         _marker = createMarkerLocal[format ["Waypoint %1",random 9999], _pos];
-        _marker setMarkerShape "rectangle";
-        _marker setMarkerSize[1.5, _dist*0.5];
-        _marker setMarkerColor "ColorBlue";
-        _marker setMarkerBrush "Solid";
-        _marker setMarkerDir _angle;
+        _marker setMarkerShapeLocal "rectangle";
+        _marker setMarkerSizeLocal[1.5, _dist*0.5];
+        _marker setMarkerColorLocal "ColorBlue";
+        _marker setMarkerBrushLocal "Solid";
+        _marker setMarkerDirLocal _angle;
         _markers = _markers + [_marker];
     }
 }

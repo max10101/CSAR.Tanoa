@@ -5,6 +5,9 @@ RecoilFunction = compile preprocessFile "recoil.sqf";
 blufor_fnc_initUnit = compile preprocessFile "blufor_fnc_initUnit.sqf";
 opfor_fnc_initUnit = compile preprocessFile "opfor_fnc_initUnit.sqf";
 opfor_fnc_initUnit2 = compile preprocessFile "opfor_fnc_initUnit2.sqf";
+CSAR_CBA_fnc_taskDefend = compile preprocessFile "cba_fnc_taskDefend.sqf"; //cba function was broken
+CSAR_CBA_fnc_taskPatrol = compile preprocessFile "cba_fnc_taskPatrol.sqf"; //not liking the addwaypoint feature
+CSAR_CBA_fnc_addWaypoint = compile preprocessFile "cba_fnc_addwaypoint.sqf";
 CSAR_fnc_SpawnCamps = compile preprocessFile "Spawncamps.sqf"; 
 CSAR_fnc_Arsenal = compile preprocessFile "arsenalfnc.sqf"; 
 CSAR_fnc_CampGun = compile preprocessFile "camp.sqf"; 
@@ -38,7 +41,8 @@ CSAR_fnc_initSpawn = compile '
 		 */
         [_unit] execVM "Support\addActions.sqf";
     };';
-
+CSAR_ContactAreaSize = 150;
+CSAR_ContactArray = [];
 CSAR_NapalmSize = 50;
 CSAR_NapalmTime = 50;
 CSAR_Debug = true;
@@ -66,10 +70,14 @@ POWAction = POW addaction ["<t color='#FF0000'>Rescue POW</t>","FreePow.sqf",nil
 
 
 if (isNil "IntelMap") then {IntelMap = EastInitOfficer};
-if (isNil "AATaskComplete") then {AATaskComplete = true};
+if (isNil "AATaskComplete") then {AATaskComplete = false};
 if (isNil "EnemyCamps") then {EnemyCamps = []};
 if (isNil "BigEnemyCamps") then {BigEnemyCamps = []};
 if (isNil "radioMSG") then {radioMSG = false};
+
+if (isNil "FindPOW") then {FindPOW = false};
+if (isNil "FindIntel") then {FindIntel = false};
+
 if (isNil "PlayerDeath") then {PlayerDeath = 0};
 if (isNil "POWRescued") then {POWRescued = 0;};
 if (isNil "DeSpawnedInf") then {DeSpawnedInf = 0};
@@ -88,8 +96,9 @@ failedMission = false;
 if (isServer) then {
     //---Server only variables---
     [West,["POW"],["Rescue POW","Rescue POW",""],objNull,"Created",3,true] call BIS_fnc_taskCreate;
-    [West,["Intel"],["Find Intel on POW","Find Intel",""],objNull,"Created",2,true] call BIS_fnc_taskCreate;
-    [West,["AA"],["Destroy the 3 AA Sites","Destroy AA Sites",""],objNull,"Created",2,true] call BIS_fnc_taskCreate;
+	[West,["FindIntel"],["Find Intelligence on enemy forces","Find Intel",""],objNull,"Created",2,true] call BIS_fnc_taskCreate;
+    [West,["FindPOW"],["Find Location of the POW","Find POW",""],objNull,"Created",2,true] call BIS_fnc_taskCreate;
+    [West,["AA"],["Destroy the AA Site","Destroy AA Site",""],objNull,"Created",2,true] call BIS_fnc_taskCreate;
 
     EastArtilleryTimer = 0;
     EastParadropTimer = 0;
@@ -118,14 +127,14 @@ _flyingViewDist = 3200;
 setViewDistance _groundViewDist;
 
 sleep 2;
-
+bis_revive_bleedOutDuration = (180)*3;
 if (local player) then {player call CSAR_fnc_initSpawn;};
 
 publicVariable "radioMSG";
-gotIntel = false;
-"powMarker" setMarkerPos [0,0];
-
-if (isServer) then {["POW","Assigned"] call BIS_fnc_taskSetState};
+"POWMarker" setMarkerPos [0,0];
+"IntelMarker" setMarkerPos [0,0];
+//moved to radio script
+//if (isServer) then {["POW","Assigned"] call BIS_fnc_taskSetState};
 
 if (local player) then {[player] execVM "Markers.sqf"};
 
@@ -152,13 +161,6 @@ while {true} do {
         }
     };
 
-    if (gotIntel && (getMarkerPos "powMarker" select 0) == 0) then {
-        mod1 = 1;
-        mod2 = 1;
-        if (random 1 > 0.5) then {mod1 = -1};
-        if (random 1 > 0.5) then {mod2 = -1};
-        "powMarker" setMarkerPos [(getPos POWCamp select 0)  + (random 200 * mod1), (getPos POWCamp select 1)  + (random 200 * mod2)];
-    };
 
     if (failedMission) then {
         failedMission = false;
@@ -171,25 +173,45 @@ while {true} do {
             nearPOW = 1; publicVariable "nearPOW";
         };
 		
-        if ((player distance IntelMap < 3) && !gotIntel) then {
-            ["Intel","SUCCEEDED"] call BIS_fnc_taskSetState;
+        if ((player distance IntelMap < 3) && !FindPOW) then {
             RadioOperator = player;
             publicVariable "RadioOperator";
             RadioChat = "Intel found! That gives us the approximate location of the POW.";
             publicVariable "RadioChat";
-            gotIntel = true; publicVariable "gotIntel"
+            FindPOW = true; publicVariable "FindPOW"
         };
     };
-
-
-
 
     if (RadioChat != "" && local player) then {RadioOperator sideChat RadioChat; RadioChat = ""};
 
     if (Radio9 && local player) then {Radio9 = false; player sideRadio "radio9"};
 
+	
+	
     if (isServer) then {
         //Check AA objective
+		if (!alive AAGun1 && !alive AAGun2 && !alive AAGun3 && !AATaskComplete) then {
+            AATaskComplete = true; publicVariable "AATaskComplete";
+            ["AA","SUCCEEDED"] call BIS_fnc_taskSetState;
+        };
+		
+	if (FindPOW && (getMarkerPos "POWMarker" select 0) == 0) then {
+		["FindPOW","SUCCEEDED"] call BIS_fnc_taskSetState;
+        mod1 = 1;
+        mod2 = 1;
+        if (random 1 > 0.5) then {mod1 = -1};
+        if (random 1 > 0.5) then {mod2 = -1};
+        "POWMarker" setMarkerPos [(getPos POWCamp select 0)  + (random 200 * mod1), (getPos POWCamp select 1)  + (random 200 * mod2)];
+    };
+	
+	if (FindIntel && (getMarkerPos "IntelMarker" select 0) == 0) then {
+		["FindIntel","SUCCEEDED"] call BIS_fnc_taskSetState;
+        mod1 = 1;
+        mod2 = 1;
+        if (random 1 > 0.5) then {mod1 = -1};
+        if (random 1 > 0.5) then {mod2 = -1};
+        "IntelMarker" setMarkerPos [(getPos IntelMap select 0)  + (random 50 * mod1), (getPos IntelMap select 1)  + (random 50 * mod2)];
+    };
 
         if (nearPOW == 1) then {
             if (random 1 > 0.85) then {[[(getPos POW select 0) + 50, getPos POW select 1, 0]] execVM "ParadropReinforcements.sqf";};

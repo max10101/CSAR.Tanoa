@@ -5,7 +5,7 @@ _Trucks = ["I_Truck_02_covered_F","I_Truck_02_transport_F"];
 _Cars = ["I_G_Offroad_01_F","I_G_Van_01_transport_F","I_C_Offroad_02_unarmed_F"];
 _vehtype = selectrandom (_armedcars + _trucks + _cars);
 _pos = getpos _camp;
-_vehpos = [(_pos select 0)+50-random 100,(_pos select 1)+50-random 100,0] findemptyposition [1,40,_vehtype];
+_vehpos = [(_pos select 0)+50-random 100,(_pos select 1)+50-random 100,0] findemptyposition [1,50,_vehtype];
 _gunpos = [(_pos select 0)+50-random 100,(_pos select 1)+50-random 100,0];// findemptyposition [1,20,"I_HMG_01_high_F"];
 _gunpos2 = [(_pos select 0)+50-random 100,(_pos select 1)+50-random 100,0];// findemptyposition [1,20,"I_HMG_01_high_F"];
 sleep 2;
@@ -38,9 +38,5 @@ _group setbehaviour "SAFE";
 _group2 = [[(_pos select 0)+((sin 360)*100),(_pos select 1)+((cos 360)*100),0], Independent, (configFile >> "CfgGroups" >> "Indep" >> "IND_C_F" >> "Infantry" >> "BanditCombatGroup")] call BIS_fnc_spawnGroup;
 [_group2, _pos, 300,8,"MOVE","SAFE","YELLOW","NORMAL","STAG COLUMN","",[15,30,60]] call CSAR_cba_fnc_taskPatrol;
 
-_group3 = [[(_pos select 0)+((sin 180)*100),(_pos select 1)+((cos 180)*100),0], Independent, (configFile >> "CfgGroups" >> "Indep" >> "IND_C_F" >> "Infantry" >> "BanditCombatGroup")] call BIS_fnc_spawnGroup;
-[_group3, _pos, 300,8,"MOVE","SAFE","YELLOW","NORMAL","STAG COLUMN","",[15,30,60]] call CSAR_cba_fnc_taskPatrol;
-
 {[_x,false,false] call opfor_fnc_initUnit} forEach units _group;
 {[_x,true,true] call opfor_fnc_initUnit} forEach units _group2;
-{[_x,true,true] call opfor_fnc_initUnit} forEach units _group3;
