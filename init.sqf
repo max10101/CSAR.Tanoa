@@ -112,6 +112,7 @@ if (isServer) then {
 	[] execvm "EnemyCampInit.sqf";
 	[] execVM "ContactFinder.sqf";
 	[] execvm "convoy.sqf";
+	[] execvm "play.sqf"; //fasttime
 };
 
 //This is all global
