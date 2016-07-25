@@ -14,6 +14,19 @@ _group setcurrentwaypoint _newWP;
 _newWP
 ';
 
+//for ninja group escapes
+CSAR_Smokebomb = compile '
+private ["_group","_target","smokeshells","smoke","_dir"];
+_group = _this select 0;
+_target = _this select 1;
+_smokeshells = ["G_40mm_Smoke","G_40mm_Smoke","G_40mm_Smoke"];
+{if (random 2 > 0.7) then {
+_smoke = "G_40mm_Smoke" createVehicle [(getPos _x select 0),(getPos _x select 1),3];
+_dir = [leader _group,_target] call bis_fnc_DirTo;
+_smoke setVelocity [sin (_dir)*10,cos (_dir)*10,10];
+}} forEach units _Group;
+';
+
 //slider for how many known contacts vs maximum refo groups that should be attacking
 _refoarray = [[3,2],[8,3],[12,4],[20,6]];
 
@@ -78,14 +91,20 @@ _i = 0;
 };
 	//SIXTH WHILE WP EXISTS WAIT IN ENGAGELOOP
 IF (_Engageloop) then {
-	IF (!Alive _Engageunit && (count _Engagelist) > 0) then {
-	_Engagelist = ([_Engagelist,[],{_x distance (leader _group)},"ASCEND",{Alive _x}] call BIS_fnc_sortBy);IF (count _Engagelist > 0) then {_Engageunit = _Engagelist select 0} else {_Engageloop = false;};
-	};
-	//if dead - quit
+	//if dead, exit script
 	IF (({alive _x} count (units _group)) <= 0) Exitwith {};
 	
+	//if anyone in group is fleeing, the whole group will disengage/move back to original patrol after smokebomb and given a 2 min timeout
+	IF (({fleeing _x} count (units _group)) > 0) then {deletewaypoint [_group,_WPIndex];_group setcurrentwaypoint [_group,(_group getvariable "CSAR_OldWP")];_Engageloop = false;[_group,_EngageUnit] call CSAR_Smokebomb;sleep 120};
+	
+	//if the unit they are targetting/engaging is dead, next target is the next closest unit that was in that original group to attack
+	IF (!Alive _Engageunit) then {
+	_Engagelist = ([_Engagelist,[],{_x distance (leader _group)},"ASCEND",{Alive _x}] call BIS_fnc_sortBy);
+	IF (count _Engagelist > 0) then {_Engageunit = _Engagelist select 0} else {deletewaypoint [_group,_WPIndex];_group setcurrentwaypoint [_group,(_group getvariable "CSAR_OldWP")];_Engageloop = false;};
+	};
+	
 	//if group to engage moves too far away - disengage
-	IF ((leader _Group) distance _Engageunit > (_BreakOffDistance + _AttackDistance)) then {deletewaypoint [_group,_WPIndex];_group setcurrentwaypoint [_group,(_group getvariable "CSAR_OldWP")];_Engageloop = false;_group setvariable ["CSAR_ENGAGED",false]};
+	IF ((leader _Group) distance _Engageunit > (_BreakOffDistance + _AttackDistance) && _engageloop) then {deletewaypoint [_group,_WPIndex];_group setcurrentwaypoint [_group,(_group getvariable "CSAR_OldWP")];_Engageloop = false;_group setvariable ["CSAR_ENGAGED",false]};
 
 	//if they've reached WP - disengage (will probably just re-engageWP anyway)
 	IF (!(_group getvariable "CSAR_ENGAGED") && _engageloop) then {deletewaypoint [_group,_WPIndex];_group setcurrentwaypoint [_group,(_group getvariable "CSAR_OldWP")];_Engageloop = false;};
