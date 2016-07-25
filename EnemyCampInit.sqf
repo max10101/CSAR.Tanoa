@@ -7,8 +7,8 @@ _IsWithinDist = false;
 _IsWithinDist
 ';
 
-_maxcamps = 12;
-_bigcamps = 4;
+_maxcamps = 8;
+_bigcamps = 3;
 _camps = ["CampA","CampB","CampC","CampD","CampE","CampF"];
 _POWCamps = ["CampD","CampE","CampE","CampF"];
 _MilCamps = ["CampD","CampE","CampE","CampF"];
@@ -101,11 +101,11 @@ CampsInitialised = true;
 _intelcamp execvm "intelcamp.sqf";
 
 
-sleep 5;
+sleep 2;
 {_x execvm "smallcamp.sqf"} foreach EnemyCamps;
-sleep 5;
+sleep 2;
 {_x execvm "bigcamp.sqf"} foreach BigEnemyCamps;
-sleep 5;
+sleep 2;
 {_x execvm "camppatrol.sqf"} foreach EnemyCamps;
 POWCamp execvm "powcamp.sqf";
 IF (CSAR_DEBUG) then {systemchat "Camps initialised"};

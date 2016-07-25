@@ -1,5 +1,5 @@
 _camp = _this;
-sleep 30;
+sleep 10;
 _ArmedCars = ["O_LSV_02_unarmed_F","I_G_Offroad_01_armed_F"];
 _Trucks = ["I_Truck_02_covered_F","I_Truck_02_transport_F"];
 _Cars = ["I_G_Offroad_01_F","I_G_Van_01_transport_F","I_C_Offroad_02_unarmed_F"];

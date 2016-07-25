@@ -1,6 +1,6 @@
 _unit = _this select 0 select 0;
 _bullet = _this select 0 select 6;
-_dispersion = 2;
+_dispersion = 1.85;
 if (!((vehicle _unit) isKindOf "Man")) then {_dispersion = 3;};
 //dispersion level in direction degrees (best from 1-3)
 if (!isNull _bullet && ((side _unit == east) OR (side _unit == independent)) && local _unit) then {

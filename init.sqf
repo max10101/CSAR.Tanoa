@@ -30,7 +30,7 @@ CSAR_fnc_initSpawn = compile '
         _takeEarOff = ["<t color=""#ffff33"">Take off ear plugs</t>",{1 fadeSound 1; mattzig_earPlugsInUse = false;},[],-90,false,true,"","mattzig_earPlugsInUse && vehicle player == vehicle _target"];
         _unit addAction _putEarOn;
         _unit addAction _takeEarOff;
-/*
+
         if (!(isPlayer (leader group _unit))) then {
             if (local (leader group _unit)) then {
                 (group _unit) selectLeader _unit;
@@ -38,7 +38,7 @@ CSAR_fnc_initSpawn = compile '
                 [group _unit, _unit] remoteExec ["selectLeader", leader group _unit];
             };
          };
-		 */
+		 
         [_unit] execVM "Support\addActions.sqf";
     };';
 	

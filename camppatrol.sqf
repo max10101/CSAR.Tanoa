@@ -2,6 +2,7 @@ _camp = _this;
 _pos = getpos _camp;
 _spawns = CSAR_CampLocations - [_camp];
 _MaxWPs = 3;
+_add = 0;
 _wps = [];
 sleep (random 3);
 _group = [[(_pos select 0)+50-random 100,(_pos select 1)+50-random 100,0], Independent, (configFile >> "CfgGroups" >> "Indep" >> "IND_C_F" >> "Infantry" >> "BanditCombatGroup")] call BIS_fnc_spawnGroup;
@@ -20,7 +21,7 @@ _index = 0;
 _rand = random 1;
 IF (_rand > 0.33) then {_index = 1};
 IF (_rand > 0.66) then {_index = 2};
-IF ((_camp distance2d POWCamp) < 1500) then {_wps = _wps - [POWCamp];_wps set [_index,POWCamp]};
+IF ((_camp distance2d POWCamp) < 1500 && (_add <= 3)) then {_wps = _wps - [POWCamp];_wps set [_index,POWCamp];_add = _add + 1;};
 _i = 0;
 while {_i < _MaxWPs} do {
 	_wp = _group addWaypoint [[((getpos (_wps select _i)) select 0)+50-random 100,((getpos (_wps select _i)) select 1)+50-random 100,0], 0];

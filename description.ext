@@ -97,51 +97,51 @@ class MYSOUND4
 	     class radio1
      {
           name = "";
-          sound[] = {"Sound\radio1.ogg", db+9, 1.0};
+          sound[] = {"Sound\radio1.ogg", db+7, 1.0};
 		titles[] = {};
      };
 
      class radio2
      {
           name = "";
-          sound[] = {"Sound\radio2.ogg", db+9, 1.0};
+          sound[] = {"Sound\radio2.ogg", db+7, 1.0};
 		titles[] = {};
      };
 
  class radio3
      {
           name = "";
-          sound[] = {"Sound\radio3.ogg", db+9, 1.0};
+          sound[] = {"Sound\radio3.ogg", db+7, 1.0};
 		titles[] = {};
      };
  class radio4
      {
           name = "";
-          sound[] = {"Sound\radio4.ogg", db+9, 1.0};
+          sound[] = {"Sound\radio4.ogg", db+7, 1.0};
 		titles[] = {};
      };
  class radio5
      {
           name = "";
-          sound[] = {"Sound\radio5.ogg", db+9, 1.0};
+          sound[] = {"Sound\radio5.ogg", db+7, 1.0};
 		titles[] = {};
      };
 class radio6
      {
           name = "";
-          sound[] ={"Sound\radio6.ogg", db+9, 1.0};
+          sound[] ={"Sound\radio6.ogg", db+7, 1.0};
 		titles[] = {};
      };
 class radio7
      {
           name = "";
-          sound[] ={"Sound\radio7.ogg", db+9, 1.0};
+          sound[] ={"Sound\radio7.ogg", db+7, 1.0};
 		titles[] = {};
      };
 class radio8
      {
           name = "";
-          sound[] ={"Sound\radio8.ogg", db+9, 1.0};
+          sound[] ={"Sound\radio8.ogg", db+7, 1.0};
 		titles[] = {};
      };
 

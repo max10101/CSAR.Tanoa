@@ -16,14 +16,14 @@ _newWP
 
 //for ninja group escapes
 CSAR_Smokebomb = compile '
-private ["_group","_target","smokeshells","smoke","_dir"];
+private ["_group","_target","_smokeshells","_smoke","_dir"];
 _group = _this select 0;
 _target = _this select 1;
-_smokeshells = ["G_40mm_Smoke","G_40mm_Smoke","G_40mm_Smoke"];
+_smokeshells = ["G_40mm_SmokeRed","G_40mm_Smoke","G_40mm_SmokeOrange","G_40mm_SmokeBlue","G_40mm_SmokePurple"];
 {if (random 2 > 0.7) then {
-_smoke = "G_40mm_Smoke" createVehicle [(getPos _x select 0),(getPos _x select 1),3];
+_smoke = (selectRandom _smokeshells) createVehicle [(getPos _x select 0),(getPos _x select 1),3];
 _dir = [leader _group,_target] call bis_fnc_DirTo;
-_smoke setVelocity [sin (_dir)*10,cos (_dir)*10,10];
+_smoke setVelocity [sin (_dir)*(8+random 6),cos (_dir)*(8+random 6),8+(random 5)];
 }} forEach units _Group;
 ';
 
@@ -77,7 +77,7 @@ _i = 0;
 
 			_pos = [(getpos (_nearest select 0) select 0)+_EngageRadius-random(_EngageRadius*2),(getpos (_nearest select 0) select 1)+_EngageRadius - random(_EngageRadius*2),0];
 			_EngageWP = [_group,_pos] call CSAR_fnc_InjectPatrolWP;
-			//_Engagewp setwaypointtype "SAD";
+			_Engagewp setwaypointtype "SAD";
 			_engagewp setWaypointCompletionRadius 15;
 			_group setvariable ["CSAR_ENGAGED",true];
 			CSAR_EngagedGroups = CSAR_EngagedGroups + [[_group,_pos]];

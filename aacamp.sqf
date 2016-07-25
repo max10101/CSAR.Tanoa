@@ -42,9 +42,9 @@ _group setbehaviour "SAFE";
 _group2 = [[(_pos select 0)+((sin 360)*100),(_pos select 1)+((cos 360)*100),0], Independent, (configFile >> "CfgGroups" >> "Indep" >> "IND_C_F" >> "Infantry" >> "BanditCombatGroup")] call BIS_fnc_spawnGroup;
 [_group2, _pos, 300,8,"MOVE","SAFE","YELLOW","NORMAL","STAG COLUMN","",[15,30,60]] call CSAR_cba_fnc_taskPatrol;
 
-/*
-(units _group) select (count (units _Group)-1) assignasgunner _gun;
-[(units _group) select (count (units _Group)-1)] ordergetin TRUE;
+
+//(units _group) select (count (units _Group)-1) assignasgunner _gun;
+//[(units _group) select (count (units _Group)-1)] ordergetin TRUE;
 
 (units _group) select (count (units _Group)-2) moveingunner _aagun1;
 [(units _group) select (count (units _Group)-2)] ordergetin TRUE;
@@ -54,8 +54,9 @@ _group2 = [[(_pos select 0)+((sin 360)*100),(_pos select 1)+((cos 360)*100),0], 
 
 (units _group) select (count (units _Group)-4) moveingunner _aagun3;
 [(units _group) select (count (units _Group)-4)] ordergetin TRUE;
-*/
+
 sleep 2;
+
 _aagun1 setpos (getpos _aagun1);_aagun1 setvelocity [0,0,0];_aagun1 setmass 200;
 _aagun2 setpos (getpos _aagun2);_aagun2 setvelocity [0,0,0];_aagun2 setmass 200;
 _aagun3 setpos (getpos _aagun3);_aagun3 setvelocity [0,0,0];_aagun3 setmass 200;

@@ -2,6 +2,7 @@ _groupleader = _this;
 _group = group _groupleader;
 IF (!Local _groupleader) ExitWith {};
 _abandon = false;
+_close = [];
 _camps = CSAR_CampLocations;
 //CHECK IF ALL UNITS ARE STILL IN A VEHICLE
 IF (({Vehicle _x == _x} count (units _group)) >= 1) then {_abandon = true;};
@@ -10,6 +11,7 @@ IF (_abandon) then {
 //ABANDON VEHICLES AND MOVE TO NEAREST CAMP
 
 _close = [_camps,[(leader _group)],{(leader _group) distance _x},"ASCEND",{(_input0 distance _x) < 500}] call BIS_fnc_sortBy;
+IF (count _close <= 0) then {_close = [_groupleader]};
 _closest = _close select 0;
 {Unassignvehicle _x} foreach units _group;
 (units _group) ordergetin false;

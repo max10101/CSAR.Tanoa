@@ -1,14 +1,8 @@
 _opfor = Independent;
-_MaxKnowsAbout = 3.95;
+_MaxKnowsAbout = 2.95;
 _triggerarray = [];
 Sleep 2;
 _markerarray = [];
-while {true} do {
-//current spotted west units
-_Westunits = list Westunits;
-_SpottedArray = [];
-_LeaderArray = [];
-
 
 //checks true if unit is within distance of any of the group units - [unit, group of units, distance] call _distcheck
 _Distcheck = compile '
@@ -28,58 +22,47 @@ _totaly = _totaly / (count _this);
 [_totalx,_totaly,0]
 ';
 
-//STEP 1 find spotted units
-_SpottedArray = [];
-while {count _spottedarray <= 0} do {
-{IF (((_opfor knowsabout _x) > _MaxKnowsAbout)) then {_SpottedArray = _SpottedArray + [_x]}} foreach _westunits;
-sleep 0.1;
-};
-_triggerarray = [];
-IF ((count _markerarray) > 0) then {{deletemarker _x} foreach _markerarray;_markerrarray = []};
+while {true} do {
+	//current spotted west units
+	_Westunits = list Westunits;
+	_SpottedArray = [pow];
+	//STEP 1 find spotted units
 
-//obsolete for now
-{IF (IsFormationleader _x) then {_LeaderArray = _LeaderArray + [_x]}} foreach _SpottedArray;
-_leaderarray = _spottedarray;
-
-//STEP 2 create the contact zone areas based off spotted units
-_first = _leaderArray select 0;
-_obj = _first;
-_leaderArray = _leaderarray - [_first];
-_triggerarray = _triggerarray + [[_obj,0]];
-
-{IF (! ([_x,_TriggerArray,CSAR_ContactAreaSize] call _Distcheck)) then {
-	_obj = _x;
+	//while {count _spottedarray <= 0} do {
+		{IF (((_opfor knowsabout _x) > _MaxKnowsAbout)) then {_SpottedArray = _SpottedArray + [_x]}} foreach _westunits;
+		sleep 0.1;
+	//};
+	_triggerarray = [];
+	IF ((count _markerarray) > 0) then {{deletemarker _x} foreach _markerarray;_markerrarray = []};
+	
+	//obsolete for now
+	//{IF (IsFormationleader _x) then {_spottedarray = _spottedarray + [_x]}} foreach _SpottedArray;
+	
+	//STEP 2 create the contact zone areas based off spotted units
+	_first = _spottedarray select 0;
+	_obj = _first;
+	_spottedarray = _spottedarray - [_first];
 	_triggerarray = _triggerarray + [[_obj,0]];
-	}
-} foreach _LeaderArray;
+	
+	{
+		IF (! ([_x,_TriggerArray,CSAR_ContactAreaSize] call _Distcheck)) then {
+			_obj = _x;
+			_triggerarray = _triggerarray + [[_obj,0]];
+		}
+	} foreach _spottedarray;
 
 
-{
-_tmp = _x select 0;
-_num = {(_x distance _tmp) < CSAR_ContactAreaSize} count _spottedarray;
-_closeUnits = [_spottedarray,[_x select 0],{_input0 distance _obj},"ASCEND",{(_input0 distance _x) < CSAR_ContactAreaSize}] call BIS_fnc_sortBy;
-_x set [1,_num];
-_x set [2,_closeUnits];
-IF (CSAR_DEBUG) then {_marker = createMarkerlocal[format ["Detected (%1)",random 9999], getPos _tmp];_marker setMarkerSizeLocal [CSAR_ContactAreaSize, CSAR_ContactAreaSize];_marker setMarkerColorLocal "ColorRed";_marker setMarkerShapeLocal "ELLIPSE";_markerarray = _markerarray + [_marker]};
-IF (CSAR_DEBUG) then {_marker = createMarkerlocal[format ["Detected (%1)",random 9999], getPos _tmp];_marker setMarkerSizeLocal [1, 1];_marker setMarkerColorLocal "ColorRed";_marker setMarkerShapeLocal "ICON";_marker setmarkertypelocal "hd_dot";_marker setmarkertextlocal (str _num);_markerarray = _markerarray + [_marker]};
-} foreach _triggerarray;
-//player sidechat str (_triggerarray);
+	{
+		_tmp = _x select 0;
+		_num = {(_x distance _tmp) < CSAR_ContactAreaSize} count _spottedarray;
+		_closeUnits = [_spottedarray,[_x select 0],{_input0 distance _obj},"ASCEND",{(_input0 distance _x) < CSAR_ContactAreaSize}] call BIS_fnc_sortBy;
+		_x set [1,_num];
+		_x set [2,_closeUnits];
+		IF (CSAR_DEBUG) then {_marker = createMarkerlocal[format ["Detected (%1)",random 9999], getPos _tmp];_marker setMarkerSizeLocal [CSAR_ContactAreaSize, CSAR_ContactAreaSize];_marker setMarkerColorLocal "ColorRed";_marker setMarkerShapeLocal "ELLIPSE";_markerarray = _markerarray + [_marker]};
+		IF (CSAR_DEBUG) then {_marker = createMarkerlocal[format ["Detected (%1)",random 9999], getPos _tmp];_marker setMarkerSizeLocal [1, 1];_marker setMarkerColorLocal "ColorRed";_marker setMarkerShapeLocal "ICON";_marker setmarkertypelocal "hd_dot";_marker setmarkertextlocal (str _num);_markerarray = _markerarray + [_marker]};
+	} foreach _triggerarray;
 
-
-/* WIP but not necessary
-//STEP 3 readjust areas to average position across troops they cover instead of centering on random unit (optional but necessary for step 4)
-{
-	_closeUnits = [_spottedarray,[_x select 0],{_input0 distance _obj},"ASCEND",{(_input0 distance _x) < CSAR_ContactAreaSize}] call BIS_fnc_sortBy;
-	_pos = _closeunits call _Averagepos;
-	player sidechat str _pos;
-	(_x select 0) setpos _pos;
-	(_x select 1) setmarkerpos _pos;
-} foreach _TriggerArray;
-//STEP 4 if triggers collide - readjust and make trigger bigger for central contact zone
-*/
-CSAR_ContactArray = _triggerarray;
-sleep 1;
+	CSAR_ContactArray = _triggerarray;
+	sleep 2;
+	
 };
-
-
-//(will any more be necessary? test)
