@@ -1,0 +1,38 @@
+_camera = "camera" camCreate [11729.42,3030.67,2.02]
+_camera cameraEffect ["internal","back"]
+_win = true
+IF (alive POW) then {_win = true} else {_win = false};
+IF (_win) then {["RTB","SUCCEEDED"] call BIS_fnc_taskSetState} else {["RTB","FAILED"] call BIS_fnc_taskSetState;}
+
+IF (_win) then {playsound "mysound"} else {radio say "Mysound2"};
+
+IF (_win) then {titletext  ["You Make a Worthy Rescue Team!  Good Job !!","plain down",2]} else {titletext  ["THE POW DIED. YOU HAD ONE JOB","plain",2]}
+;===camera overlooking base
+_camera camSetTarget [(getpos radio select 0),(getpos radio select 1)+15,(getpos radio select 2)+7]
+_camera camSetPos [(getpos radio select 0),(getpos radio select 1)+18,(getpos radio select 2)+9]
+_camera camSetFOV 1.382
+_camera camCommit 0
+@camCommitted _camera
+~6
+IF (!_win) then {playSound "MYSOUND4";}
+titletext  ["","plain down"]
+_camera camSetTarget radio
+_camera camCommit 3
+@camCommitted _camera
+
+;=== camera looking at radio to get good job msg
+_camera camSetTarget radio
+_camera camSetPos [(getpos radio select 0),(getpos radio select 1)+10,(getpos radio select 2)+5]
+_camera camSetFOV 0.450
+_camera camCommit 10
+@camCommitted _camera
+
+IF (_win) then {player sideradio "radio10"};
+~5
+_camera cameraEffect ["terminate","back"]
+camDestroy _camera
+
+endMission "END1"
+
+
+exit

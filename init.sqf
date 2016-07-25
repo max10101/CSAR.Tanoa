@@ -41,6 +41,8 @@ CSAR_fnc_initSpawn = compile '
 		 */
         [_unit] execVM "Support\addActions.sqf";
     };';
+	
+Endgame = false;
 CSAR_ContactAreaSize = 150;
 CSAR_ContactArray = [];
 CSAR_NapalmSize = 50;

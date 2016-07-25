@@ -31,7 +31,7 @@ _totaly = _totaly / (count _this);
 //STEP 1 find spotted units
 _SpottedArray = [];
 while {count _spottedarray <= 0} do {
-{IF (((_opfor knowsabout _x) > _MaxKnowsAbout) OR CSAR_Debug) then {_SpottedArray = _SpottedArray + [_x]}} foreach _westunits;
+{IF (((_opfor knowsabout _x) > _MaxKnowsAbout)) then {_SpottedArray = _SpottedArray + [_x]}} foreach _westunits;
 sleep 0.1;
 };
 _triggerarray = [];

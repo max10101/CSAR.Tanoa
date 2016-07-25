@@ -1,6 +1,6 @@
 
 radio say "Mysound2"
-~13
+~18
 IF (!Skipradio) then {radio say3d ["radio1",25,1]}
 ~12
 IF (!Skipradio) then {radio say3d ["radio2",25,1]}
@@ -21,5 +21,4 @@ IF (!Skipradio) then {radio say3d ["radio8",25,1]}
 if (isServer) then {["FindPOW","Assigned"] call BIS_fnc_taskSetState}
 ~14
 IF (!Skipradio) then {radio say "Mysound2"}
-;radio say3d ["uns_song2",25,1]
 exit
