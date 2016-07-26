@@ -24,6 +24,7 @@ _Cars = ["I_G_Offroad_01_F","I_G_Van_01_transport_F","I_C_Offroad_02_unarmed_F"]
 _spawns = EnemyCamps + BigEnemyCamps + [POWCamp] + [IntelMap];
 _spawn = selectrandom _spawns;
 _ConvoyWaypoints = [];
+_grp = objnull;
 
 //SPAWN A CAR WITH TWO CREW - [_type,_pos] call _Spawncar
 _SpawnCar = compile '
@@ -43,6 +44,7 @@ private ["_vehicle","_grp","_leader","_gunner"];
 // COMPILE NEAREST ROADS TO POTENTIAL CAMP LOCATIONS
 {_NearRoads = (getpos _x) NearRoads 125;IF (count _NearRoads >= 1) then {_ConvoyWaypoints = _ConvoyWaypoints + [_NearRoads select 0]}} foreach _spawns;
 CSAR_ConvoyRoads = _ConvoyWaypoints;
+IF (_MaxConvoys > count _ConvoyWaypoints) then {_MaxConvoys = (count _ConvoyWaypoints)};
 IF (CSAR_DEBUG) then {{_marker = createMarker[format ["Road (%1)",random 9999], getPos _x];_marker setMarkerSize [0.7, 0.7];_marker setMarkerColor "ColorRed";_marker setMarkerType "o_motor_inf";} foreach _ConvoyWaypoints;};
 
 
@@ -81,7 +83,7 @@ _grp setbehaviour "SAFE";
 _grp setspeedmode "LIMITED";
 _grp setformation "COLUMN";
 
-_movepos = getpos (SelectRandom _ConvoyWaypoints);
+_movepos = getpos (SelectRandom (CSAR_Convoyroads - [_spawn]));
 _wp = _grp addWaypoint [_movepos, 0];
 _wp setWaypointStatements ["true", "this execvm ""ConvoyNewWaypoint.sqf"""];
 _wp setwaypointtype "MOVE";

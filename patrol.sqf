@@ -77,7 +77,7 @@ _i = 0;
 
 			_pos = [(getpos (_nearest select 0) select 0)+_EngageRadius-random(_EngageRadius*2),(getpos (_nearest select 0) select 1)+_EngageRadius - random(_EngageRadius*2),0];
 			_EngageWP = [_group,_pos] call CSAR_fnc_InjectPatrolWP;
-			_Engagewp setwaypointtype "SAD";
+			//_Engagewp setwaypointtype "SAD";
 			_engagewp setWaypointCompletionRadius 15;
 			_group setvariable ["CSAR_ENGAGED",true];
 			CSAR_EngagedGroups = CSAR_EngagedGroups + [[_group,_pos]];
@@ -115,6 +115,6 @@ IF (_Engageloop) then {
 	//if over x minutes pass, disengage to catch anything i missed
 	IF (_i > (60 * 6)) then {deletewaypoint [_group,_WPIndex];_group setcurrentwaypoint [_group,(_group getvariable "CSAR_OldWP")];_i = 0;_Engageloop = false} else {_i = _i + 10};
 
-	IF (_EngageLoop) then {sleep 10} else {sleep 1};
+	IF (_EngageLoop) then {sleep 20} else {sleep 5};
 };
 };

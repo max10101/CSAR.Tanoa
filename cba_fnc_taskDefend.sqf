@@ -77,14 +77,14 @@ private _assigned = 0;
 {
     // 31% chance to occupy nearest free static weapon
 	//player sidechat str _statics;
-    if ((random 1 < 0.81) && { !(_statics isEqualto []) }) then {
+    if ((random 1 < 0.9) && { !(_statics isEqualto []) }) then {
         _x assignAsGunner (_statics deleteAt 0);
         [_x] orderGetIn true;
 
         _assigned = _assigned + 1;
     } else {
         // 93% chance to occupy a random nearby building position
-        if ((random 1 < 0.63) && { !(_buildings isEqualto []) }) then {
+        if ((random 1 < 0.83) && { !(_buildings isEqualto []) }) then {
             private _building = _buildings call BIS_fnc_selectRandom;
             private _array = _building getVariable ["CBA_taskDefend_positions",[]];
 

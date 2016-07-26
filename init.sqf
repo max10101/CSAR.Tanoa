@@ -17,6 +17,9 @@ PlayMoveMP = compileFinal "_this select 0 PlayMove (_this select 1);";
 
 CSAR_fnc_Arsenal = compile preprocessFile "arsenalfnc.sqf"; 
 
+CSAR_BanditGroup = ["I_C_Soldier_Bandit_2_F","I_C_Soldier_Bandit_4_F","I_C_Soldier_Bandit_1_F","I_C_Soldier_Bandit_7_F","I_C_Soldier_Bandit_5_F","I_C_Soldier_Bandit_8_F","I_C_Soldier_Bandit_3_F","I_C_Soldier_Bandit_6_F","I_C_Soldier_Bandit_2_F"];
+CSAR_ParaGroup = ["I_C_Soldier_Para_2_F","I_C_Soldier_Para_4_F","I_C_Soldier_Para_1_F","I_C_Soldier_Para_7_F","I_C_Soldier_Para_5_F","I_C_Soldier_Para_8_F","I_C_Soldier_Para_3_F","I_C_Soldier_Para_6_F","I_C_Soldier_Para_2_F"];
+
 CSAR_fnc_initSpawn = compile '
     _unit = _this;
     if (local _unit) then {
@@ -45,7 +48,7 @@ CSAR_fnc_initSpawn = compile '
 Endgame = false;
 CSAR_ContactAreaSize = 150;
 CSAR_ContactArray = [];
-CSAR_NapalmSize = 50;
+CSAR_NapalmSize = 35;
 CSAR_NapalmTime = 50;
 CSAR_Debug = true;
 CampsInitialised = false;
@@ -63,7 +66,7 @@ Losssounds = ["A_Loss_1","A_Loss_2","A_Loss_3","A_Loss_4","A_Loss_5","A_Loss_6",
 LastVoiceTime = 0;
 SoundDelayTime = 8;
 BIS_Effects_Burn=compile preprocessFileLineNumbers "burn.sqf";
-[crashedheli, 4, time, false, true] spawn BIS_Effects_Burn;
+[crashedheli, 6, time, false, true] spawn BIS_Effects_Burn;
 
 [] execVM "CSAR_Respawn.sqf";
 //[] execVM "real_weather.sqf";

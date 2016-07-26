@@ -8,7 +8,7 @@ class EditorData
 	toggles=513;
 	class ItemIDProvider
 	{
-		nextID=1944;
+		nextID=1973;
 	};
 	class MarkerIDProvider
 	{
@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=1082;
+		nextID=1313;
 	};
 	class Camera
 	{
-		pos[]={11685.755,11.215064,3109.6587};
-		dir[]={0.74527693,-0.23187603,0.62532997};
-		up[]={0.17768344,0.97271359,0.14908886};
-		aside[]={0.64285201,-1.5231781e-006,-0.76614845};
+		pos[]={11906.393,159.65326,10155.809};
+		dir[]={-0.73686582,-0.20898923,0.64300317};
+		up[]={-0.157492,0.97791559,0.13742918};
+		aside[]={0.65752083,-2.0323205e-007,0.75350219};
 	};
 };
 binarizationWanted=0;
@@ -69,7 +69,9 @@ addons[]=
 	"A3_Air_F_Beta_Heli_Attack_01",
 	"A3_Air_F_Exp_Plane_Civil_01",
 	"A3_Modules_F_Intel",
-	"A3_Structures_F_Mil_Flags"
+	"A3_Structures_F_Mil_Flags",
+	"A3_Weapons_F_Exp_Rifles_AKS",
+	"A3_Weapons_F_Launchers_Titan"
 };
 class AddonsMetaData
 {
@@ -222,7 +224,7 @@ randomSeed=3383463;
 class ScenarioData
 {
 	author="MAAAX & Mattzig";
-	overviewText="Combat Search and Rescue";
+	overviewText="Combat Search and Rescue v3.0";
 	class Header
 	{
 		gameType="Coop";
@@ -493,7 +495,7 @@ class Mission
 {
 	class Intel
 	{
-		briefingName="Combat Search and Rescue v3";
+		briefingName="CSAR Tanoa";
 		overviewText="Combat Search and Rescue";
 		resistanceWest=0;
 		resistanceEast=1;
@@ -517,7 +519,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=125;
+		items=129;
 		class Item0
 		{
 			dataType="Object";
@@ -5879,6 +5881,487 @@ class Mission
 			{
 			};
 			id=1942;
+		};
+		class Item125
+		{
+			dataType="Trigger";
+			position[]={9898.9824,223.24167,10639.38};
+			angle=3.3290236;
+			class Attributes
+			{
+				name="WestContacts";
+				sizeA=4511;
+				sizeB=2511;
+				repeatable=1;
+				activationBy="WEST";
+			};
+			id=1944;
+			type="EmptyDetectorAreaR250";
+			atlOffset=0.83303833;
+		};
+		class Item126
+		{
+			dataType="Group";
+			side="Independent";
+			class Entities
+			{
+				items=2;
+				class Item0
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={10025.88,409.62552,11751.382};
+						angles[]={0,2.5920932,0};
+					};
+					side="Independent";
+					flags=7;
+					class Attributes
+					{
+						rank="SERGEANT";
+					};
+					id=1959;
+					type="I_C_Soldier_Bandit_6_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=1.03;
+								};
+							};
+						};
+						nAttributes=1;
+					};
+				};
+				class Item1
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={10024.791,409.87143,11754.46};
+						angles[]={0,2.8954489,0};
+					};
+					side="Independent";
+					flags=5;
+					class Attributes
+					{
+						skill=0.67459667;
+						rank="CORPORAL";
+						class Inventory
+						{
+							class primaryWeapon
+							{
+								name="arifle_AKS_F";
+								class primaryMuzzleMag
+								{
+									name="30Rnd_545x39_Mag_F";
+									ammoLeft=30;
+								};
+							};
+							class secondaryWeapon
+							{
+								name="launch_B_Titan_F";
+							};
+							class uniform
+							{
+								typeName="U_I_C_Soldier_Para_5_F";
+								isBackpack=0;
+								class MagazineCargo
+								{
+									items=1;
+									class Item0
+									{
+										name="30Rnd_545x39_Mag_F";
+										count=4;
+										ammoLeft=30;
+									};
+								};
+								class ItemCargo
+								{
+									items=1;
+									class Item0
+									{
+										name="FirstAidKit";
+										count=1;
+									};
+								};
+							};
+							class backpack
+							{
+								typeName="B_FieldPack_cbr";
+								isBackpack=1;
+								class MagazineCargo
+								{
+									items=1;
+									class Item0
+									{
+										name="Titan_AA";
+										count=2;
+										ammoLeft=1;
+									};
+								};
+							};
+							map="ItemMap";
+							compass="ItemCompass";
+							watch="ItemWatch";
+							radio="ItemRadio";
+						};
+					};
+					id=1955;
+					type="I_C_Soldier_Para_5_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=0.97000003;
+								};
+							};
+						};
+						nAttributes=1;
+					};
+				};
+			};
+			class Attributes
+			{
+			};
+			id=1954;
+		};
+		class Item127
+		{
+			dataType="Group";
+			side="Independent";
+			class Entities
+			{
+				items=2;
+				class Item0
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={8940.7861,29.961435,10143.917};
+						angles[]={0,2.1808589,0};
+					};
+					side="Independent";
+					flags=7;
+					class Attributes
+					{
+						skill=0.67459667;
+						rank="CORPORAL";
+						init="doStop this;";
+						class Inventory
+						{
+							class primaryWeapon
+							{
+								name="arifle_AKS_F";
+								class primaryMuzzleMag
+								{
+									name="30Rnd_545x39_Mag_F";
+									ammoLeft=30;
+								};
+							};
+							class secondaryWeapon
+							{
+								name="launch_B_Titan_F";
+							};
+							class uniform
+							{
+								typeName="U_I_C_Soldier_Para_5_F";
+								isBackpack=0;
+								class MagazineCargo
+								{
+									items=1;
+									class Item0
+									{
+										name="30Rnd_545x39_Mag_F";
+										count=4;
+										ammoLeft=30;
+									};
+								};
+								class ItemCargo
+								{
+									items=1;
+									class Item0
+									{
+										name="FirstAidKit";
+										count=1;
+									};
+								};
+							};
+							class backpack
+							{
+								typeName="B_FieldPack_cbr";
+								isBackpack=1;
+								class MagazineCargo
+								{
+									items=1;
+									class Item0
+									{
+										name="Titan_AA";
+										count=2;
+										ammoLeft=1;
+									};
+								};
+							};
+							map="ItemMap";
+							compass="ItemCompass";
+							watch="ItemWatch";
+							radio="ItemRadio";
+						};
+					};
+					id=1966;
+					type="I_C_Soldier_Para_5_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=0.97000003;
+								};
+							};
+						};
+						nAttributes=1;
+					};
+				};
+				class Item1
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={8940.3154,29.962395,10140.521};
+						angles[]={0,2.1315007,0};
+					};
+					side="Independent";
+					flags=5;
+					class Attributes
+					{
+						init="dostop this;";
+					};
+					id=1967;
+					type="I_C_Soldier_Bandit_2_F";
+					atlOffset=0.00011825562;
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=1.04;
+								};
+							};
+						};
+						nAttributes=1;
+					};
+				};
+			};
+			class Attributes
+			{
+			};
+			id=1964;
+		};
+		class Item128
+		{
+			dataType="Group";
+			side="Independent";
+			class Entities
+			{
+				items=2;
+				class Item0
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={11880.413,148.49153,10196.854};
+						angles[]={0,2.8954489,0};
+					};
+					side="Independent";
+					flags=5;
+					class Attributes
+					{
+						skill=0.67459667;
+						rank="CORPORAL";
+						class Inventory
+						{
+							class primaryWeapon
+							{
+								name="arifle_AKS_F";
+								class primaryMuzzleMag
+								{
+									name="30Rnd_545x39_Mag_F";
+									ammoLeft=30;
+								};
+							};
+							class secondaryWeapon
+							{
+								name="launch_B_Titan_F";
+							};
+							class uniform
+							{
+								typeName="U_I_C_Soldier_Para_5_F";
+								isBackpack=0;
+								class MagazineCargo
+								{
+									items=1;
+									class Item0
+									{
+										name="30Rnd_545x39_Mag_F";
+										count=4;
+										ammoLeft=30;
+									};
+								};
+								class ItemCargo
+								{
+									items=1;
+									class Item0
+									{
+										name="FirstAidKit";
+										count=1;
+									};
+								};
+							};
+							class backpack
+							{
+								typeName="B_FieldPack_cbr";
+								isBackpack=1;
+								class MagazineCargo
+								{
+									items=1;
+									class Item0
+									{
+										name="Titan_AA";
+										count=2;
+										ammoLeft=1;
+									};
+								};
+							};
+							map="ItemMap";
+							compass="ItemCompass";
+							watch="ItemWatch";
+							radio="ItemRadio";
+						};
+					};
+					id=1970;
+					type="I_C_Soldier_Para_5_F";
+					atlOffset=-0.025344849;
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=0.97000003;
+								};
+							};
+						};
+						nAttributes=1;
+					};
+				};
+				class Item1
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={11881.502,148.42937,10193.776};
+						angles[]={0,2.5920932,0};
+					};
+					side="Independent";
+					flags=6;
+					class Attributes
+					{
+						rank="SERGEANT";
+					};
+					id=1971;
+					type="I_C_Soldier_Bandit_2_F";
+					atlOffset=-0.013000488;
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=1.03;
+								};
+							};
+						};
+						nAttributes=1;
+					};
+				};
+			};
+			class Attributes
+			{
+			};
+			id=1968;
+			atlOffset=-0.013000488;
 		};
 	};
 };

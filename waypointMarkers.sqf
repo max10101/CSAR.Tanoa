@@ -2,7 +2,7 @@ _group = _this select 0;
 _markers = [];
 _findAngle = compile preprocessFile "FindAngle.sqf";
 while {({alive _x} count units _group) > 0} do {
-sleep 1;
+sleep 4;
     {deleteMarker _x; _markers = _markers - [_x]} forEach _markers;
     if (count waypoints _group > 1) then {
 
@@ -56,4 +56,5 @@ sleep 1;
         _marker setMarkerDirLocal _angle;
         _markers = _markers + [_marker];
     }
-}
+};
+{deleteMarker _x; _markers = _markers - [_x]} forEach _markers;

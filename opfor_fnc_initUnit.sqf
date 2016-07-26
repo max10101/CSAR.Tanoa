@@ -11,10 +11,10 @@ if (!(_unit getVariable ["CSAR_unitInitialized",false])) then {
 		(vehicle _unit) addEventHandler ["Fired",{[_this] call RecoilFunction}];
 		{_x call opfor_fnc_initUnit2} forEach crew (vehicle _unit);
 	} else {
+		_unit setskill 0.7;
 		{_unit setskill [_x select 0,_x select 1]} foreach _SkillArray; 
 		_unit setVariable["CSAR_unitInitialized",true];
 		_unit addEventHandler ["Fired",{[_this] call RecoilFunction}];
-		_unit setSkill ["aimingAccuracy",(random 5)/10];
 		_unit addEventHandler ["Killed",{_unit execvm "deleteUnit.sqf"}];
 		_unit execVM "tracermags.sqf";
 		_unit addAction [format["<t color='#FF9000'>Search for intel</t>"], {FindIntel = true;publicvariable "FindIntel"}, [_unit], 10, true, true, "","!FindIntel",5];

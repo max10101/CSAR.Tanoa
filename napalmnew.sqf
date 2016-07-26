@@ -4,15 +4,15 @@ _size = _this select 2;
 _smokearray = [];
 _firearray = [];
 _MaxSmoke = 4;
-_Maxfire = 14;
+_Maxfire = 10;
 _color = [1, 1, 1];
 _velocity = wind;
 /*[coreIntensity, coreDistance, damageTime]: Array
 coreIntensity: Number - damage in the center of fire
 coreDistance: Number - how far can unit get damage
 damageTime: Number - how often is unit getting damage*/ 
-_fireintensityC = [20,20,1];
-_fireintensity = [8,10,1];
+_fireintensityC = [15,13,1];
+_fireintensity = [4,7,1];
 _fireintensity2 = [0,0,0];
 
 if (time > _expire) exitWith {};
@@ -24,7 +24,7 @@ CSAR_NapalmTMP = _obj;
     _obj1 = _this select 0;
     while {true} do
     {
-      if (((player distance _obj1) <= 100)) then
+      if (((player distance _obj1) <= 80)) then
       {
         _color = ppEffectCreate ["ColorCorrections", 1234];
         _color ppEffectEnable true;

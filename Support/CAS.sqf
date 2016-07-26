@@ -195,7 +195,7 @@ if ((alive _buzz) && (_casType == "NAPALM")) then
   };
   [_bomb] spawn	{
 	while {!IsNull (_this select 0)} do {
-	CSAR_NapalmPos = getpos (_this select 0);
+	CSAR_NapalmPos = getpos (_loc);
 	sleep 0.01;
 	};
 [CSAR_NapalmPos, "CSAR_NapalmExec"] call BIS_fnc_MP

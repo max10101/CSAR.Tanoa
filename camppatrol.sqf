@@ -5,7 +5,7 @@ _MaxWPs = 3;
 _add = 0;
 _wps = [];
 sleep (random 3);
-_group = [[(_pos select 0)+50-random 100,(_pos select 1)+50-random 100,0], Independent, (configFile >> "CfgGroups" >> "Indep" >> "IND_C_F" >> "Infantry" >> "BanditCombatGroup")] call BIS_fnc_spawnGroup;
+_group = [[(_pos select 0)+50-random 100,(_pos select 1)+50-random 100,0], Independent, CSAR_BanditGroup] call BIS_fnc_spawnGroup;
 
 _closestcamps = [_spawns,[],{_camp distance _x},"ASCEND"] call BIS_fnc_sortBy;
 _wp = _group addWaypoint [[(_pos select 0)+50-random 100,(_pos select 1)+50-random 100,0], 0];

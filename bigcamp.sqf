@@ -17,7 +17,7 @@ _veh setfuel (random 0.3);
 _gun = [_gunpos,((_gunpos select 0)-(getPos _camp select 0)) atan2 ((_gunpos select 1)-(getPos _camp select 1)),"Gunbag"] call CSAR_fnc_CampGun;
 _gun2 = [_gunpos2,((_gunpos2 select 0)-(getPos _camp select 0)) atan2 ((_gunpos2 select 1)-(getPos _camp select 1)),"Gunbag"] call CSAR_fnc_CampGun;
 
-_group = [_pos, Independent, (configFile >> "CfgGroups" >> "Indep" >> "IND_C_F" >> "Infantry" >> "BanditCombatGroup")] call BIS_fnc_spawnGroup;
+_group = [_pos, Independent, CSAR_ParaGroup] call BIS_fnc_spawnGroup;
 [_group, _pos, 100,3,true] call CSAR_CBA_fnc_taskDefend;
 /*
 _group addvehicle _gun;
@@ -36,7 +36,7 @@ _group setbehaviour "SAFE";
 [(units _group) select (count (units _Group)-2)] ordergetin TRUE;
 */
 
-_group2 = [[(_pos select 0)+((sin 360)*100),(_pos select 1)+((cos 360)*100),0], Independent, (configFile >> "CfgGroups" >> "Indep" >> "IND_C_F" >> "Infantry" >> "BanditCombatGroup")] call BIS_fnc_spawnGroup;
+_group2 = [[(_pos select 0)+((sin 360)*100),(_pos select 1)+((cos 360)*100),0], Independent, CSAR_ParaGroup] call BIS_fnc_spawnGroup;
 [_group2, _pos, 300,8,"MOVE","SAFE","YELLOW","NORMAL","STAG COLUMN","",[15,30,60]] call CSAR_cba_fnc_taskPatrol;
 
 {[_x,true,false] call opfor_fnc_initUnit} forEach units _group;
