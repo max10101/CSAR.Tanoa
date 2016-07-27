@@ -16,4 +16,4 @@ _air = ("Helicopter" countType list EastUnits) + ("Plane" countType list EastUni
 
 {if (_x == leader group _x) then {_groups = _groups + 1}} forEach list EastUnits;
 
-hint format ["Infantry: %1\nVehicle crew: %2\nDe-Spawned Infantry: %3\nLand Vehicles: %4\nAircraft: %5\nGroups: %6",_infantry,_infantryInVeh,DeSpawnedInf,_vehicles,_air,_groups];
+hint format ["Infantry: %1\nVehicle crew: %2\nDe-Spawned Infantry: %3\nLand Vehicles: %4\nAircraft: %5\nGroups: %6\nAI Running on: %7",_infantry,_infantryInVeh,DeSpawnedInf,_vehicles,_air,_groups,CSAR_HCHint];

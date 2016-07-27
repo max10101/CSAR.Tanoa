@@ -1,5 +1,5 @@
 //Reduces group size to sepcified value until enemy unit is within specified dist. Best used for infantry only groups
-if (isServer) then {
+if (Local CSAR_HC1) then {
     _group1 = _this select 0;
     _min = _this select 1;
     _dist = _this select 2;
@@ -43,7 +43,6 @@ if (isServer) then {
 
             _holdArray = [];
             _fullSize = true;
-            publicVariable "DeSpawnedInf";
         };
 
         if (_enemySpotted == 0 && _fullSize) then {
@@ -81,7 +80,6 @@ if (isServer) then {
 
             _group1CountSize = count units _group1;
             _fullSize = false;
-            publicVariable "DeSpawnedInf";
         }
     }
 }

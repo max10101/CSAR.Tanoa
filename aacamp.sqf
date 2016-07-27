@@ -22,6 +22,7 @@ _veh setfuel (random 0.3);
 _ammo1 = "Box_Syndicate_WpsLaunch_F" createvehicle [(_pos select 0)+((sin 260)*18),(_pos select 1)+((cos 260)*18),0];
 
 _gun = [_gunpos,((_gunpos select 0)-(getPos _camp select 0)) atan2 ((_gunpos select 1)-(getPos _camp select 1)),"Gunbag"] call CSAR_fnc_CampGun;
+_gun addEventHandler ["Fired",{[_this] call RecoilFunction}];
 
 _aagun1 = [_aagun1pos,((_aagun1pos select 0)-(getPos _camp select 0)) atan2 ((_aagun1pos select 1)-(getPos _camp select 1)),"AAGun"] call CSAR_fnc_CampGun;
 _aagun2 = [_aagun2pos,((_aagun2pos select 0)-(getPos _camp select 0)) atan2 ((_aagun2pos select 1)-(getPos _camp select 1)),"AAGun"] call CSAR_fnc_CampGun;

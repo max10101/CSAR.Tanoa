@@ -1,6 +1,5 @@
 BUGS: 
 
--current random glitch that actually helps in favour: if spotted unit gets into a vehicle that vehicle becomes part of csar_contactarray, and stays as such when unit gets out (may cause groups to 'engage' empty vehicles - ie search party moving towards a landed chopper and sticking around) - seems to go away after a short time/unit moves a distance away though. maybe make it stay somehow ** if units engage the vehicle with a WP - they will stay moving towards unit until patrol timeout - this is good
 
 TESTING:
 
@@ -10,12 +9,11 @@ TESTING:
 	test revive in mP more - need multiple players
 	add dragging to bis revive from FAR actions
 
+-test performance gains of headless client
+
 ADD/FINISH:
 
 enemy HQ script - calls arty, calls reinforcements, calls paradrop, etc
-
--Custom fasttime script - 
-needs to accel through to 'brightest' time of night - then to dusk/dawn, then not as quick through day
 
 -add in opfor attack helo
 

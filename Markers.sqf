@@ -1,6 +1,6 @@
 
      //** DYNAMIC _localMarkerList **
-
+IF (!HasInterface) Exitwith {};
      _player = _this select 0;
      if (player != _player) exitWith{};
 
@@ -15,7 +15,7 @@
 	         if (isPlayer (leader group _x) && !(_x in _westPlayerGroupUnits)) then {
 	             _westPlayerGroupUnits = _westPlayerGroupUnits + [_x];
 	         };
- 		} forEach list EveryUnit;
+ 		} forEach list WestUnits;
 
  		if (count _westPlayerGroupUnits > count _localMarkerList) then {
  			_amount = ((count _westPlayerGroupUnits) - (count _localMarkerList));

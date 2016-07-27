@@ -31,7 +31,7 @@ Author:
     Rommel
 
 ---------------------------------------------------------------------------- */
-#include "cba_script_component.hpp"
+//#include "cba_script_component.hpp"
 params [
     "_group",
     "_position",

@@ -15,6 +15,8 @@ _veh setfuel (random 0.3);
 
 _gun = [_gunpos,((_gunpos select 0)-(getPos _camp select 0)) atan2 ((_gunpos select 1)-(getPos _camp select 1)),"Gunbag"] call CSAR_fnc_CampGun;
 _gun2 = [_gunpos2,((_gunpos2 select 0)-(getPos _camp select 0)) atan2 ((_gunpos2 select 1)-(getPos _camp select 1)),"Gunbag"] call CSAR_fnc_CampGun;
+_gun addEventHandler ["Fired",{[_this] call RecoilFunction}];
+_gun2 addEventHandler ["Fired",{[_this] call RecoilFunction}];
 
 _group = [_pos, Independent, CSAR_ParaGroup] call BIS_fnc_spawnGroup;
 [_group, _pos, 100,3,true] call CSAR_CBA_fnc_taskDefend;

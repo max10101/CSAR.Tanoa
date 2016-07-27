@@ -1,9 +1,11 @@
+sleep (random 5);
 _group = _this select 0;
 _markers = [];
 _findAngle = compile preprocessFile "FindAngle.sqf";
 while {({alive _x} count units _group) > 0} do {
-sleep 4;
+sleep 10;
     {deleteMarker _x; _markers = _markers - [_x]} forEach _markers;
+IF (CSAR_DEBUG) then {
     if (count waypoints _group > 1) then {
 
         _marker = createMarkerLocal[format ["Waypoint %1",random 9999], getPos leader _group];
@@ -54,7 +56,12 @@ sleep 4;
         _marker setMarkerColorLocal "ColorBlue";
         _marker setMarkerBrushLocal "Solid";
         _marker setMarkerDirLocal _angle;
+		
+		//during debug show current WP only by making it a global one
+		IF (CSAR_DEBUG) then {_marker setMarkerDir _angle};
         _markers = _markers + [_marker];
     }
+	};
+
 };
 {deleteMarker _x; _markers = _markers - [_x]} forEach _markers;

@@ -15,6 +15,7 @@ _veh setdir (random 360);
 _veh setfuel (random 0.3);
 
 _gun = [_gunpos,((_gunpos select 0)-(getPos _camp select 0)) atan2 ((_gunpos select 1)-(getPos _camp select 1)),"Gunbag"] call CSAR_fnc_CampGun;
+_gun addEventHandler ["Fired",{[_this] call RecoilFunction}];
 
 _group = [_pos, Independent, (configFile >> "CfgGroups" >> "Indep" >> "IND_C_F" >> "Infantry" >> "BanditCombatGroup")] call BIS_fnc_spawnGroup;
 [_group, _pos, 100,3,true] call CSAR_CBA_fnc_taskDefend;

@@ -8,7 +8,7 @@ class EditorData
 	toggles=513;
 	class ItemIDProvider
 	{
-		nextID=1973;
+		nextID=1980;
 	};
 	class MarkerIDProvider
 	{
@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=1313;
+		nextID=1607;
 	};
 	class Camera
 	{
-		pos[]={11906.393,159.65326,10155.809};
-		dir[]={-0.73686582,-0.20898923,0.64300317};
-		up[]={-0.157492,0.97791559,0.13742918};
-		aside[]={0.65752083,-2.0323205e-007,0.75350219};
+		pos[]={11232.611,193.2597,9769.0186};
+		dir[]={-0.96383005,-0.22006717,-0.15082151};
+		up[]={-0.21745835,0.97548085,-0.034029514};
+		aside[]={-0.15461197,-4.5786874e-007,0.9880482};
 	};
 };
 binarizationWanted=0;
@@ -495,7 +495,7 @@ class Mission
 {
 	class Intel
 	{
-		briefingName="CSAR Tanoa";
+		briefingName="Combat Search and Rescue";
 		overviewText="Combat Search and Rescue";
 		resistanceWest=0;
 		resistanceEast=1;
@@ -519,7 +519,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=129;
+		items=130;
 		class Item0
 		{
 			dataType="Object";
@@ -1115,7 +1115,7 @@ class Mission
 		class Item46
 		{
 			dataType="Trigger";
-			position[]={11825.849,0.00029945374,5809.9189};
+			position[]={12626.692,24.802704,5457.9771};
 			class Attributes
 			{
 				name="WestUnits";
@@ -1126,12 +1126,12 @@ class Mission
 			};
 			id=497;
 			type="EmptyDetectorAreaR250";
-			atlOffset=19.193001;
+			atlOffset=28.442152;
 		};
 		class Item47
 		{
 			dataType="Trigger";
-			position[]={12026.315,1.7166138e-005,5826.0308};
+			position[]={12827.159,34.283897,5474.0889};
 			class Attributes
 			{
 				name="EastUnits";
@@ -1142,12 +1142,12 @@ class Mission
 			};
 			id=498;
 			type="EmptyDetectorAreaR250";
-			atlOffset=14.835;
+			atlOffset=24.08415;
 		};
 		class Item48
 		{
 			dataType="Trigger";
-			position[]={11939,0,5818.5684};
+			position[]={12739.844,25.001928,5466.6265};
 			class Attributes
 			{
 				name="Everyunit";
@@ -1158,7 +1158,7 @@ class Mission
 			};
 			id=499;
 			type="EmptyDetectorAreaR250";
-			atlOffset=13.805108;
+			atlOffset=23.05426;
 		};
 		class Item49
 		{
@@ -4817,7 +4817,7 @@ class Mission
 		class Item103
 		{
 			dataType="Trigger";
-			position[]={11711.227,-15.97242,5805.4619};
+			position[]={12512.07,5.29211,5453.52};
 			class Attributes
 			{
 				text="Enemy Count";
@@ -4829,6 +4829,7 @@ class Mission
 			};
 			id=1705;
 			type="EmptyDetector";
+			atlOffset=9.2491512;
 		};
 		class Item104
 		{
@@ -5303,10 +5304,11 @@ class Mission
 			dataType="Logic";
 			class PositionInfo
 			{
-				position[]={12338.179,-19.736454,5824.4878};
+				position[]={13139.022,-15.287613,5472.5459};
 			};
 			id=1910;
 			type="ModuleCreateDiaryRecord_F";
+			atlOffset=9.2491531;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -5412,11 +5414,11 @@ class Mission
 			dataType="Logic";
 			class PositionInfo
 			{
-				position[]={12337.106,-13.958822,5750.5972};
+				position[]={13137.95,-13.648409,5398.6553};
 			};
 			id=1911;
 			type="ModuleCreateDiaryRecord_F";
-			atlOffset=9.5367432e-007;
+			atlOffset=9.2491493;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -6362,6 +6364,19 @@ class Mission
 			};
 			id=1968;
 			atlOffset=-0.013000488;
+		};
+		class Item129
+		{
+			dataType="Logic";
+			class PositionInfo
+			{
+				position[]={12924.485,9.5083647,5420.98};
+				angles[]={6.2352238,0,0.27548277};
+			};
+			name="CSAR_HC1";
+			isPlayable=1;
+			id=1976;
+			type="HeadlessClient_F";
 		};
 	};
 };

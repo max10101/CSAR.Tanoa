@@ -45,7 +45,7 @@ private ["_vehicle","_grp","_leader","_gunner"];
 {_NearRoads = (getpos _x) NearRoads 125;IF (count _NearRoads >= 1) then {_ConvoyWaypoints = _ConvoyWaypoints + [_NearRoads select 0]}} foreach _spawns;
 CSAR_ConvoyRoads = _ConvoyWaypoints;
 IF (_MaxConvoys > count _ConvoyWaypoints) then {_MaxConvoys = (count _ConvoyWaypoints)};
-IF (CSAR_DEBUG) then {{_marker = createMarker[format ["Road (%1)",random 9999], getPos _x];_marker setMarkerSize [0.7, 0.7];_marker setMarkerColor "ColorRed";_marker setMarkerType "o_motor_inf";} foreach _ConvoyWaypoints;};
+IF (CSAR_DEBUG) then {{_marker = createMarkerlocal[format ["Road (%1)",random 9999], getPos _x];_marker setMarkerSizelocal [0.7, 0.7];_marker setMarkerColorlocal "ColorRed";_marker setMarkerTypelocal "o_motor_inf";} foreach _ConvoyWaypoints;};
 
 
 _i = 0;
@@ -61,6 +61,7 @@ _vehicle setdir _dir;
 _grp = group (leader (driver _vehicle));
 _vehicle addeventhandler ["Dammaged",{_this execvm "brokenwheel.sqf"}];
 _vehicle setUnloadInCombat [true, false];
+IF (_vehicle in ["I_G_Offroad_01_armed_F"]) then {_vehicle addEventHandler ["Fired",{[_this] call RecoilFunction}];};
 
 //MAYBE SPAWN A BACKUP CAR
 sleep 0.1;
@@ -72,6 +73,7 @@ _dir = ((getpos _vehicle select 0)-(getPos _vehicle2 select 0)) atan2 ((getpos _
 _vehicle2 setdir _dir;
 _vehicle2 addeventhandler ["Dammaged",{_this execvm "brokenwheel.sqf"}];
 _vehicle2 setUnloadInCombat [true, false];
+IF (_vehicle2 in ["I_G_Offroad_01_armed_F"]) then {_vehicle2 addEventHandler ["Fired",{[_this] call RecoilFunction}];};
 
 //JOIN GROUP AND SET WAYPOINT
 (crew _vehicle2) join _grp;

@@ -193,11 +193,11 @@ if ((alive _buzz) && (_casType == "NAPALM")) then
       _bVelY = ((_loc select 1)-(getPos _bomb select 1))/_bDrop;
       _bomb setVelocity [_bVelX,_bVelY,(velocity _bomb select 2) - _velocityZ];
   };
-  [_bomb] spawn	{
-	while {!IsNull (_this select 0)} do {
-	CSAR_NapalmPos = getpos (_loc);
+  [_bomb,_loc] spawn	{
+	while {!IsNull (_this select 0)} do {	
 	sleep 0.01;
 	};
+CSAR_NapalmPos = (_this select 1);
 [CSAR_NapalmPos, "CSAR_NapalmExec"] call BIS_fnc_MP
   };
     _obj1 = _this select 0;
