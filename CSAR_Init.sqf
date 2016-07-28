@@ -1,8 +1,8 @@
 
     sleep 2.5;
 
-    {IF (local _x) then {_x call blufor_fnc_initUnit;};} forEach list WestUnits;
-    {IF (local _x) then {_x call opfor_fnc_initUnit;};} forEach list EastUnits;
+    {_x call blufor_fnc_initUnit;} forEach list WestUnits;
+    {_x call opfor_fnc_initUnit;} forEach list EastUnits;
 
     sleep 1;
 

@@ -1,4 +1,4 @@
-if(isServer) then {
+if(local _this) then {
 	_unit = _this;
 	_mags = [["30Rnd_65x39_caseless_green","30Rnd_65x39_caseless_green_mag_tracer"],["30Rnd_545x39_Mag_F","30Rnd_545x39_Mag_Tracer_F"],["30Rnd_762x39_Mag_F","30Rnd_762x39_Mag_Tracer_F"],["200Rnd_556x45_Box_F","200Rnd_556x45_Box_Tracer_F"]];
 	_unit unlinkitem "NVGoggles_OPFOR";_unit unlinkitem "NVGoggles";

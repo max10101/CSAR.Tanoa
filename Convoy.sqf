@@ -15,16 +15,17 @@ _newWP
 
 sleep 3;
 _MaxConvoys = 12;
+_backupgroup = false;
 _connected = 0;
 _ArmedCars = ["O_LSV_02_unarmed_F","I_G_Offroad_01_armed_F"];
 _Trucks = ["I_Truck_02_covered_F","I_Truck_02_transport_F"];
 _Cars = ["I_G_Offroad_01_F","I_G_Van_01_transport_F","I_C_Offroad_02_unarmed_F"];
-//_spawns = CSAR_CampLocations;
-//CHANGE CONVOYS TO ONLY SELECT OCCUPIED CAMPS AS CONVOY LOCATIONS INSTEAD OF ALL POSSIBLE CAMP LOCATIONS - LOCALISES AREA A BIT MORE
 _spawns = EnemyCamps + BigEnemyCamps + [POWCamp] + [IntelMap];
 _spawn = selectrandom _spawns;
 _ConvoyWaypoints = [];
 _grp = objnull;
+_backupPos = [0,0,0];
+_vehicle2 = objnull;
 
 //SPAWN A CAR WITH TWO CREW - [_type,_pos] call _Spawncar
 _SpawnCar = compile '
@@ -42,7 +43,8 @@ private ["_vehicle","_grp","_leader","_gunner"];
 
 
 // COMPILE NEAREST ROADS TO POTENTIAL CAMP LOCATIONS
-{_NearRoads = (getpos _x) NearRoads 125;IF (count _NearRoads >= 1) then {_ConvoyWaypoints = _ConvoyWaypoints + [_NearRoads select 0]}} foreach _spawns;
+{_NearRoads = (getpos _x) NearRoads 125;
+IF (count _NearRoads >= 1) then {_ConvoyWaypoints = _ConvoyWaypoints + [_NearRoads select 0]}} foreach _spawns;
 CSAR_ConvoyRoads = _ConvoyWaypoints;
 IF (_MaxConvoys > count _ConvoyWaypoints) then {_MaxConvoys = (count _ConvoyWaypoints)};
 IF (CSAR_DEBUG) then {{_marker = createMarkerlocal[format ["Road (%1)",random 9999], getPos _x];_marker setMarkerSizelocal [0.7, 0.7];_marker setMarkerColorlocal "ColorRed";_marker setMarkerTypelocal "o_motor_inf";} foreach _ConvoyWaypoints;};
@@ -51,49 +53,57 @@ IF (CSAR_DEBUG) then {{_marker = createMarkerlocal[format ["Road (%1)",random 99
 _i = 0;
 While {_i < _MaxConvoys} do {
 
-//SPAWN A CAR ON A ROAD
-_randomroad = (selectrandom _ConvoyWaypoints);
-_Convoywaypoints = _Convoywaypoints - [_randomroad];
-_vehicle = [Selectrandom (_ArmedCars + _Cars),getpos _randomroad] call _spawncar;
-IF (count (roadsConnectedTo _randomroad) > 0) then {_connected = (roadsConnectedTo _randomroad) select 0} else {_connected = _randomroad};
-_dir = ((getpos _randomroad select 0)-((getPos _connected) select 0)) atan2 ((getpos _randomroad select 1)-(getPos _connected select 1));
-_vehicle setdir _dir;
-_grp = group (leader (driver _vehicle));
-_vehicle addeventhandler ["Dammaged",{_this execvm "brokenwheel.sqf"}];
-_vehicle setUnloadInCombat [true, false];
-IF (_vehicle in ["I_G_Offroad_01_armed_F"]) then {_vehicle addEventHandler ["Fired",{[_this] call RecoilFunction}];};
+	//SPAWN A CAR ON A ROAD
+	_randomroad = (selectrandom _ConvoyWaypoints);
+	_Convoywaypoints = _Convoywaypoints - [_randomroad];
+	_vehicle = [Selectrandom (_ArmedCars + _Cars),getpos _randomroad] call _spawncar;
+	IF (count (roadsConnectedTo _randomroad) > 0) then {_connected = (roadsConnectedTo _randomroad) select 0} else {_connected = _randomroad};
+	_dir = ((getpos _randomroad select 0)-((getPos _connected) select 0)) atan2 ((getpos _randomroad select 1)-(getPos _connected select 1));
+	_vehicle setdir _dir;
+	_grp = group (leader (driver _vehicle));
+	_vehicle addeventhandler ["Dammaged",{_this execvm "brokenwheel.sqf"}];
+	_vehicle setUnloadInCombat [true, false];
+	IF (_vehicle in ["I_G_Offroad_01_armed_F"]) then {_vehicle addEventHandler ["Fired",{[_this] call RecoilFunction}];};
+	
+	//MAYBE SPAWN A BACKUP CAR
+	sleep 0.1;
 
-//MAYBE SPAWN A BACKUP CAR
-sleep 0.1;
-IF (random 1 > 0) then {
-_selection = selectrandom (_Trucks + _Cars);
-_BackupPos = (getpos _randomroad) findEmptyPosition [10, 100, _selection];
-_vehicle2 = [_selection,_backuppos] call _spawncar;
-_dir = ((getpos _vehicle select 0)-(getPos _vehicle2 select 0)) atan2 ((getpos _vehicle select 1)-(getPos _vehicle2 select 1));
-_vehicle2 setdir _dir;
-_vehicle2 addeventhandler ["Dammaged",{_this execvm "brokenwheel.sqf"}];
-_vehicle2 setUnloadInCombat [true, false];
-IF (_vehicle2 in ["I_G_Offroad_01_armed_F"]) then {_vehicle2 addEventHandler ["Fired",{[_this] call RecoilFunction}];};
+	IF (random 1 > 0.5) then {
+		_selection = selectrandom (_Trucks + _Cars);
+		IF (_selection in _trucks) then {_backupgroup = true;} else {_backupgroup = false;};
+		_BackupPos = (getpos _randomroad) findEmptyPosition [5, 100, _selection];
+		IF (IsNil "_BackupPos") then {_BackupPos = [(getpos _randomroad select 0),(getpos _randomroad select 1)-15,0]};
+		_vehicle2 = [_selection,_backuppos] call _spawncar;
+		_dir = ((getpos _vehicle select 0)-(getPos _vehicle2 select 0)) atan2 ((getpos _vehicle select 1)-(getPos _vehicle2 select 1));
+		_vehicle2 setdir _dir;
+		_vehicle2 addeventhandler ["Dammaged",{_this execvm "brokenwheel.sqf"}];
+		_vehicle2 setUnloadInCombat [true, false];
+		IF (_vehicle2 in ["I_G_Offroad_01_armed_F"]) then {_vehicle2 addEventHandler ["Fired",{[_this] call RecoilFunction}];};
 
-//JOIN GROUP AND SET WAYPOINT
-(crew _vehicle2) join _grp;
-_grp addvehicle _vehicle2;
-//player moveincargo _vehicle2;
-//[player] join _grp;
-};
-_grp setbehaviour "SAFE";
-_grp setspeedmode "LIMITED";
-_grp setformation "COLUMN";
+		//JOIN GROUP AND SET WAYPOINT
+		(crew _vehicle2) join _grp;
+		_grp addvehicle _vehicle2;
+	};
 
-_movepos = getpos (SelectRandom (CSAR_Convoyroads - [_spawn]));
-_wp = _grp addWaypoint [_movepos, 0];
-_wp setWaypointStatements ["true", "this execvm ""ConvoyNewWaypoint.sqf"""];
-_wp setwaypointtype "MOVE";
-_wp setWaypointCompletionRadius 30;
-{_x limitspeed 30} foreach (units _grp);
-_i = _i + 1;
-sleep 5;
-{[_x,false,false] call opfor_fnc_initUnit} forEach units _grp;
+	IF (_backupgroup) then {
+		_backup = [_backuppos, Independent, (configFile >> "CfgGroups" >> "Indep" >> "IND_C_F" >> "Infantry" >> "BanditCombatGroup")] call BIS_fnc_spawnGroup;
+		{_x moveincargo _vehicle2} foreach units _backup;
+		(units _backup) join _grp;
+		_backupgroup = false;
+	};
+
+	_grp setbehaviour "SAFE";
+	_grp setspeedmode "LIMITED";
+	_grp setformation "COLUMN";
+	_movepos = getpos (SelectRandom (CSAR_Convoyroads - [_spawn]));
+	_wp = _grp addWaypoint [_movepos, 0];
+	_wp setWaypointStatements ["true", "this execvm ""ConvoyNewWaypoint.sqf"""];
+	_wp setwaypointtype "MOVE";
+	_wp setWaypointCompletionRadius 30;
+	{_x limitspeed 25} foreach (units _grp);
+	_i = _i + 1;
+	sleep 5;
+	{[_x,false,false] call opfor_fnc_initUnit} forEach units _grp;
 };
 
 ConvoysInitialised = true;

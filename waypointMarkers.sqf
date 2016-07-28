@@ -1,5 +1,6 @@
 sleep (random 5);
 _group = _this select 0;
+IF (!Local (leader _group)) ExitWith {};
 _markers = [];
 _findAngle = compile preprocessFile "FindAngle.sqf";
 while {({alive _x} count units _group) > 0} do {

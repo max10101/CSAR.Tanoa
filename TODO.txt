@@ -13,6 +13,8 @@ TESTING:
 
 ADD/FINISH:
 
+Add approx 10-12 more 'small' AI patrol groups
+
 enemy HQ script - calls arty, calls reinforcements, calls paradrop, etc
 
 -add in opfor attack helo

@@ -1,3 +1,4 @@
+CSAR_Debug = true;
 call compile preprocessFile "Support\init.sqf";
 RecoilFunction = compile preprocessFile "recoil.sqf";
 blufor_fnc_initUnit = compile preprocessFile "blufor_fnc_initUnit.sqf";
@@ -54,7 +55,7 @@ CSAR_ContactAreaSize = 150;
 CSAR_ContactArray = [];
 CSAR_NapalmSize = 50;
 CSAR_NapalmTime = 50;
-CSAR_Debug = true;
+
 CampsInitialised = false;
 ConvoysInitialised = false;
 CSAR_ConvoyRoads = [];
@@ -143,7 +144,7 @@ IF (Local CSAR_HC1) then {
 
 
 
-//WAIT
+//FIRST WAIT
 
 sleep 2;
 bis_revive_bleedOutDuration = (180)*3;
@@ -222,7 +223,7 @@ while {true} do {
 		};
 
         if (nearPOW == 1) then {
-            if (random 1 > 0.85) then {[[(getPos POW select 0) + 50, getPos POW select 1, 0]] execVM "ParadropReinforcements.sqf";};
+            if (random 1 > 0.35) then {[[(getPos POW select 0) + 50, getPos POW select 1, 0]] execVM "ParadropReinforcements.sqf";};
             nearPOW = 2; publicVariable "nearPOW";
         };
 

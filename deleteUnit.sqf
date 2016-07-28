@@ -1,3 +1,4 @@
+IF (!Local (_this select 0)) ExitWith {};
 _exists = true;
 _timer = time + (60*20);
 if ((_this select 0) isKindOf "Man") then {

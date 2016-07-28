@@ -15,13 +15,19 @@ enableDebugConsole = 2;
 #include "Support\SPTMenu.hpp"
 
 class CfgRemoteExec
-{        
-       // List of script commands allowed to be sent from client via remoteExec
-       class Commands
-       {
-              /*your commands here*/
-              class Say3D {allowedTargets=0; jip=0;} // can target anyone, sending jip is turned off (overrides settings in the Commands class)
-	};
+{
+        class Commands
+        {
+                mode = 2;
+				jip = 1;
+
+        };
+        class Functions
+        {
+                mode = 2;
+				jip = 1;
+
+        };
 };
 
 class CfgSounds

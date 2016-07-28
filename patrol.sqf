@@ -1,6 +1,6 @@
 sleep (random 10);
 _group = _this;
-
+IF (!Local (leader _group)) ExitWith {};
 CSAR_fnc_InjectPatrolWP = compile '
 private ["_current","_newWP","_newpos","_group"];
 _group = _this select 0;

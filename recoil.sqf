@@ -1,4 +1,5 @@
 _unit = _this select 0 select 0;
+IF (local _unit) then {
 _bullet = _this select 0 select 6;
 _dispersion = 1.85;
 if (!((vehicle _unit) isKindOf "Man")) then {_dispersion = 3;};
@@ -14,4 +15,5 @@ if (!isNull _bullet && ((side _unit == east) OR (side _unit == independent)) && 
 	_adjvel = [(_lowvel select 0) + (sin _rand),(_lowvel select 1) + (cos _rand),(_lowvel select 2) + (tan _randup)];
 	_adjvel2 = [((_adjvel select 0)*_speed)/2,((_adjvel select 1)*_speed)/2,((_adjvel select 2)*_speed)/2];
 	_bullet setVelocity _adjvel2;
+};
 };

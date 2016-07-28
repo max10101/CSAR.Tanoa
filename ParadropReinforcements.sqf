@@ -16,7 +16,7 @@ _wpSAD setwaypointtype "SAD";
 {_x assignAsCargo _heli; _x moveInCargo _heli} forEach units _group1;
 waitUntil {leader _group1 in _heli};
 sleep 1;
-{[_x,false] call compile preprocessFile "opfor_fnc_initUnit.sqf"} forEach units _group1;
+{[_x,false,true] call compile preprocessFile "opfor_fnc_initUnit.sqf"} forEach units _group1;
 
 _heli addEventHandler ["dammaged", {_this execVM "HelicopterEmergency.sqf"}];
 
