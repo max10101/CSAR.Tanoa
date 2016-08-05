@@ -1,4 +1,4 @@
-CSAR_Debug = true;
+CSAR_Debug = false;
 call compile preprocessFile "Support\init.sqf";
 RecoilFunction = compile preprocessFile "recoil.sqf";
 blufor_fnc_initUnit = compile preprocessFile "blufor_fnc_initUnit.sqf";
@@ -17,6 +17,10 @@ CSAR_NapalmExec = compileFinal "[_this,CSAR_NapalmTime,CSAR_NapalmSize] execvm "
 CSAR_fnc_Arsenal = compile preprocessFile "arsenalfnc.sqf"; 
 CSAR_BanditGroup = ["I_C_Soldier_Bandit_2_F","I_C_Soldier_Bandit_4_F","I_C_Soldier_Bandit_1_F","I_C_Soldier_Bandit_7_F","I_C_Soldier_Bandit_5_F","I_C_Soldier_Bandit_8_F","I_C_Soldier_Bandit_3_F","I_C_Soldier_Bandit_6_F","I_C_Soldier_Bandit_2_F"];
 CSAR_ParaGroup = ["I_C_Soldier_Para_2_F","I_C_Soldier_Para_4_F","I_C_Soldier_Para_1_F","I_C_Soldier_Para_7_F","I_C_Soldier_Para_5_F","I_C_Soldier_Para_8_F","I_C_Soldier_Para_3_F","I_C_Soldier_Para_6_F","I_C_Soldier_Para_2_F"];
+
+CSAR_BanditGroupSmall = ["I_C_Soldier_Bandit_4_F","I_C_Soldier_Bandit_3_F","I_C_Soldier_Bandit_5_F","I_C_Soldier_Bandit_1_F"];
+CSAR_ParaGroupSmall = ["I_C_Soldier_Para_4_F","I_C_Soldier_Para_3_F","I_C_Soldier_Para_5_F","I_C_Soldier_Para_1_F"];
+
 
 BIS_Effects_Burn=compile preprocessFileLineNumbers "burn.sqf";
 PlayMoveMP = compileFinal "_this select 0 PlayMove (_this select 1);";
@@ -85,7 +89,7 @@ RadioOperator = player;
 RadioChat = "";
 Skipradio = false;
 failedMission = false;
-_groundViewDist = 2300;
+_groundViewDist = 2100;
 _flyingViewDist = 3200;
 
 //Variables that should probably be set this way for JIP compatibility
@@ -111,7 +115,7 @@ if (isNil "CSAR_SetGroupLeader") then {CSAR_SetGroupLeader = nil};
 setViewDistance _groundViewDist;
 setTerrainGrid 25;
 [] execVM "CSAR_Respawn.sqf";
-//[] execVM "real_weather.sqf";
+[] execVM "real_weather.sqf";
 POWAction = POW addaction ["<t color='#FF0000'>Rescue POW</t>","FreePow.sqf",nil,0,true,true,"","PowRescued == 0"];
 if (!radioMSG) then {radio setpos [getpos table select 0,getpos table select 1,(getpos table select 2)+1.01];[] exec "radiomsg.sqs"; radioMSG = true;radio addaction ["<t color='#FF0000'>Change Radio Station</t>","changeradiostation.sqf",nil,0,true,true,"","true",2]};
 [crashedheli, 6, time, false, true] spawn BIS_Effects_Burn;
@@ -126,14 +130,15 @@ if (isServer) then {
     [West,["FindPOW"],["Find Location of the POW","Find POW",""],objNull,"Created",2,true] call BIS_fnc_taskCreate;
     [West,["AA"],["Destroy the AA Site","Destroy AA Site",""],objNull,"Created",2,true] call BIS_fnc_taskCreate;
     POW setCaptive true; POW allowFleeing 0; removeAllWeapons POW; POW setBehaviour "Careless";
-	[] execvm "play.sqf"; //fasttime runs on server always
-};
+	"POWMarker" setMarkerPos [0,0];
+	"IntelMarker" setMarkerPos [0,0];
+	};
 
 /////////////////////////////////
 // HEADLESS CLIENT IMPLEMENTATION
 /////////////////////////////////
 
-IF (IsNil "CSAR_HC1") then {CSAR_HC1 = POW;CSAR_HCHint = "Server";publicvariable "CSAR_HCHint";};
+IF (IsNil "CSAR_HC1") then {CSAR_HC1 = ResInitOfficer;CSAR_HCHint = "Server";publicvariable "CSAR_HCHint";};
 IF (IsServer && (Local CSAR_HC1)) then {CSAR_HCHint = "Server";publicvariable "CSAR_HCHint";};
 IF (Local CSAR_HC1) then {
 	//scripts offloaded onto headless client (or server if he isn't there)
@@ -151,11 +156,17 @@ bis_revive_bleedOutDuration = (180)*3;
 if (local player && HasInterface) then {player call CSAR_fnc_initSpawn;};
 
 publicVariable "radioMSG";
-"POWMarker" setMarkerPos [0,0];
-"IntelMarker" setMarkerPos [0,0];
+
 
 if (local player && HasInterface) then {[player] execVM "Markers.sqf"};
 
+//fogcheck loop separate code spawn
+_fogcheck = [] spawn {
+	While {true} do {
+		IF ((fogparams select 0) > (((wcweather select 1) select 0)+0.05)) then {60 setfog (wcweather select 1);sleep 60};
+		sleep 20;
+	};
+};
     //Main loop for viewdistance, markers, etc and other things
 while {true} do {
     sleep 0.5;
@@ -163,6 +174,8 @@ while {true} do {
         failedMission = false;
         [] execVM "fail.sqf";
     };
+
+
 	
 	/////////////////////////////////////////////////////////////////////////////////////
 	//PLAYER ONLY CHECKS
@@ -223,7 +236,7 @@ while {true} do {
 		};
 
         if (nearPOW == 1) then {
-            if (random 1 > 0.35) then {[[(getPos POW select 0) + 50, getPos POW select 1, 0]] execVM "ParadropReinforcements.sqf";};
+            if (random 1 > 0) then {[[(getPos POW select 0) + 50, getPos POW select 1, 0]] execVM "ParadropReinforcements.sqf";};
             nearPOW = 2; publicVariable "nearPOW";
         };
 

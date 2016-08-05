@@ -9,11 +9,7 @@ TESTING:
 	test revive in mP more - need multiple players
 	add dragging to bis revive from FAR actions
 
--test performance gains of headless client
-
 ADD/FINISH:
-
-Add approx 10-12 more 'small' AI patrol groups
 
 enemy HQ script - calls arty, calls reinforcements, calls paradrop, etc
 
@@ -21,7 +17,7 @@ enemy HQ script - calls arty, calls reinforcements, calls paradrop, etc
 
 -add mass ejection script to planes
 
--populate cities a bit
+-populate cities a bit?
 
 
 FUTURE: 

@@ -11,8 +11,8 @@ _velocity = wind;
 coreIntensity: Number - damage in the center of fire
 coreDistance: Number - how far can unit get damage
 damageTime: Number - how often is unit getting damage*/ 
-_fireintensityC = [15,13,1];
-_fireintensity = [4,7,1];
+_fireintensityC = [25,12,1];
+_fireintensity = [8,7,1];
 _fireintensity2 = [0,0,0];
 
 if (time > _expire) exitWith {};

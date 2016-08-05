@@ -33,6 +33,7 @@ while {true} do {
 		sleep 0.1;
 		_triggerarray = [];
 		IF ((count _markerarray) > 0) then {{deletemarker _x} foreach _markerarray;_markerrarray = []};
+
 		//STEP 2 create the contact zone areas based off spotted units
 		_first = _spottedarray select 0;
 		_obj = _first;

@@ -2,10 +2,10 @@ author="MattZig & MAAAX";
 OnLoadName = "CSAR";
 OnLoadMission = "Combat Search And Rescue";
 respawn = 3;
-respawnDelay = 5;
+respawnDelay = 10;
 respawnTemplates[] = {"MenuPosition"};
 respawnOnStart = -1;
-disabledAI = 0;
+disabledAI = 1;
 joinUnassigned = 0;
 enableDebugConsole = 2;
 

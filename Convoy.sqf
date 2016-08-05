@@ -20,7 +20,7 @@ _connected = 0;
 _ArmedCars = ["O_LSV_02_unarmed_F","I_G_Offroad_01_armed_F"];
 _Trucks = ["I_Truck_02_covered_F","I_Truck_02_transport_F"];
 _Cars = ["I_G_Offroad_01_F","I_G_Van_01_transport_F","I_C_Offroad_02_unarmed_F"];
-_spawns = EnemyCamps + BigEnemyCamps + [POWCamp] + [IntelMap];
+_spawns = EnemyCamps + BigEnemyCamps + [POWCamp,IntelMap,AACamp] ;
 _spawn = selectrandom _spawns;
 _ConvoyWaypoints = [];
 _grp = objnull;
@@ -68,7 +68,7 @@ While {_i < _MaxConvoys} do {
 	//MAYBE SPAWN A BACKUP CAR
 	sleep 0.1;
 
-	IF (random 1 > 0.5) then {
+	IF (random 1 > 0.3) then {
 		_selection = selectrandom (_Trucks + _Cars);
 		IF (_selection in _trucks) then {_backupgroup = true;} else {_backupgroup = false;};
 		_BackupPos = (getpos _randomroad) findEmptyPosition [5, 100, _selection];
@@ -100,7 +100,7 @@ While {_i < _MaxConvoys} do {
 	_wp setWaypointStatements ["true", "this execvm ""ConvoyNewWaypoint.sqf"""];
 	_wp setwaypointtype "MOVE";
 	_wp setWaypointCompletionRadius 30;
-	{_x limitspeed 25} foreach (units _grp);
+	{_x limitspeed 20} foreach (units _grp);
 	_i = _i + 1;
 	sleep 5;
 	{[_x,false,false] call opfor_fnc_initUnit} forEach units _grp;

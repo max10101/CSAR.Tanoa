@@ -47,7 +47,7 @@ while {true} do {
                     _metadata = ["get",_curSel] call BIS_fnc_showRespawnMenuPositionMetadata;
                     _spawnmarker = (_metadata select 0) select 0;
                 };
-                _nearestUnit = [player,player,list WestUnits] call CSAR_fnc_findNearestUnit;
+                _nearestUnit = [player,player,list WestContacts] call CSAR_fnc_findNearestUnit;
                 if (!(isNull _nearestUnit)) then {
                     "spawn_nearest" setMarkerPosLocal (getPos _nearestUnit);
                     _name = "";
@@ -58,7 +58,11 @@ while {true} do {
                     };
                     "spawn_nearest" setMarkerTextLocal format ["Closest Unit (%1 Group)",_name];
                     if (markerAlpha "spawn_nearest" < 1) then {"spawn_nearest" setMarkerAlphaLocal 1;};
-                };
+                } else {
+				//NO Nearest
+				"spawn_nearest" setMarkerPosLocal (getmarkerpos "spawn_airbase");
+				"spawn_nearest" setMarkerAlphaLocal 0;
+				};
             };
         } else {
 

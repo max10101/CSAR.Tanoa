@@ -3,10 +3,10 @@ _corpse = _this select 1;
 
 if (local _oldUnit) then {
 
-    _respawnUnit = [_oldUnit,_corpse,list WestUnits] call CSAR_fnc_findNearestUnit;
+    _respawnUnit = [_oldUnit,_corpse,list WestContacts] call CSAR_fnc_findNearestUnit;
     while {isPlayer _respawnUnit} do {
          sleep 0.1;
-        _respawnUnit = [_oldUnit,_corpse,list WestUnits] call CSAR_fnc_findNearestUnit;
+        _respawnUnit = [_oldUnit,_corpse,list WestContacts] call CSAR_fnc_findNearestUnit;
     };
 
 

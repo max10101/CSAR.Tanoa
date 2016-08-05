@@ -8,11 +8,10 @@ _SkillArray = [["aimingAccuracy",0.7],["aimingShake",0.1],["aimingSpeed",0.5],["
 _unit = _this;
 if (typename _this == "ARRAY") then {_unit = _this select 0};
 
-if (!(_unit getVariable ["CSAR_unitInitialized",false])) then {
+if (!(_unit getVariable ["CSAR_unitInitialized",false]) && Local _unit) then {
 	if (!(_unit isKindOf "man")) then {
-	//this doesn't seem to get called..ever
+
 		(vehicle _unit) addEventHandler ["Fired",{[_this] call RecoilFunction}];
-		systemchat "Opfor initunit - called not on a man";
 		{_x call opfor_fnc_initUnit2} forEach crew (vehicle _unit);
 	} else {
 		_unit setskill 0.7;

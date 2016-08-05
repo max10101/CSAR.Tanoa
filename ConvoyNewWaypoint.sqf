@@ -7,6 +7,16 @@ _camps = CSAR_CampLocations;
 //CHECK IF ALL UNITS ARE STILL IN A VEHICLE
 IF (({Vehicle _x == _x} count (units _group)) >= 1) then {_abandon = true;};
 
+_spawns = [IntelMap,POWCamp,AACamp];
+_ImportantWaypoints = [];
+{
+	_NearRoads = (getpos _x) NearRoads 150;
+	IF (count _NearRoads >= 1) then {
+		_ImportantWaypoints = _ImportantWaypoints + [_NearRoads select 0]
+	}
+} foreach _spawns;
+
+
 IF (_abandon) then {
 //ABANDON VEHICLES AND MOVE TO NEAREST CAMP
 
@@ -37,6 +47,7 @@ _group setspeedmode "LIMITED";
 _group setformation "COLUMN";
 
 _movepos = getpos (SelectRandom CSAR_ConvoyRoads);
+IF ((count _ImportantWaypoints) > 0 && (random 1 > 0.3)) then {_movepos = getpos (SelectRandom _ImportantWaypoints)};
 _wp = _group addWaypoint [_movepos, 0];
 _wp setWaypointStatements ["true", "this execvm ""ConvoyNewWaypoint.sqf"""];
 _wp setwaypointtype "MOVE";

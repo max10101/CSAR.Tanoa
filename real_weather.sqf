@@ -46,15 +46,15 @@
 	// send sync data across the network each xxx seconds
 	// 60 real seconds by default is a good value
 	// shortest time do not improve weather sync
-	_timesync = 30;
+	_timesync = 60;
 
 	// Mission starting date is 25/09/2013 at 12:00
 	_startingdate = [2026, 12, 19, 5, 34];
 	//if (random 1 > 0.5) then {_startingdate = [2015, 07, 01, 20, 00]};
 
 	// Mission starting weather "CLEAR|CLOUDY|RAIN";
-	_startingweather = ["CLEAR", "CLOUDY", "RAIN"] call BIS_fnc_selectRandom;
-
+//	_startingweather = ["CLEAR", "CLOUDY", "RAIN"] call BIS_fnc_selectRandom;
+	_startingweather = "CLEAR";
 	/////////////////////////////////////////////////////////////////
 	// Do not edit below
 	/////////////////////////////////////////////////////////////////
@@ -62,18 +62,18 @@
 	if(_mintime > _maxtime) exitwith {hint format["Real weather: Max time: %1 can no be higher than Min time: %2", _maxtime, _mintime];};
 	_timeforecast = _mintime;
 
-	setdate _startingdate;
+	//setdate _startingdate;
 	switch(toUpper(_startingweather)) do {
 		case "CLEAR": {
 			wcweather = [0, 0, 0, [random 3, random 3, true], date];
 		};
 
 		case "CLOUDY": {
-			wcweather = [0, 0, 0.6, [random 3, random 3, true], date];
+			wcweather = [0, 0, 0.4 + (random 0.2), [random 3, random 3, true], date];
 		};
 
 		case "RAIN": {
-			wcweather = [1, 0, 1, [random 3, random 3, true], date];
+			wcweather = [1, 0, 0.6 + (random 0.4), [random 3, random 3, true], date];
 		};
 
 		default {
@@ -100,9 +100,9 @@
 				setdate (wcweather select 4);
 			}else{
 				wcweather = _this select 1;
-				120 setRain (wcweather select 0);
-				120 setfog (wcweather select 1);
-				120 setOvercast (wcweather select 2);
+				60 setRain (wcweather select 0);
+				60 setfog (wcweather select 1);
+				60 setOvercast (wcweather select 2);
 				setwind (wcweather select 3);
 				setdate (wcweather select 4);
 			};
@@ -167,17 +167,24 @@
 		};
 		if((date select 3 > 2) and (date select 3 <6)) then {
 			if(random 1 > 0.55) then {
-				_fog = [0.104466,0.010,150+(random 50)];
+				_fog = [0.084466,0.008,120+(random 50)];
 			} else {
-				_fog = [0.074466,0.009,150+(random 50)];
+				_fog = [0.054466,0.0065,120+(random 50)];
 			};
 		} else {
 			if((_lastrain > 0.6) and (_rain < 0.2)) then {
-				_fog = [0.054466,0.007,250];
+				_fog = [0.034466,0.005,120+(random 50)];
 			} else {
-				_fog = [random (0.011466),0.001+(random 0.002),5+random 50];
+				_fog = [(0.001466),0.001+(random 0.001),5+random 50];
 			};
 		};
+		_hour = date select 3;
+		if(_hour >= 20 or _hour < 4) then {
+			_fog = [0,0,0];
+			_overcast = 0;
+			_rain = 0;
+		};
+		
 		if(random 1 > 0.95) then {
 			_wind = [random 7, random 7, true];
 		} else {
@@ -186,9 +193,9 @@
 		_lastrain = _rain;
 
 		wcweather = [_rain, _fog, _overcast, _wind, date];
-		120 setRain (wcweather select 0);
-		120 setfog (wcweather select 1);
-		120 setOvercast (wcweather select 2);
+		60 setRain (wcweather select 0);
+		60 setfog (wcweather select 1);
+		60 setOvercast (wcweather select 2);
 		setwind (wcweather select 3);
 		if(_random) then {
 			_timeforecast = _mintime + (random (_maxtime - _mintime));

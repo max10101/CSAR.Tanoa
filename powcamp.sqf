@@ -20,34 +20,23 @@ _gun2 addEventHandler ["Fired",{[_this] call RecoilFunction}];
 
 _group = [_pos, Independent, CSAR_ParaGroup] call BIS_fnc_spawnGroup;
 [_group, _pos, 100,3,true] call CSAR_CBA_fnc_taskDefend;
-/*
-_group addvehicle _gun;
-_group addvehicle _gun2;
 
-_wp = _group addWaypoint [_pos, 0];
-_wp setwaypointtype "LOITER";
-_wp setWaypointLoiterRadius 100;
-_wp setWaypointLoiterType "CIRCLE_L";
-_wp setWaypointStatements ["true", ""];
-_group setbehaviour "SAFE";
-(units _group) select (count (units _Group)-1) assignasgunner _gun;
-[(units _group) select (count (units _Group)-1)] ordergetin TRUE;
 
-(units _group) select (count (units _Group)-2) assignasgunner _gun2;
-[(units _group) select (count (units _Group)-2)] ordergetin TRUE;
-*/
+_pos2 = [(_pos select 0)+((sin 90)*250),(_pos select 1)+((cos 90)*250),0];
+_group2 = [_pos2, Independent, CSAR_BanditGroup] call BIS_fnc_spawnGroup;
+[_group2, _pos2, 300,8,"MOVE","SAFE","YELLOW","NORMAL","STAG COLUMN","",[15,30,60]] call CSAR_cba_fnc_taskPatrol;
 
-_group2 = [[(_pos select 0)+((sin 360)*100),(_pos select 1)+((cos 360)*100),0], Independent, CSAR_ParaGroup] call BIS_fnc_spawnGroup;
-[_group2, _pos, 300,8,"MOVE","SAFE","YELLOW","NORMAL","STAG COLUMN","",[15,30,60]] call CSAR_cba_fnc_taskPatrol;
+_pos2 = [(_pos select 0)+((sin 180)*250),(_pos select 1)+((cos 180)*250),0];
+_group3 = [_pos2, Independent, CSAR_BanditGroup] call BIS_fnc_spawnGroup;
+[_group3, _pos2, 300,8,"MOVE","SAFE","YELLOW","NORMAL","STAG COLUMN","",[15,30,60]] call CSAR_cba_fnc_taskPatrol;
 
-_group3 = [[(_pos select 0)+((sin 180)*100),(_pos select 1)+((cos 180)*100),0], Independent, CSAR_ParaGroup] call BIS_fnc_spawnGroup;
-[_group3, _pos, 300,8,"MOVE","SAFE","YELLOW","NORMAL","STAG COLUMN","",[15,30,60]] call CSAR_cba_fnc_taskPatrol;
+_pos2 = [(_pos select 0)+((sin 360)*250),(_pos select 1)+((cos 360)*250),0];
+_group4 = [_pos2, Independent, CSAR_BanditGroup] call BIS_fnc_spawnGroup;
+[_group4, _pos2, 300,8,"MOVE","SAFE","YELLOW","NORMAL","STAG COLUMN","",[15,30,60]] call CSAR_cba_fnc_taskPatrol;
 
-_group4 = [[(_pos select 0)+((sin 90)*100),(_pos select 1)+((cos 90)*100),0], Independent, CSAR_ParaGroup] call BIS_fnc_spawnGroup;
-[_group4, _pos, 500,8,"MOVE","SAFE","YELLOW","NORMAL","STAG COLUMN","",[15,30,60]] call CSAR_cba_fnc_taskPatrol;
-
-_group5 = [[(_pos select 0)+((sin 270)*100),(_pos select 1)+((cos 270)*100),0], Independent, CSAR_ParaGroup] call BIS_fnc_spawnGroup;
-[_group5, _pos, 600,8,"MOVE","SAFE","YELLOW","NORMAL","STAG COLUMN","",[15,30,60]] call CSAR_cba_fnc_taskPatrol;
+_pos2 = [(_pos select 0)+((sin 270)*250),(_pos select 1)+((cos 270)*250),0];
+_group5 = [_pos2, Independent, CSAR_BanditGroup] call BIS_fnc_spawnGroup;
+[_group5, _pos2, 300,8,"MOVE","SAFE","YELLOW","NORMAL","STAG COLUMN","",[15,30,60]] call CSAR_cba_fnc_taskPatrol;
 
 {[_x,false,false] call opfor_fnc_initUnit} forEach units _group;
 {[_x,true,true] call opfor_fnc_initUnit} forEach units _group2;

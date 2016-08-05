@@ -5,25 +5,25 @@ class EditorData
 	angleGridStep=0.2617994;
 	scaleGridStep=1;
 	autoGroupingDist=10;
-	toggles=513;
+	toggles=1;
 	class ItemIDProvider
 	{
-		nextID=1980;
+		nextID=2042;
 	};
 	class MarkerIDProvider
 	{
-		nextID=16;
+		nextID=17;
 	};
 	class LayerIndexProvider
 	{
-		nextID=1670;
+		nextID=1796;
 	};
 	class Camera
 	{
-		pos[]={11244.243,288.77438,9887.3643};
-		dir[]={0.066353984,-0.21262155,-0.97495443};
-		up[]={0.01444117,0.97713089,-0.21216902};
-		aside[]={-0.99776477,-5.6112185e-007,-0.067906916};
+		pos[]={11686.565,15.636671,3097.2612};
+		dir[]={0.65622336,-0.3299298,0.67872894};
+		up[]={0.22936389,0.94398326,0.23722978};
+		aside[]={0.7189734,-3.1286618e-007,-0.69513899};
 	};
 };
 binarizationWanted=0;
@@ -994,17 +994,18 @@ class Mission
 		class Item42
 		{
 			dataType="Marker";
-			position[]={9822.6357,81.95752,10595.269};
+			position[]={9822.6357,-7.859202e-028,10595.269};
 			name="marker_0";
 			markerType="ELLIPSE";
 			type="ellipse";
 			colorName="ColorRed";
-			alpha=0.19838946;
+			alpha=0.60119706;
+			fillName="FDiagonal";
 			a=4011;
 			b=2211;
 			angle=13.832998;
 			id=476;
-			atlOffset=-116.44354;
+			atlOffset=-198.40106;
 		};
 		class Item43
 		{
@@ -1032,7 +1033,8 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={11469.881,6.9514389,13270.456};
+						position[]={2187.5186,13.451439,13264.736};
+						angles[]={0,5.2189326,0};
 					};
 					side="West";
 					flags=6;
@@ -1115,50 +1117,50 @@ class Mission
 		class Item46
 		{
 			dataType="Trigger";
-			position[]={12626.692,24.802704,5457.9771};
+			position[]={11299.543,123.20667,7221.502};
 			class Attributes
 			{
 				name="WestUnits";
-				sizeA=10111;
-				sizeB=10111;
+				sizeA=8111;
+				sizeB=8111;
 				repeatable=1;
 				activationBy="WEST";
 			};
 			id=497;
 			type="EmptyDetectorAreaR250";
-			atlOffset=28.442152;
+			atlOffset=24.804848;
 		};
 		class Item47
 		{
 			dataType="Trigger";
-			position[]={12827.159,34.283897,5474.0889};
+			position[]={11500.011,92.669785,7237.6138};
 			class Attributes
 			{
 				name="EastUnits";
-				sizeA=10011;
-				sizeB=10011;
+				sizeA=8011;
+				sizeB=8011;
 				repeatable=1;
 				activationBy="GUER";
 			};
 			id=498;
 			type="EmptyDetectorAreaR250";
-			atlOffset=24.08415;
+			atlOffset=20.323326;
 		};
 		class Item48
 		{
 			dataType="Trigger";
-			position[]={12739.844,25.001928,5466.6265};
+			position[]={11412.694,124.23453,7230.1509};
 			class Attributes
 			{
 				name="Everyunit";
-				sizeA=10011;
-				sizeB=10011;
+				sizeA=8011;
+				sizeB=8011;
 				repeatable=1;
 				activationBy="ANY";
 			};
 			id=499;
 			type="EmptyDetectorAreaR250";
-			atlOffset=23.05426;
+			atlOffset=19.416847;
 		};
 		class Item49
 		{
@@ -1177,7 +1179,8 @@ class Mission
 			dataType="Logic";
 			class PositionInfo
 			{
-				position[]={11801.603,6.9499998,13162.785};
+				position[]={2095.3411,13.45,13219.828};
+				angles[]={0,5.2189326,0};
 			};
 			name="Eastbase";
 			id=501;
@@ -1414,12 +1417,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={11784.978,7.0012951,13051.359};
+						position[]={2173.9282,13.46141,13410.749};
+						angles[]={0,5.2189326,0};
 					};
 					side="East";
 					flags=7;
 					class Attributes
 					{
+						init="this disableai ""MOVE"";this disableai ""FSM"";";
 						name="EastInitOfficer";
 					};
 					id=569;
@@ -1466,12 +1471,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={11829.953,7.0041084,13036.132};
+						position[]={2213.7576,13.495446,13436.96};
+						angles[]={0,5.2189326,0};
 					};
 					side="Independent";
 					flags=7;
 					class Attributes
 					{
+						init="this disableai ""MOVE"";this disableai ""FSM"";";
 						name="ResInitOfficer";
 					};
 					id=571;
@@ -1560,7 +1567,8 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={11760.211,7.0401654,3015.1206};
+				position[]={11925.827,7.0401654,2927.5142};
+				angles[]={0,5.3414001,0};
 			};
 			side="Empty";
 			flags=4;
@@ -1621,7 +1629,7 @@ class Mission
 		class Item64
 		{
 			dataType="Marker";
-			position[]={587.37402,-7.3168293e-028,614.11499};
+			position[]={587.37402,-3.7748025e-028,614.11499};
 			name="POWMarker";
 			markerType="ELLIPSE";
 			type="ellipse";
@@ -3453,50 +3461,32 @@ class Mission
 								isBackpack=0;
 								class MagazineCargo
 								{
-									items=8;
+									items=5;
 									class Item0
-									{
-										name="ClaymoreDirectionalMine_Remote_Mag";
-										count=1;
-										ammoLeft=1;
-									};
-									class Item1
-									{
-										name="APERSTripMine_Wire_Mag";
-										count=1;
-										ammoLeft=1;
-									};
-									class Item2
-									{
-										name="MiniGrenade";
-										count=1;
-										ammoLeft=1;
-									};
-									class Item3
 									{
 										name="SmokeShellBlue";
 										count=1;
 										ammoLeft=1;
 									};
-									class Item4
+									class Item1
 									{
 										name="SmokeShellOrange";
 										count=1;
 										ammoLeft=1;
 									};
-									class Item5
+									class Item2
 									{
 										name="7Rnd_408_Mag";
-										count=2;
+										count=4;
 										ammoLeft=7;
 									};
-									class Item6
+									class Item3
 									{
 										name="11Rnd_45ACP_Mag";
 										count=1;
 										ammoLeft=11;
 									};
-									class Item7
+									class Item4
 									{
 										name="SmokeShellRed";
 										count=1;
@@ -3510,11 +3500,11 @@ class Mission
 								isBackpack=1;
 								class MagazineCargo
 								{
-									items=4;
+									items=3;
 									class Item0
 									{
 										name="7Rnd_408_Mag";
-										count=5;
+										count=4;
 										ammoLeft=7;
 									};
 									class Item1
@@ -3526,12 +3516,6 @@ class Mission
 									class Item2
 									{
 										name="ClaymoreDirectionalMine_Remote_Mag";
-										count=2;
-										ammoLeft=1;
-									};
-									class Item3
-									{
-										name="DemoCharge_Remote_Mag";
 										count=1;
 										ammoLeft=1;
 									};
@@ -3836,7 +3820,7 @@ class Mission
 								isBackpack=0;
 								class MagazineCargo
 								{
-									items=8;
+									items=6;
 									class Item0
 									{
 										name="ClaymoreDirectionalMine_Remote_Mag";
@@ -3845,45 +3829,42 @@ class Mission
 									};
 									class Item1
 									{
-										name="APERSTripMine_Wire_Mag";
+										name="SmokeShellBlue";
 										count=1;
 										ammoLeft=1;
 									};
 									class Item2
 									{
-										name="MiniGrenade";
+										name="SmokeShellOrange";
 										count=1;
 										ammoLeft=1;
 									};
 									class Item3
 									{
-										name="SmokeShellBlue";
-										count=1;
-										ammoLeft=1;
-									};
-									class Item4
-									{
-										name="SmokeShellOrange";
-										count=1;
-										ammoLeft=1;
-									};
-									class Item5
-									{
 										name="7Rnd_408_Mag";
 										count=2;
 										ammoLeft=7;
 									};
-									class Item6
+									class Item4
 									{
 										name="11Rnd_45ACP_Mag";
 										count=1;
 										ammoLeft=11;
 									};
-									class Item7
+									class Item5
 									{
 										name="SmokeShellRed";
 										count=1;
 										ammoLeft=1;
+									};
+								};
+								class ItemCargo
+								{
+									items=1;
+									class Item0
+									{
+										name="FirstAidKit";
+										count=1;
 									};
 								};
 							};
@@ -3893,7 +3874,7 @@ class Mission
 								isBackpack=1;
 								class MagazineCargo
 								{
-									items=4;
+									items=2;
 									class Item0
 									{
 										name="7Rnd_408_Mag";
@@ -3905,18 +3886,6 @@ class Mission
 										name="11Rnd_45ACP_Mag";
 										count=2;
 										ammoLeft=11;
-									};
-									class Item2
-									{
-										name="ClaymoreDirectionalMine_Remote_Mag";
-										count=2;
-										ammoLeft=1;
-									};
-									class Item3
-									{
-										name="DemoCharge_Remote_Mag";
-										count=1;
-										ammoLeft=1;
 									};
 								};
 							};
@@ -4817,7 +4786,7 @@ class Mission
 		class Item103
 		{
 			dataType="Trigger";
-			position[]={12512.07,5.29211,5453.52};
+			position[]={11184.921,67.832245,7217.0449};
 			class Attributes
 			{
 				text="Enemy Count";
@@ -4829,7 +4798,7 @@ class Mission
 			};
 			id=1705;
 			type="EmptyDetector";
-			atlOffset=9.2491512;
+			atlOffset=5.6119957;
 		};
 		class Item104
 		{
@@ -5564,7 +5533,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={11695.581,4.9032211,3119.6392};
+						position[]={11693.296,4.9093146,3117.1729};
 						angles[]={0,0.52840388,0};
 					};
 					side="West";
@@ -5576,6 +5545,7 @@ class Mission
 					};
 					id=1933;
 					type="B_T_Recon_TL_F";
+					atlOffset=-4.7683716e-007;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -5605,6 +5575,7 @@ class Mission
 			{
 			};
 			id=1932;
+			atlOffset=-4.7683716e-007;
 		};
 		class Item120
 		{
@@ -5618,7 +5589,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={11697.817,4.8972564,3117.8457};
+						position[]={11695.532,4.9033504,3115.3794};
 						angles[]={0,0.52840996,0};
 					};
 					side="West";
@@ -5674,7 +5645,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={11700.277,4.891439,3115.9946};
+						position[]={11697.992,4.89679,3113.5283};
 						angles[]={0,0.52840996,0};
 					};
 					side="West";
@@ -5686,7 +5657,7 @@ class Mission
 					};
 					id=1937;
 					type="B_T_Recon_TL_F";
-					atlOffset=4.7683716e-007;
+					atlOffset=-4.7683716e-007;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -5716,7 +5687,7 @@ class Mission
 			{
 			};
 			id=1936;
-			atlOffset=4.7683716e-007;
+			atlOffset=-4.7683716e-007;
 		};
 		class Item122
 		{
@@ -5730,7 +5701,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={11702.741,4.891439,3114.251};
+						position[]={11700.456,4.8914385,3111.7847};
 						angles[]={0,0.52840996,0};
 					};
 					side="West";
@@ -5742,7 +5713,6 @@ class Mission
 					};
 					id=1939;
 					type="B_T_Recon_TL_F";
-					atlOffset=4.7683716e-007;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -5772,7 +5742,6 @@ class Mission
 			{
 			};
 			id=1938;
-			atlOffset=4.7683716e-007;
 		};
 		class Item123
 		{
@@ -5786,7 +5755,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={11704.941,4.891439,3112.5991};
+						position[]={11702.656,4.8914385,3110.1328};
 						angles[]={0,0.52840996,0};
 					};
 					side="West";
@@ -5798,7 +5767,6 @@ class Mission
 					};
 					id=1941;
 					type="B_T_Recon_TL_F";
-					atlOffset=4.7683716e-007;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -5828,7 +5796,6 @@ class Mission
 			{
 			};
 			id=1940;
-			atlOffset=4.7683716e-007;
 		};
 		class Item124
 		{
@@ -5842,7 +5809,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={11707.263,4.8863597,3110.645};
+						position[]={11704.978,4.8881655,3108.1787};
 						angles[]={0,0.52840996,0};
 					};
 					side="West";
@@ -5854,6 +5821,7 @@ class Mission
 					};
 					id=1943;
 					type="B_T_Recon_TL_F";
+					atlOffset=9.5367432e-007;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -5883,23 +5851,24 @@ class Mission
 			{
 			};
 			id=1942;
+			atlOffset=9.5367432e-007;
 		};
 		class Item125
 		{
 			dataType="Trigger";
-			position[]={9898.9824,223.24167,10639.38};
+			position[]={9674.457,250.33701,8924.3633};
 			angle=3.3290236;
 			class Attributes
 			{
 				name="WestContacts";
-				sizeA=4511;
-				sizeB=2511;
+				sizeA=5511;
+				sizeB=5511;
 				repeatable=1;
 				activationBy="WEST";
 			};
 			id=1944;
 			type="EmptyDetectorAreaR250";
-			atlOffset=0.83303833;
+			atlOffset=3.3897552;
 		};
 		class Item126
 		{
@@ -6090,6 +6059,11 @@ class Mission
 							class secondaryWeapon
 							{
 								name="launch_B_Titan_F";
+								class primaryMuzzleMag
+								{
+									name="Titan_AA";
+									ammoLeft=1;
+								};
 							};
 							class uniform
 							{
@@ -6119,16 +6093,6 @@ class Mission
 							{
 								typeName="B_FieldPack_cbr";
 								isBackpack=1;
-								class MagazineCargo
-								{
-									items=1;
-									class Item0
-									{
-										name="Titan_AA";
-										count=2;
-										ammoLeft=1;
-									};
-								};
 							};
 							map="ItemMap";
 							compass="ItemCompass";
@@ -6244,6 +6208,11 @@ class Mission
 							class secondaryWeapon
 							{
 								name="launch_B_Titan_F";
+								class primaryMuzzleMag
+								{
+									name="Titan_AA";
+									ammoLeft=1;
+								};
 							};
 							class uniform
 							{
@@ -6273,16 +6242,6 @@ class Mission
 							{
 								typeName="B_FieldPack_cbr";
 								isBackpack=1;
-								class MagazineCargo
-								{
-									items=1;
-									class Item0
-									{
-										name="Titan_AA";
-										count=2;
-										ammoLeft=1;
-									};
-								};
 							};
 							map="ItemMap";
 							compass="ItemCompass";

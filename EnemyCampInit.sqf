@@ -37,7 +37,7 @@ BigEnemyCamps = BigEnemyCamps - [AACamp];
 AACamp execvm "aacamp.sqf";
 "AAMarker" setmarkerpos (getpos AACamp);
 
-sleep 1;
+sleep 2;
 
 //SELECT POW CAMP
 //remove undesirable POW spawn locations along outer edges
@@ -48,16 +48,17 @@ _spawns = _spawns - [_POWCamp];
 [getpos _POWCamp, west, (configFile >> "CfgGroups" >> "Empty" >> "Guerrilla" >> "Camps" >> (SelectRandom _POWCamps))] call CSAR_fnc_SpawnCamps;
 POWCamp = _POWCamp; Publicvariable "POWCamp";
 _angle = random 360;
-_dist = 1000 + (random 1000);
+_dist = 1000 + (random 1500);
 CrashedHeli setpos [(getpos POWCamp select 0) + sin(_angle)*_dist,(getpos POWCamp select 1) + cos(_angle)*_dist,0];
-Sleep 1;
+POWCamp execvm "powcamp.sqf";
+Sleep 2;
 
 
 // PREP AND PLACE POW WITHIN CAMP
 _buildings = nearestObjects [_POWCamp, ["Land_d_Windmill01_F","Land_d_House_Small_02_V1_F","Land_d_Stone_HouseSmall_V1_F","Land_Unfinished_Building_02_F"], 25];
 _BuildingPositions = (Selectrandom _buildings) buildingpos -1;
 IF (count _buildingpositions == 0) then {_buildingpositions = [[(getpos _POWCamp select 0)+10,(getpos _POWCamp select 1)+10,0]]};
-sleep 1;
+sleep 2;
 IF (CSAR_DEBUG) then {_marker = createMarkerlocal[format ["POWCAMP (%1)",random 9999], getPos _POWCamp];_marker setMarkerSizeLocal [100,100];_marker setMarkerColorLocal "ColorBlue";_marker setMarkerShapeLocal "ELLIPSE"};
 
 POW setpos (SelectRandom _buildingpositions);
@@ -91,21 +92,18 @@ IF (count _buildingpositions == 0) then {_buildingpositions = [[(getpos _IntelCa
 IntelMap = "Mapboard_Seismic_F" createvehicle [0,0,100];Intelmap setpos (SelectRandom _buildingpositions);
 IntelMap setdir (random 360);
 IntelMap enableSimulationGlobal false;
-//player setpos (SelectRandom _buildingpositio.ns);
-//_grp = Creategroup Independent;
-//IntelOfficer = _grp createUnit ["I_C_Soldier_Camo_F", (SelectRandom _buildingpositions), [], 0, "FORM"];
-//_wpSAD = _grp addWaypoint [(SelectRandom _buildingpositions),0];
-//_wpSAD setwaypointtype "HOLD";
+_intelcamp execvm "intelcamp.sqf";
 publicvariable "IntelMap";
 CampsInitialised = true;
-_intelcamp execvm "intelcamp.sqf";
 
 
-sleep 2;
+sleep 5;
 {_x execvm "smallcamp.sqf"} foreach EnemyCamps;
 sleep 2;
 {_x execvm "bigcamp.sqf"} foreach BigEnemyCamps;
 sleep 2;
 {_x execvm "camppatrol.sqf"} foreach EnemyCamps;
-POWCamp execvm "powcamp.sqf";
+
+
+
 IF (CSAR_DEBUG) then {systemchat "Camps initialised"};

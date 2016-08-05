@@ -8,7 +8,7 @@ IF (_Points >= 1100) then
 	_sound = SelectRandom Boomsounds;
 	[_unit,_sound] remoteExec ["Say3D",0];
 	} else {
-	IF (time >= (LastVoiceTime + SoundDelayTime)&& (_Points >= 200) && (_Points < 1100) && (random 1 >= 0.70)) then 
+	IF (time >= (LastVoiceTime + SoundDelayTime)&& (_Points >= 200) && (_Points < 1100) && (random 1 >= 0.65)) then 
 		{
 		LastVoiceTime = time;
 		sleep(1+random 3);

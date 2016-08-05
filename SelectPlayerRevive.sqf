@@ -2,8 +2,11 @@
 // USAGE :  execute locally (no params) after a player switches into a new unit using selectplayer
 // DOES NOT NEED TO BE EXECUTED IF PLAYER JUST RESPAWNS AT BASE - vars and EH's seem to carry over if that's the case
 // todo : remove old bis eventhandlers if they exist (would they even? meh), not sure if JIP section is required
+WaitUntil {Alive Player};
+sleep 1;
+IF (count (waypoints (group player)) > 0) then {deletewaypoint [(group player),0]}; 
 IF ((count allPlayers) <= 1) exitwith {Systemchat "No other players - Revive disabled"};
-sleep 0.1;
+
 #include "defines.hpp"
 player setvariable ["#rev_enabled",true,true];
 private _playerVar = GET_UNIT_VAR(player);
@@ -17,7 +20,7 @@ private _playerVar = GET_UNIT_VAR(player);
 [_playerVar] remoteExec ["bis_fnc_reviveInitAddPlayer"];
 
 //setup other players localy for JIPing player; didJIP condition removed to make the code more robust
-/*
+
 {
 	private _xUnit = GET_UNIT(_x);
 
@@ -26,7 +29,7 @@ private _playerVar = GET_UNIT_VAR(player);
 	[VAR_TRANSFER_BEING_REVIVED, _xUnit getVariable [VAR_TRANSFER_BEING_REVIVED, false], _xUnit] call bis_fnc_reviveOnBeingRevived;
 }
 forEach bis_revive_handledUnits;
-*/
+
 
 //setup and store 'HandleDamage' event handler
 private _ehHandleDamage = GET_UNIT(_playerVar) addEventHandler ["HandleDamage",bis_fnc_reviveOnPlayerHandleDamage];

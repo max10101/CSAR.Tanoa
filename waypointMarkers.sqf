@@ -4,13 +4,14 @@ IF (!Local (leader _group)) ExitWith {};
 _markers = [];
 _findAngle = compile preprocessFile "FindAngle.sqf";
 while {({alive _x} count units _group) > 0} do {
-sleep 10;
+sleep 7;
     {deleteMarker _x; _markers = _markers - [_x]} forEach _markers;
 IF (CSAR_DEBUG) then {
     if (count waypoints _group > 1) then {
 
         _marker = createMarkerLocal[format ["Waypoint %1",random 9999], getPos leader _group];
         _marker setMarkerTypeLocal 'o_inf';
+		IF (vehicle(leader _group) != (leader _Group)) then {_marker setMarkerTypeLocal 'n_armor'};
         _marker setMarkerSizeLocal[1, 1];
         _marker setMarkerColorLocal 'ColorRed';
 		_marker setMarkerTextLocal format ["%1",count (units _group)];
