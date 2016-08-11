@@ -65,20 +65,20 @@
 	//setdate _startingdate;
 	switch(toUpper(_startingweather)) do {
 		case "CLEAR": {
-			wcweather = [0, 0, 0, [random 3, random 3, true], date];
+			wcweather = [0, [0,0,0], 0, [random 3, random 3, true], date];
 		};
 
 		case "CLOUDY": {
-			wcweather = [0, 0, 0.4 + (random 0.2), [random 3, random 3, true], date];
+			wcweather = [0, [0,0,0], 0.4 + (random 0.2), [random 3, random 3, true], date];
 		};
 
 		case "RAIN": {
-			wcweather = [1, 0, 0.6 + (random 0.4), [random 3, random 3, true], date];
+			wcweather = [1, [0,0,0], 0.6 + (random 0.4), [random 3, random 3, true], date];
 		};
 
 		default {
 			// clear
-			wcweather = [0, 0, 0, [random 3, random 3, true], date];
+			wcweather = [0, [0,0,0], 0, [random 3, random 3, true], date];
 			diag_log "Real weather: wrong starting weather";
 		};
 	};

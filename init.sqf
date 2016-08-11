@@ -74,6 +74,7 @@ Losssounds = ["A_Loss_1","A_Loss_2","A_Loss_3","A_Loss_4","A_Loss_5","A_Loss_6",
 LastVoiceTime = 0;
 SoundDelayTime = 8;
 
+wcweather = [0, [0,0,0], 0, [random 3, random 3, true], date];
 EastArtilleryTimer = 0;
 EastParadropTimer = 0;
 DEBUG_GROUPREDUCE = false;
