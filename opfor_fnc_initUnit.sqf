@@ -24,7 +24,7 @@ if (!(_unit getVariable ["CSAR_unitInitialized",false]) && Local _unit) then {
 		_unit disableAI "FSM";
 		if (_unit == leader group _unit) then {
 	        IF (true) then {[group _x] execVM "waypointMarkers.sqf"};
-	        if (_useGroupReduction) then {[group _unit,2,1000] execVM "GroupReduction.sqf"};
+	        if (_useGroupReduction) then {[group _unit,1,1000] execVM "GroupReduction.sqf"};
 	        if (_usePatrol) then {(group _unit) execVM "Patrol.sqf"};
 	    	(group _unit) allowFleeing 0.3;
 	    };
