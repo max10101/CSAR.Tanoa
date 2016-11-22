@@ -4,7 +4,7 @@ _size = _this select 2;
 _smokearray = [];
 _firearray = [];
 _MaxSmoke = 3;
-_Maxfire = 10;
+_Maxfire = 8;
 _color = [1, 1, 1];
 _velocity = wind;
 /*[coreIntensity, coreDistance, damageTime]: Array

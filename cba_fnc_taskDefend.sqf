@@ -29,7 +29,7 @@ Author:
 
 ---------------------------------------------------------------------------- */
 
-params ["_group", ["_position",[]], ["_radius",50,[0]], ["_threshold",2,[0]], ["_patrol",true,[true]]];
+params ["_group", ["_position",[]], ["_radius",30,[0]], ["_threshold",2,[0]], ["_patrol",true,[true]]];
 
 _group = _group call CBA_fnc_getGroup;
 if !(local _group) exitWith {}; // Don't create waypoints on each machine
@@ -75,7 +75,7 @@ _buildings = _buildings arrayIntersect _buildings;
 private _units = units _group;
 private _assigned = 0;
 {
-    // 31% chance to occupy nearest free static weapon
+    // 100% chance to occupy nearest free static weapon
 	//player sidechat str _statics;
     if ((random 1 < 1) && { !(_statics isEqualto []) }) then {
         _x assignAsGunner (_statics deleteAt 0);
@@ -83,8 +83,8 @@ private _assigned = 0;
 
         _assigned = _assigned + 1;
     } else {
-        // 93% chance to occupy a random nearby building position
-        if ((random 1 < 0.93) && { !(_buildings isEqualto []) }) then {
+        // 33% chance to occupy a random nearby building position
+        if ((random 1 < 0.33) && { !(_buildings isEqualto []) }) then {
             private _building = _buildings call BIS_fnc_selectRandom;
             private _array = _building getVariable ["CBA_taskDefend_positions",[]];
 
@@ -106,10 +106,10 @@ private _assigned = 0;
                     _unit doMove _pos;
                     sleep 5;
                     waituntil {unitReady _unit};
-                    _unit disableAI "move";
+                    _unit disableAI "PATH";
                     doStop _unit;
                     waituntil {!(unitReady _unit)};
-                    _unit enableAI "move";
+                    _unit enableAI "PATH";
                 };
 
                 _assigned = _assigned + 1;

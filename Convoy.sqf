@@ -28,20 +28,18 @@ _grp = objnull;
 _backupPos = [0,0,0];
 _vehicle2 = objnull;
 
-//SPAWN A CAR WITH TWO CREW - [_type,_pos] call _Spawncar
-_SpawnCar = compile '
+_fillCar = compile '
 private ["_vehicle","_grp","_leader","_gunner"];
-	_vehicle = (_this select 0) createvehicle (_this select 1);
-
+	_vehicle = _this;
 	_grp = createGroup Independent;
-	_leader = _grp createUnit ["I_C_Soldier_Bandit_7_F", [0,0,0], [], 0, "FORM"];
-	_gunner = _grp createUnit ["I_C_Soldier_Bandit_7_F", [0,0,0], [], 0, "FORM"];
+	_leader = _grp createUnit ["I_C_Soldier_Bandit_7_F", getpos _vehicle, [], 0, "FORM"];
+	_gunner = _grp createUnit ["I_C_Soldier_Bandit_7_F", getpos _vehicle, [], 0, "FORM"];
+	_leader assignasdriver _vehicle;
 	_leader moveindriver _vehicle;
-	IF (_vehicle emptypositions "Gunner" >= 1) then {_gunner moveingunner _vehicle} else {_gunner moveincargo _vehicle};
+	IF (_vehicle emptypositions "Gunner" >= 1) then {_gunner assignasgunner _vehicle;_gunner moveingunner _vehicle} else {_gunner moveincargo _vehicle};
 	_grp addvehicle _vehicle;
 	_vehicle
 ';
-
 
 // COMPILE NEAREST ROADS TO POTENTIAL CAMP LOCATIONS
 {_NearRoads = (getpos _x) NearRoads 125;
@@ -57,7 +55,9 @@ While {_i < _MaxConvoys} do {
 	//SPAWN A CAR ON A ROAD
 	_randomroad = (selectrandom _ConvoyWaypoints);
 	_Convoywaypoints = _Convoywaypoints - [_randomroad];
-	_vehicle = [Selectrandom (_ArmedCars + _Cars),getpos _randomroad] call _spawncar;
+	_vehicle = (Selectrandom (_ArmedCars + _Cars)) createvehicle (getpos _randomroad);
+	_vehiclesp = _vehicle spawn _fillCar;
+	WaitUntil {ScriptDone _vehiclesp};
 	IF (count (roadsConnectedTo _randomroad) > 0) then {_connected = (roadsConnectedTo _randomroad) select 0} else {_connected = _randomroad};
 	_dir = ((getpos _randomroad select 0)-((getPos _connected) select 0)) atan2 ((getpos _randomroad select 1)-(getPos _connected select 1));
 	_vehicle setdir _dir;
@@ -74,7 +74,9 @@ While {_i < _MaxConvoys} do {
 		IF (_selection in _trucks) then {_backupgroup = true;} else {_backupgroup = false;};
 		_BackupPos = (getpos _randomroad) findEmptyPosition [5, 100, _selection];
 		IF (IsNil "_BackupPos") then {_BackupPos = [(getpos _randomroad select 0),(getpos _randomroad select 1)-15,0]};
-		_vehicle2 = [_selection,_backuppos] call _spawncar;
+		_vehicle2 = _selection createvehicle _backuppos;
+		_vehiclesp2 = _vehicle2 spawn _fillCar;
+		WaitUntil {ScriptDone _vehiclesp2};
 		_dir = ((getpos _vehicle select 0)-(getPos _vehicle2 select 0)) atan2 ((getpos _vehicle select 1)-(getPos _vehicle2 select 1));
 		_vehicle2 setdir _dir;
 		_vehicle2 addeventhandler ["Dammaged",{_this execvm "brokenwheel.sqf"}];
