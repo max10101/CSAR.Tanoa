@@ -38,5 +38,5 @@ _x setWaypointStatements ["true", ""];
 
 (waypoints _group) select ((count waypoints _group)-1) setwaypointtype "CYCLE";
 
-{[_x,true,true] call opfor_fnc_initUnit} forEach units _group;
+{[_x,true,true,true] call opfor_fnc_initUnit} forEach units _group;
 _group setbehaviour "AWARE";
