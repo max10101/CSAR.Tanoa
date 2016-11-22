@@ -21,6 +21,7 @@ if (!(_unit getVariable ["CSAR_unitInitialized",false]) && Local _unit) then {
 		_unit addEventHandler ["Killed",{_unit execvm "deleteUnit.sqf"}];
 		_unit execVM "tracermags.sqf";
 		_unit execvm "AddIntelAction.sqf";
+		_unit disableAI "FSM";
 		if (_unit == leader group _unit) then {
 	        IF (true) then {[group _x] execVM "waypointMarkers.sqf"};
 	        if (_useGroupReduction) then {[group _unit,2,1000] execVM "GroupReduction.sqf"};
