@@ -3,15 +3,19 @@ _group = _this;
 IF (!Local (leader _group)) ExitWith {};
 
 //inject a new attack WP within current group waypoints - when they complete this waypoint they will continue alone original route
+
+//call compile format ["_newWP setWaypointStatements [""true"", ""group this setcurrentwaypoint [group this,%1];(group this) setvariable [%2,false];""]",_current,str "CSAR_ENGAGED"];
+
 CSAR_fnc_InjectPatrolWP = compile '
-private ["_current","_newWP","_newpos","_group"];
+private ["_current","_newWP","_newpos","_group","_statement"];
 _group = _this select 0;
 _newpos = _this select 1;
 _current = currentWaypoint _group;
 _group setvariable ["CSAR_OldWP",_current];
 [_group,_current] setWaypointStatements ["true",""];
 _newWP = _group addWaypoint [_newPos, 0];
-call compile format ["_newWP setWaypointStatements [""true"", ""group this setcurrentwaypoint [group this,%1];(group this) setvariable [%2,false];""]",_current,str """CSAR_ENGAGED"""];
+_statement = format["group this setcurrentwaypoint [group this,%1];(group this) setvariable [""CSAR_ENGAGED"",false];",_current];
+_newWP setWaypointStatements ["true", _statement];
 _group setcurrentwaypoint _newWP;
 _newWP
 ';
@@ -21,7 +25,7 @@ CSAR_Smokebomb = compile '
 private ["_group","_target","_smokeshells","_smoke","_dir"];
 _group = _this select 0;
 _target = _this select 1;
-_smokeshells = ["G_40mm_SmokeRed","G_40mm_Smoke","G_40mm_SmokeOrange","G_40mm_SmokeBlue","G_40mm_SmokePurple"];
+_smokeshells = ["G_40mm_SmokeRed","G_40mm_Smoke","G_40mm_SmokeOrange","G_40mm_SmokeYellow"];
 {if (random 2 > 0.7) then {
 _smoke = (selectRandom _smokeshells) createVehicle [(getPos _x select 0),(getPos _x select 1),3];
 _dir = [leader _group,_target] call bis_fnc_DirTo;
@@ -98,7 +102,7 @@ IF (_Engageloop) then {
 	IF (({alive _x} count (units _group)) <= 0) Exitwith {};
 	
 	//if anyone in group is fleeing, the whole group will disengage/move back to original patrol after smokebomb and given a 2 min timeout
-	IF (({fleeing _x} count (units _group)) > 0) then {deletewaypoint [_group,_WPIndex];_group setcurrentwaypoint [_group,(_group getvariable "CSAR_OldWP")];_Engageloop = false;[_group,_EngageUnit] call CSAR_Smokebomb;CSAR_EngagedGroups = CSAR_EngagedGroups - [[_group,_pos]];sleep 120};
+	IF (({fleeing _x} count (units _group)) > 0) then {deletewaypoint [_group,_WPIndex];_group setcurrentwaypoint [_group,(_group getvariable "CSAR_OldWP")];_Engageloop = false;[_group,_EngageUnit] spawn CSAR_Smokebomb;CSAR_EngagedGroups = CSAR_EngagedGroups - [[_group,_pos]];sleep 120};
 	
 	//if the unit they are targetting/engaging is dead, next target is the next closest unit that was in that original group to attack
 	IF (!Alive _Engageunit) then {

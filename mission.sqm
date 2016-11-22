@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=1859;
+		nextID=1943;
 	};
 	class Camera
 	{
-		pos[]={11688.225,15.636671,3106.0911};
-		dir[]={0.2625635,-0.25979501,0.92936718};
-		up[]={0.070647672,0.96564311,0.25006336};
-		aside[]={0.96239918,-6.2579056e-007,-0.27189952};
+		pos[]={11656.771,47.939579,3056.5471};
+		dir[]={0.37344354,-0.39604196,0.83896452};
+		up[]={0.16107228,0.91820365,0.36186087};
+		aside[]={0.91364938,1.6763806e-008,-0.40669268};
 	};
 };
 binarizationWanted=0;
@@ -519,7 +519,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=130;
+		items=129;
 		class Item0
 		{
 			dataType="Object";
@@ -1577,6 +1577,7 @@ class Mission
 			};
 			id=602;
 			type="B_Plane_CAS_01_F";
+			atlOffset=-0.20041132;
 		};
 		class Item61
 		{
@@ -4747,14 +4748,6 @@ class Mission
 		};
 		class Item101
 		{
-			dataType="Marker";
-			position[]={12610.585,38.072956,4047.7422};
-			name="marker_12";
-			type="mil_dot";
-			id=1691;
-		};
-		class Item102
-		{
 			dataType="Group";
 			side="West";
 			class Entities
@@ -4783,7 +4776,7 @@ class Mission
 			id=1703;
 			atlOffset=-7.6293945e-006;
 		};
-		class Item103
+		class Item102
 		{
 			dataType="Trigger";
 			position[]={11184.921,67.832245,7217.0449};
@@ -4800,7 +4793,7 @@ class Mission
 			type="EmptyDetector";
 			atlOffset=5.6119957;
 		};
-		class Item104
+		class Item103
 		{
 			dataType="Object";
 			class PositionInfo
@@ -4816,7 +4809,7 @@ class Mission
 			id=1724;
 			type="B_Heli_Light_01_F";
 		};
-		class Item105
+		class Item104
 		{
 			dataType="Object";
 			class PositionInfo
@@ -4832,7 +4825,7 @@ class Mission
 			type="B_T_LSV_01_armed_F";
 			atlOffset=0.40946341;
 		};
-		class Item106
+		class Item105
 		{
 			dataType="Object";
 			class PositionInfo
@@ -4849,7 +4842,7 @@ class Mission
 			type="B_Heli_Transport_01_camo_F";
 			atlOffset=-1.0967255e-005;
 		};
-		class Item107
+		class Item106
 		{
 			dataType="Object";
 			class PositionInfo
@@ -4866,7 +4859,7 @@ class Mission
 			type="B_Heli_Attack_01_F";
 			atlOffset=5.7220459e-006;
 		};
-		class Item108
+		class Item107
 		{
 			dataType="Object";
 			class PositionInfo
@@ -4882,7 +4875,7 @@ class Mission
 			type="C_Plane_Civil_01_F";
 			atlOffset=0.25471497;
 		};
-		class Item109
+		class Item108
 		{
 			dataType="Group";
 			side="West";
@@ -5058,7 +5051,7 @@ class Mission
 			id=1807;
 			atlOffset=-0.0020003319;
 		};
-		class Item110
+		class Item109
 		{
 			dataType="Group";
 			side="West";
@@ -5232,7 +5225,7 @@ class Mission
 			id=1816;
 			atlOffset=-0.0026650429;
 		};
-		class Item111
+		class Item110
 		{
 			dataType="Marker";
 			position[]={622.32703,-0.00010112193,608.89203};
@@ -5243,7 +5236,7 @@ class Mission
 			id=1840;
 			atlOffset=61.607853;
 		};
-		class Item112
+		class Item111
 		{
 			dataType="Marker";
 			position[]={766.83899,-0.00010112193,604.086};
@@ -5254,21 +5247,21 @@ class Mission
 			id=1842;
 			atlOffset=65.631927;
 		};
-		class Item113
+		class Item112
 		{
 			dataType="Layer";
 			name="Camp Deer";
 			id=1871;
 			atlOffset=60.779999;
 		};
-		class Item114
+		class Item113
 		{
 			dataType="Layer";
 			name="Camp Eagle";
 			id=1894;
 			atlOffset=60.779999;
 		};
-		class Item115
+		class Item114
 		{
 			dataType="Logic";
 			class PositionInfo
@@ -5375,10 +5368,29 @@ class Mission
 						};
 					};
 				};
-				nAttributes=5;
+				class Attribute5
+				{
+					property="ModuleInfo";
+					expression="false";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"BOOL"
+								};
+							};
+							value=1;
+						};
+					};
+				};
+				nAttributes=6;
 			};
 		};
-		class Item116
+		class Item115
 		{
 			dataType="Logic";
 			class PositionInfo
@@ -5485,10 +5497,29 @@ class Mission
 						};
 					};
 				};
-				nAttributes=5;
+				class Attribute5
+				{
+					property="ModuleInfo";
+					expression="false";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"BOOL"
+								};
+							};
+							value=1;
+						};
+					};
+				};
+				nAttributes=6;
 			};
 		};
-		class Item117
+		class Item116
 		{
 			dataType="Object";
 			class PositionInfo
@@ -5504,7 +5535,7 @@ class Mission
 			type="Flag_POWMIA_F";
 			atlOffset=4.7683716e-007;
 		};
-		class Item118
+		class Item117
 		{
 			dataType="Trigger";
 			position[]={11707.16,4.8899999,3122.8259};
@@ -5521,7 +5552,7 @@ class Mission
 			id=1930;
 			type="EmptyDetectorArea10x10";
 		};
-		class Item119
+		class Item118
 		{
 			dataType="Group";
 			side="West";
@@ -5577,7 +5608,7 @@ class Mission
 			id=1932;
 			atlOffset=-4.7683716e-007;
 		};
-		class Item120
+		class Item119
 		{
 			dataType="Group";
 			side="West";
@@ -5633,7 +5664,7 @@ class Mission
 			id=1934;
 			atlOffset=-4.7683716e-007;
 		};
-		class Item121
+		class Item120
 		{
 			dataType="Group";
 			side="West";
@@ -5689,7 +5720,7 @@ class Mission
 			id=1936;
 			atlOffset=-4.7683716e-007;
 		};
-		class Item122
+		class Item121
 		{
 			dataType="Group";
 			side="West";
@@ -5743,7 +5774,7 @@ class Mission
 			};
 			id=1938;
 		};
-		class Item123
+		class Item122
 		{
 			dataType="Group";
 			side="West";
@@ -5797,7 +5828,7 @@ class Mission
 			};
 			id=1940;
 		};
-		class Item124
+		class Item123
 		{
 			dataType="Group";
 			side="West";
@@ -5853,10 +5884,10 @@ class Mission
 			id=1942;
 			atlOffset=9.5367432e-007;
 		};
-		class Item125
+		class Item124
 		{
 			dataType="Trigger";
-			position[]={9674.457,250.33701,8924.3633};
+			position[]={9765.084,261.74231,8572.4199};
 			angle=3.3290236;
 			class Attributes
 			{
@@ -5868,9 +5899,9 @@ class Mission
 			};
 			id=1944;
 			type="EmptyDetectorAreaR250";
-			atlOffset=3.3897552;
+			atlOffset=3.3890991;
 		};
-		class Item126
+		class Item125
 		{
 			dataType="Group";
 			side="Independent";
@@ -6023,7 +6054,7 @@ class Mission
 			};
 			id=1954;
 		};
-		class Item127
+		class Item126
 		{
 			dataType="Group";
 			side="Independent";
@@ -6173,7 +6204,7 @@ class Mission
 			};
 			id=1964;
 		};
-		class Item128
+		class Item127
 		{
 			dataType="Group";
 			side="Independent";
@@ -6324,7 +6355,7 @@ class Mission
 			id=1968;
 			atlOffset=-0.013000488;
 		};
-		class Item129
+		class Item128
 		{
 			dataType="Logic";
 			class PositionInfo

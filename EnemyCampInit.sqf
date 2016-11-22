@@ -25,7 +25,7 @@ while {_i < _bigcamps} do {
 	_Pos = selectrandom _spawns;
 	while {([_pos,BigEnemyCamps,2000] call _distcheck) && (_conflict < _conflictmax)} do {_pos = selectrandom _spawns;sleep 0.01;_conflict = _conflict + 1};
 	_first = _pos;
-	[getpos _pos, west, (configFile >> "CfgGroups" >> "Empty" >> "Guerrilla" >> "Camps" >> (SelectRandom _MilCamps))] call CSAR_fnc_SpawnCamps;
+	[getpos _pos, west, (configFile >> "CfgGroups" >> "Empty" >> "Guerrilla" >> "Camps" >> (SelectRandom _MilCamps))] spawn CSAR_fnc_SpawnCamps;
 	BigEnemyCamps = BigEnemyCamps + [_pos];
 	IF (CSAR_DEBUG) then {_marker = createMarkerlocal[format ["POWCAMP (%1)",random 9999], getPos _pos];_marker setMarkerSizeLocal [200,200];_marker setMarkerColorLocal "ColorOrange";_marker setMarkerShapeLocal "ELLIPSE"};
 	_spawns = _spawns - [_pos];
@@ -45,7 +45,7 @@ _POWSpawns = _spawns - [CampPos_17,CampPos_23,CampPos_20,CampPos_11,CampPos_24,C
 _POWCamp = selectrandom _POWSpawns;
 
 _spawns = _spawns - [_POWCamp];
-[getpos _POWCamp, west, (configFile >> "CfgGroups" >> "Empty" >> "Guerrilla" >> "Camps" >> (SelectRandom _POWCamps))] call CSAR_fnc_SpawnCamps;
+[getpos _POWCamp, west, (configFile >> "CfgGroups" >> "Empty" >> "Guerrilla" >> "Camps" >> (SelectRandom _POWCamps))] spawn CSAR_fnc_SpawnCamps;
 POWCamp = _POWCamp; Publicvariable "POWCamp";
 _angle = random 360;
 _dist = 1000 + (random 1500);
@@ -72,7 +72,7 @@ POW addvest "V_PlateCarrierSpec_tna_F";pow addheadgear "H_HelmetB_Enh_tna_F";
 _closestcamps = [_spawns,[],{_POWCamp distance _x},"ASCEND"] call BIS_fnc_sortBy;
 _i = 0;
 while {_i < _maxcamps} do {
-	[getpos (_closestcamps select _i), west, (configFile >> "CfgGroups" >> "Empty" >> "Guerrilla" >> "Camps" >> (SelectRandom _Camps))] call CSAR_fnc_SpawnCamps;
+	[getpos (_closestcamps select _i), west, (configFile >> "CfgGroups" >> "Empty" >> "Guerrilla" >> "Camps" >> (SelectRandom _Camps))] spawn CSAR_fnc_SpawnCamps;
 	EnemyCamps = EnemyCamps + [(_closestcamps select _i)];
 	IF (CSAR_DEBUG) then {_marker = createMarkerlocal[format ["POWCAMP (%1)",random 9999], getPos (_closestcamps select _i)];_marker setMarkerSizeLocal [100,100];_marker setMarkerColorLocal "ColorGreen";_marker setMarkerShapeLocal "ELLIPSE"};
 
@@ -84,7 +84,7 @@ while {_i < _maxcamps} do {
 //WHATS LEFT OF CAMP SPAWN LOCATIONS IS CHOSEN FOR INTEL POS
 _Intelcamp = Selectrandom _spawns;
 	IF (CSAR_DEBUG) then {_marker = createMarkerlocal[format ["INTELCAMP (%1)",random 9999], getPos _Intelcamp];_marker setMarkerSizeLocal [100,100];_marker setMarkerColorLocal "ColorRed";_marker setMarkerShapeLocal "ELLIPSE"};
-[getpos _IntelCamp, west, (configFile >> "CfgGroups" >> "Empty" >> "Guerrilla" >> "Camps" >> (SelectRandom _POWCamps))] call CSAR_fnc_SpawnCamps;
+[getpos _IntelCamp, west, (configFile >> "CfgGroups" >> "Empty" >> "Guerrilla" >> "Camps" >> (SelectRandom _POWCamps))] spawn CSAR_fnc_SpawnCamps;
 sleep 1;
 _buildings = nearestObjects [_Intelcamp, ["Land_d_House_Small_02_V1_F","Land_d_Stone_HouseSmall_V1_F","Land_Unfinished_Building_02_F"], 25];
 _BuildingPositions = (Selectrandom _buildings) buildingpos -1;

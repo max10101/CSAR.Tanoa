@@ -136,7 +136,7 @@ if (isServer) then {
 	};
 
 /////////////////////////////////
-// HEADLESS CLIENT IMPLEMENTATION
+// HEADLESS CLIENT/DEDICATED SERVER IMPLEMENTATION
 /////////////////////////////////
 
 IF (IsNil "CSAR_HC1") then {CSAR_HC1 = ResInitOfficer;CSAR_HCHint = "Server";publicvariable "CSAR_HCHint";};

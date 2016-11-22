@@ -1,3 +1,4 @@
+	
 WaitUntil {CampsInitialised};
 
 CSAR_fnc_InjectConvoyWP = compile '
@@ -14,7 +15,7 @@ _newWP
 ';
 
 sleep 3;
-_MaxConvoys = 12;
+_MaxConvoys = 16;
 _backupgroup = false;
 _connected = 0;
 _ArmedCars = ["O_LSV_02_unarmed_F","I_G_Offroad_01_armed_F"];
@@ -46,7 +47,7 @@ private ["_vehicle","_grp","_leader","_gunner"];
 {_NearRoads = (getpos _x) NearRoads 125;
 IF (count _NearRoads >= 1) then {_ConvoyWaypoints = _ConvoyWaypoints + [_NearRoads select 0]}} foreach _spawns;
 CSAR_ConvoyRoads = _ConvoyWaypoints;
-IF (_MaxConvoys > count _ConvoyWaypoints) then {_MaxConvoys = (count _ConvoyWaypoints)};
+//IF (_MaxConvoys > count _ConvoyWaypoints) then {_MaxConvoys = (count _ConvoyWaypoints)};
 IF (CSAR_DEBUG) then {{_marker = createMarkerlocal[format ["Road (%1)",random 9999], getPos _x];_marker setMarkerSizelocal [0.7, 0.7];_marker setMarkerColorlocal "ColorRed";_marker setMarkerTypelocal "o_motor_inf";} foreach _ConvoyWaypoints;};
 
 
@@ -83,6 +84,12 @@ While {_i < _MaxConvoys} do {
 		//JOIN GROUP AND SET WAYPOINT
 		(crew _vehicle2) join _grp;
 		_grp addvehicle _vehicle2;
+	};
+	
+	IF (count _Convoywaypoints <= 0) then {
+		_Convoywaypoints = [];
+		{_NearRoads = (getpos _x) NearRoads 125;
+		IF (count _NearRoads >= 1) then {_ConvoyWaypoints = _ConvoyWaypoints + [_NearRoads select 0]}} foreach CSAR_CampLocations;
 	};
 
 	IF (_backupgroup) then {
