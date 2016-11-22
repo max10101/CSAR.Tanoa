@@ -5,7 +5,7 @@ if (local _oldUnit) then {
 
     _respawnUnit = [_oldUnit,_corpse,list WestContacts] call CSAR_fnc_findNearestUnit;
     while {isPlayer _respawnUnit} do {
-         sleep 0.1;
+         sleep 0.05;
         _respawnUnit = [_oldUnit,_corpse,list WestContacts] call CSAR_fnc_findNearestUnit;
     };
 

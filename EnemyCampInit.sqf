@@ -72,14 +72,10 @@ POW addvest "V_PlateCarrierSpec_tna_F";pow addheadgear "H_HelmetB_Enh_tna_F";
 _closestcamps = [_spawns,[],{_POWCamp distance _x},"ASCEND"] call BIS_fnc_sortBy;
 _i = 0;
 while {_i < _maxcamps} do {
-<<<<<<< HEAD
-	[getpos (_closestcamps select _i), west, (configFile >> "CfgGroups" >> "Empty" >> "Guerrilla" >> "Camps" >> (SelectRandom _Camps))] spawn CSAR_fnc_SpawnCamps;
-=======
-	IF ((Random 1 > 0.8) && (count _closestcamps > _maxcamps)) then {
-		_closestcamps = _closestcamps - (_closestcamps select _i);
+	IF ((Random 1 > 0.75) && (count _closestcamps > _maxcamps)) then {
+		_closestcamps = _closestcamps - [(_closestcamps select _i)];
 		} Else {
-	[getpos (_closestcamps select _i), west, (configFile >> "CfgGroups" >> "Empty" >> "Guerrilla" >> "Camps" >> (SelectRandom _Camps))] call CSAR_fnc_SpawnCamps;
->>>>>>> origin/master
+	[getpos (_closestcamps select _i), west, (configFile >> "CfgGroups" >> "Empty" >> "Guerrilla" >> "Camps" >> (SelectRandom _Camps))] spawn CSAR_fnc_SpawnCamps;
 	EnemyCamps = EnemyCamps + [(_closestcamps select _i)];
 	IF (CSAR_DEBUG) then {_marker = createMarkerlocal[format ["POWCAMP (%1)",random 9999], getPos (_closestcamps select _i)];_marker setMarkerSizeLocal [100,100];_marker setMarkerColorLocal "ColorGreen";_marker setMarkerShapeLocal "ELLIPSE"};
 

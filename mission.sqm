@@ -8,7 +8,7 @@ class EditorData
 	toggles=1;
 	class ItemIDProvider
 	{
-		nextID=2042;
+		nextID=2051;
 	};
 	class MarkerIDProvider
 	{
@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=1943;
+		nextID=1985;
 	};
 	class Camera
 	{
-		pos[]={11656.771,47.939579,3056.5471};
-		dir[]={0.37344354,-0.39604196,0.83896452};
-		up[]={0.16107228,0.91820365,0.36186087};
-		aside[]={0.91364938,1.6763806e-008,-0.40669268};
+		pos[]={11567.28,107.09225,3115.614};
+		dir[]={0.70179492,-0.69981587,-0.13384981};
+		up[]={0.68742746,0.71431053,-0.13110894};
+		aside[]={-0.18736693,1.843553e-006,-0.9823702};
 	};
 };
 binarizationWanted=0;
@@ -1033,8 +1033,8 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={2187.5186,13.451439,13264.736};
-						angles[]={0,5.2189326,0};
+						position[]={2362.9038,12.590984,13147.866};
+						angles[]={0.015998369,5.2189326,6.2698536};
 					};
 					side="West";
 					flags=6;
@@ -1133,7 +1133,7 @@ class Mission
 		class Item47
 		{
 			dataType="Trigger";
-			position[]={11500.011,92.669785,7237.6138};
+			position[]={11500.011,92.669937,7237.6138};
 			class Attributes
 			{
 				name="EastUnits";
@@ -1144,7 +1144,7 @@ class Mission
 			};
 			id=498;
 			type="EmptyDetectorAreaR250";
-			atlOffset=20.446846;
+			atlOffset=20.323479;
 		};
 		class Item48
 		{
@@ -5887,7 +5887,7 @@ class Mission
 		class Item124
 		{
 			dataType="Trigger";
-			position[]={9765.084,261.74231,8572.4199};
+			position[]={9945.9141,211.41278,8165.4922};
 			angle=3.3290236;
 			class Attributes
 			{
@@ -5899,7 +5899,7 @@ class Mission
 			};
 			id=1944;
 			type="EmptyDetectorAreaR250";
-			atlOffset=3.3890991;
+			atlOffset=3.3897247;
 		};
 		class Item125
 		{

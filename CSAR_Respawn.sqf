@@ -19,7 +19,7 @@ sleep 1;
 //[west, "WEST2"] call BIS_fnc_addRespawnInventory;
 [west,"spawn_nearest","Group/Closest Unit",-1,false] call BIS_fnc_addRespawnPosition;
 [west, "spawn_airbase","West Airbase",-1,false] call BIS_fnc_addRespawnPosition;
-[west, "spawn_fob", "West Airbase",-1,false] call BIS_fnc_addRespawnPosition;
+//[west, "spawn_fob", "West Airbase",-1,false] call BIS_fnc_addRespawnPosition;
 
 _justDied = false;
 _timeOfDeath = time;
@@ -62,6 +62,7 @@ while {true} do {
 				//NO Nearest
 				"spawn_nearest" setMarkerPosLocal (getmarkerpos "spawn_airbase");
 				"spawn_nearest" setMarkerAlphaLocal 0;
+				"spawn_nearest" setMarkerTextLocal "Airbase";
 				};
             };
         } else {

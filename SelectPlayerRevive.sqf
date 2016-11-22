@@ -3,7 +3,7 @@
 // DOES NOT NEED TO BE EXECUTED IF PLAYER JUST RESPAWNS AT BASE - vars and EH's seem to carry over if that's the case
 // todo : remove old bis eventhandlers if they exist (would they even? meh), not sure if JIP section is required
 WaitUntil {Alive Player};
-sleep 1;
+sleep 0.1;
 IF (count (waypoints (group player)) > 0) then {deletewaypoint [(group player),0]}; 
 IF ((count allPlayers) <= 1) exitwith {Systemchat "No other players - Revive disabled"};
 
@@ -20,7 +20,39 @@ private _playerVar = GET_UNIT_VAR(player);
 [_playerVar] remoteExec ["bis_fnc_reviveInitAddPlayer"];
 
 //setup other players localy for JIPing player; didJIP condition removed to make the code more robust
+{
+	private _xUnit = GET_UNIT(_x);
 
+	[VAR_TRANSFER_STATE, _xUnit getVariable [VAR_TRANSFER_STATE, STATE_RESPAWNED], _xUnit] call bis_fnc_reviveOnStateJIP;
+	[VAR_TRANSFER_FORCING_RESPAWN, _xUnit getVariable [VAR_TRANSFER_FORCING_RESPAWN, false], _xUnit] call bis_fnc_reviveOnForcingRespawn;
+	[VAR_TRANSFER_BEING_REVIVED, _xUnit getVariable [VAR_TRANSFER_BEING_REVIVED, false], _xUnit] call bis_fnc_reviveOnBeingRevived;
+}
+forEach bis_revive_handledUnits;
+
+//setup and store 'HandleDamage' event handler
+private _ehHandleDamage = if (bis_revive_unconsciousStateMode == 0) then
+{
+	GET_UNIT(_playerVar) addEventHandler ["HandleDamage",bis_fnc_reviveOnPlayerHandleDamageBasic];
+}
+else
+{
+	GET_UNIT(_playerVar) addEventHandler ["HandleDamage",bis_fnc_reviveOnPlayerHandleDamage];
+};
+GET_UNIT(_playerVar) setVariable ["bis_revive_ehDamage", _ehHandleDamage];
+
+//setup and store 'HandleHeal' event handler
+private _ehHandleHeal = GET_UNIT(_playerVar) addEventHandler ["HandleHeal",bis_fnc_reviveOnPlayerHandleHeal];
+GET_UNIT(_playerVar) setVariable ["bis_revive_ehHeal", _ehHandleHeal];
+
+//setup and store 'Killed' event handler
+private _ehKilled = GET_UNIT(_playerVar) addEventHandler ["Killed",bis_fnc_reviveOnPlayerKilled];
+GET_UNIT(_playerVar) setVariable ["bis_revive_ehKilled", _ehKilled];
+
+//setup and store 'Respawn' event handler
+private _ehRespawn = GET_UNIT(_playerVar) addEventHandler ["Respawn",bis_fnc_reviveOnPlayerRespawn];
+GET_UNIT(_playerVar) setVariable ["bis_revive_ehRespawn", _ehRespawn];
+
+/*
 {
 	private _xUnit = GET_UNIT(_x);
 
@@ -46,3 +78,4 @@ GET_UNIT(_playerVar) setVariable ["bis_revive_ehKilled", _ehKilled];
 //setup and store 'Respawn' event handler
 private _ehRespawn = GET_UNIT(_playerVar) addEventHandler ["Respawn",bis_fnc_reviveOnPlayerRespawn];
 GET_UNIT(_playerVar) setVariable ["bis_revive_ehRespawn", _ehRespawn];
+*/

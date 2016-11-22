@@ -119,7 +119,8 @@ if (_charsType == (typeName configFile)) then
 };
 
 private ["_grp","_vehicles","_isMan","_type","_dir"];
-_grp = createGroup _side;
+//_grp = createGroup _side;
+_grp = grpnull;
 _vehicles = 0;		//spawned vehicles count
 
 //Create the units according to the selected types.
@@ -170,21 +171,14 @@ for "_i" from 0 to ((count _types) - 1) do
 		//Is this a character or vehicle?
 		if (_isMan) then
 		{
-			_unit = _grp createUnit [_type, _itemPos, [], 0, "FORM"];
-			_unit setDir _azimuth;
 		}
 		else
 		{
 		IF (_type == "Land_Scaffolding_F") then {_type = "Land_Obstacle_Bridge_F";};
-			_unit = ([_itemPos, _azimuth, _type, _grp, _precisePosition] call BIS_fnc_spawnVehicle) select 0;
+			//_unit = ([_itemPos, _azimuth, _type, _grp, _precisePosition] call BIS_fnc_spawnVehicle) select 0;
+			_veh = createvehicle [_type,_pos,[],0,"none"];
+			_veh setPos _pos;
 		};
-
-		//If given, set the unit's rank.
-
-		//If a range was given, set a random skill.
-
-
-		//If a range was given, set a random ammo count.
 
 	};
 };

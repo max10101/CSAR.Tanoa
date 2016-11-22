@@ -69,11 +69,13 @@ if (Local CSAR_HC1) then {
                 _holdArray = _holdArray + [typeOf _x];
 		        IF (group _x == group player) then {player sidechat format ["THIS %1",_holdarray]};
 				[_x] JOIN grpnull;
+				_nulgrp = group _x;
 		        unassignvehicle _x;
                 _x action ["EJECT",vehicle _x];
                 _x setPos [0,0,10];
                 waitUntil {(vehicle _x) isKindOf "Man"};
                 deleteVehicle _x;
+				deletegroup _nulgrp;
                 DeSpawnedInf = DeSpawnedInf + 1;
 		sleep 5;
             } forEach _deletedUnitsArray;
