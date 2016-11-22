@@ -1,4 +1,4 @@
-params [["_unit",[]], ["_useGroupReduction",true,[true,false]], ["_usePatrol",false,[true,false]]];
+params [["_unit",[]], ["_useGroupReduction",true,[true,false]], ["_usePatrol",false,[true,false]], ["_useDumbAI",false,[true,false]]];
 
 //_useGroupReduction = true;
 //_usePatrol = false;
@@ -21,7 +21,7 @@ if (!(_unit getVariable ["CSAR_unitInitialized",false]) && Local _unit) then {
 		_unit addEventHandler ["Killed",{_unit execvm "deleteUnit.sqf"}];
 		_unit execVM "tracermags.sqf";
 		_unit execvm "AddIntelAction.sqf";
-		_unit disableAI "FSM";
+		IF (_useDumbAI) then {_unit disableAI "FSM"};
 		if (_unit == leader group _unit) then {
 	        IF (true) then {[group _x] execVM "waypointMarkers.sqf"};
 	        if (_useGroupReduction) then {[group _unit,1,1000] execVM "GroupReduction.sqf"};
