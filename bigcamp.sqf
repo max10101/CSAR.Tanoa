@@ -42,4 +42,4 @@ _group2 = [[(_pos select 0)+((sin 360)*100),(_pos select 1)+((cos 360)*100),0], 
 [_group2, _pos, 300,8,"MOVE","SAFE","YELLOW","NORMAL","STAG COLUMN","",[15,30,60]] call CSAR_cba_fnc_taskPatrol;
 
 {[_x,true,false] call opfor_fnc_initUnit} forEach units _group;
-{[_x,true,true] call opfor_fnc_initUnit} forEach units _group2;
+{[_x,true,true,true] call opfor_fnc_initUnit} forEach units _group2;
