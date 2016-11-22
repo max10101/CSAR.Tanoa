@@ -11,13 +11,13 @@ if (Local CSAR_HC1) then {
     _fulLSize = true;
 
     while {count units _group1 > 0} do {
-        sleep 10 + (random 3);
+        sleep 10 + (random 5);
         _c = 0;
         _enemySpotted = 0;
         _group1Units = [];
         {if (alive _x) then {_group1Units = _group1Units + [_x]}} forEach units _group1;
         while {_c < count _group1Units} do {
-            {if ((vehicle (_group1Units select _c)) distance2d _x < _dist) then {_enemySpotted = _enemySpotted + 1}} forEach list WestUnits;
+            {if (((vehicle (_group1Units select _c)) distance2d _x < _dist) && (speed _x < 120) && ((getpos _x select 2) < 50)) then {_enemySpotted = _enemySpotted + 1}} forEach list WestUnits;
             _c = _c + 1;
         };
 
