@@ -21,14 +21,13 @@ if (_sptType == "Extract" && (time < SPTExtractTime + (60*10))) exitWith {
 
 SPTInProgress = true;
 publicVariable "SPTInProgress";
-//test
+
 if (_sptType in ["ReinforcementsLand","ReinforcementsPara"]) then {
 	SPTReinforceTime = time; publicVariable "SPTReinforceTime";
-    //_heli = createVehicle ["I_Heli_Transport_02_F", getPos WestBase, [], 0, "FLY"];
-    //_heli = [[_basePos select 0, _basePos select 1, 100], 100, "ACV_UH1H_LMG", west] call BIS_fnc_spawnVehicle;
 	_heli = createvehicle ["B_Heli_Transport_03_F",[_basePos select 0, _basePos select 1, 100], [], 0, "FLY"];
 	createvehiclecrew _heli;
 	_pilot = driver _heli;
+	_heligroup = group _pilot;
     {_x call blufor_fnc_initUnit} forEach (crew _heli);
     _heli addEventHandler ["dammaged", {_this execVM "HelicopterEmergency.sqf"}];
     //[group _heli] execVM "waypointMarkers.sqf";
