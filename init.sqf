@@ -57,7 +57,7 @@ CSAR_fnc_initSpawn = compile '
 Endgame = false;
 CSAR_ContactAreaSize = 150;
 CSAR_ContactArray = [];
-CSAR_NapalmSize = 50;
+CSAR_NapalmSize = 40;
 CSAR_NapalmTime = 50;
 
 CampsInitialised = false;
@@ -90,8 +90,8 @@ RadioOperator = player;
 RadioChat = "";
 Skipradio = false;
 failedMission = false;
-_groundViewDist = 2100;
-_flyingViewDist = 3200;
+_groundViewDist = 1800;
+_flyingViewDist = 3000;
 
 //Variables that should probably be set this way for JIP compatibility
 if (isNil "IntelMap") then {IntelMap = EastInitOfficer};
@@ -153,7 +153,7 @@ IF (Local CSAR_HC1) then {
 //FIRST WAIT
 
 sleep 2;
-bis_revive_bleedOutDuration = (180)*3;
+bis_revive_bleedOutDuration = 60*15;
 if (local player && HasInterface) then {player call CSAR_fnc_initSpawn;};
 
 publicVariable "radioMSG";
