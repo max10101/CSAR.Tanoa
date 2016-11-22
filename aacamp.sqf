@@ -77,10 +77,10 @@ AAgun2 = _aagun2;publicvariable "AAgun2";
 AAgun3 = _aagun3;publicvariable "AAgun3";
 
 {[_x,false,false] call opfor_fnc_initUnit} forEach units _group;
-{[_x,true,true] call opfor_fnc_initUnit} forEach units _group2;
-{[_x,true,true] call opfor_fnc_initUnit} forEach units _group3;
+{[_x,true,true,true] call opfor_fnc_initUnit} forEach units _group2;
+{[_x,true,true,true] call opfor_fnc_initUnit} forEach units _group3;
 
-{[_x,true,true] call opfor_fnc_initUnit} forEach units _group4;
-{[_x,true,true] call opfor_fnc_initUnit} forEach units _group5;
-{[_x,true,true] call opfor_fnc_initUnit} forEach units _group6;
-{[_x,true,true] call opfor_fnc_initUnit} forEach units _group7;
+{[_x,true,true,true] call opfor_fnc_initUnit} forEach units _group4;
+{[_x,true,true,true] call opfor_fnc_initUnit} forEach units _group5;
+{[_x,true,true,true] call opfor_fnc_initUnit} forEach units _group6;
+{[_x,true,true,true] call opfor_fnc_initUnit} forEach units _group7;
