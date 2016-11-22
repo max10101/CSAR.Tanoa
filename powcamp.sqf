@@ -39,7 +39,7 @@ _group5 = [_pos2, Independent, CSAR_BanditGroup] call BIS_fnc_spawnGroup;
 [_group5, _pos2, 300,8,"MOVE","SAFE","YELLOW","NORMAL","STAG COLUMN","",[15,30,60]] call CSAR_cba_fnc_taskPatrol;
 
 {[_x,false,false] call opfor_fnc_initUnit} forEach units _group;
-{[_x,true,true] call opfor_fnc_initUnit} forEach units _group2;
-{[_x,true,true] call opfor_fnc_initUnit} forEach units _group3;
-{[_x,true,true] call opfor_fnc_initUnit} forEach units _group4;
-{[_x,true,true] call opfor_fnc_initUnit} forEach units _group5;
+{[_x,true,true,true] call opfor_fnc_initUnit} forEach units _group2;
+{[_x,true,true,true] call opfor_fnc_initUnit} forEach units _group3;
+{[_x,true,true,true] call opfor_fnc_initUnit} forEach units _group4;
+{[_x,true,true,true] call opfor_fnc_initUnit} forEach units _group5;
