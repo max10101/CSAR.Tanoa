@@ -1,3 +1,4 @@
+
 //Reduces group size to sepcified value until enemy unit is within specified dist. Best used for infantry only groups
 if (Local CSAR_HC1) then {
     _group1 = _this select 0;

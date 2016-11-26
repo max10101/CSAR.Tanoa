@@ -31,18 +31,10 @@ _param4 = _this select 3;
 _precisePosition = _this param [4,true,[true]];
 
 //Determine if an actual group was passed or a new one should be created.
-if ((typeName _param4) == (typeName sideEnemy)) then
-{
-	_side = _param4;
-	_grp = createGroup _side;
-	_newGrp = true;
-}
-else
-{
+
 	_grp = _param4;
 	_side = side _grp;
 	_newGrp = false;
-};
 
 //Validate parameters
 if ((typeName _pos) != (typeName [])) exitWith {debugLog "Log: [spawnVehicle] Position (0) must be an Array!"; []};
@@ -86,15 +78,11 @@ if (_sim == "airplanex") then {
 };
 
 //Spawn the crew and add the vehicle to the group.
-createvehiclecrew _veh;
-_crew = crew _veh;
-_crew joinsilent _grp;
-_grp addVehicle _veh;
+//createvehiclecrew _veh;
+//_crew = crew _veh;
+//_crew joinsilent _grp;
+//_grp addVehicle _veh;
 
 //If this is a new group, select a leader.
-if (_newGrp) then
-{
-	_grp selectLeader (commander _veh);
-};
 
-[_veh, _crew, _grp]
+[_veh, 0, _grp]

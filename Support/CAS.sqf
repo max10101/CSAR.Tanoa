@@ -214,7 +214,7 @@ if ((alive _buzz) && (_casType == "CBU")) then
   _cbu = "Bo_GBU12_LGB" createvehicle [getPos _drop select 0, getPos _drop select 1, _height];
   _cbu setDir ((_loc select 0)-(getPos _cbu select 0)) atan2 ((_loc select 1)-(getPos _cbu select 1));
   _dist = _cbu distance _loc;
-    if (_lockedOn) then {[_lockedOnVeh,150,_bomb] execVM "support\guidedBomb.sqf"} else {
+    if (_lockedOn) then {[_lockedOnVeh,150,_cbu] execVM "support\guidedBomb.sqf"} else {
   if (_dist > 536) then
   {
     _diff = _dist - 536;
@@ -231,6 +231,7 @@ if ((alive _buzz) && (_casType == "CBU")) then
   _bVelX = ((_loc select 0)-(getPos _cbu select 0))/_bDrop;
   _bVelY = ((_loc select 1)-(getPos _cbu select 1))/_bDrop;
   _cbu setVelocity [_bVelX,_bVelY,(velocity _cbu select 2) - _velocityZ];
+  };
   waitUntil{getPos _cbu select 2 <= 40};
   _pos = getPos _cbu;
   _effect = "SmallSecondary" createvehicle _pos;
@@ -238,10 +239,10 @@ if ((alive _buzz) && (_casType == "CBU")) then
   for "_i" from 1 to 35 do
   {
     _explo = "G_40mm_HEDP" createvehicle _pos;
-    _explo setVelocity [-35 + (random 70),-35 + (random 70),-50];
+    _explo setVelocity [-45 + (random 90),-45 + (random 90),-50];
     sleep 0.025;
   };
-	};
+	
   deleteVehicle _drop;
 };
 

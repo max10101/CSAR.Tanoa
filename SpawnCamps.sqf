@@ -175,9 +175,7 @@ for "_i" from 0 to ((count _types) - 1) do
 		else
 		{
 		IF (_type == "Land_Scaffolding_F") then {_type = "Land_Obstacle_Bridge_F";};
-			//_unit = ([_itemPos, _azimuth, _type, _grp, _precisePosition] call BIS_fnc_spawnVehicle) select 0;
-			_veh = createvehicle [_type,_pos,[],0,"none"];
-			_veh setPos _pos;
+			_unit = ([_itemPos, _azimuth, _type, _grp, _precisePosition] call CSAR_BIS_fnc_spawnVehicle) select 0;
 		};
 
 	};

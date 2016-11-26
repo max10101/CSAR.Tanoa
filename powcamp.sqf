@@ -24,19 +24,19 @@ _group = [_pos, Independent, CSAR_ParaGroup] call BIS_fnc_spawnGroup;
 
 _pos2 = [(_pos select 0)+((sin 90)*250),(_pos select 1)+((cos 90)*250),0];
 _group2 = [_pos2, Independent, CSAR_BanditGroup] call BIS_fnc_spawnGroup;
-[_group2, _pos2, 300,8,"MOVE","SAFE","YELLOW","NORMAL","STAG COLUMN","",[15,30,60]] call CSAR_cba_fnc_taskPatrol;
+[_group2, _pos2, 300,4,"MOVE","SAFE","YELLOW","NORMAL","STAG COLUMN","",[15,30,60]] call CSAR_cba_fnc_taskPatrol;
 
 _pos2 = [(_pos select 0)+((sin 180)*250),(_pos select 1)+((cos 180)*250),0];
 _group3 = [_pos2, Independent, CSAR_BanditGroup] call BIS_fnc_spawnGroup;
-[_group3, _pos2, 300,8,"MOVE","SAFE","YELLOW","NORMAL","STAG COLUMN","",[15,30,60]] call CSAR_cba_fnc_taskPatrol;
+[_group3, _pos2, 300,4,"MOVE","SAFE","YELLOW","NORMAL","STAG COLUMN","",[15,30,60]] call CSAR_cba_fnc_taskPatrol;
 
 _pos2 = [(_pos select 0)+((sin 360)*250),(_pos select 1)+((cos 360)*250),0];
 _group4 = [_pos2, Independent, CSAR_BanditGroup] call BIS_fnc_spawnGroup;
-[_group4, _pos2, 300,8,"MOVE","SAFE","YELLOW","NORMAL","STAG COLUMN","",[15,30,60]] call CSAR_cba_fnc_taskPatrol;
+[_group4, _pos2, 300,4,"MOVE","SAFE","YELLOW","NORMAL","STAG COLUMN","",[15,30,60]] call CSAR_cba_fnc_taskPatrol;
 
 _pos2 = [(_pos select 0)+((sin 270)*250),(_pos select 1)+((cos 270)*250),0];
 _group5 = [_pos2, Independent, CSAR_BanditGroup] call BIS_fnc_spawnGroup;
-[_group5, _pos2, 300,8,"MOVE","SAFE","YELLOW","NORMAL","STAG COLUMN","",[15,30,60]] call CSAR_cba_fnc_taskPatrol;
+[_group5, _pos2, 300,4,"MOVE","SAFE","YELLOW","NORMAL","STAG COLUMN","",[15,30,60]] call CSAR_cba_fnc_taskPatrol;
 
 {[_x,false,false] call opfor_fnc_initUnit} forEach units _group;
 {[_x,true,true,true] call opfor_fnc_initUnit} forEach units _group2;

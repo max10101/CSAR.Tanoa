@@ -79,11 +79,11 @@ for [{_x = 0}, {_x < _artRounds}, {_x = _x+1}] do {
         _shell setVelocity [0,0,_spawnVel - random _spawnVelRandom];
         if (_shellType == "f_40mm_White") then {
           _light = "#lightpoint" createVehicle ( getPosATL _shell ) ;
-          _light setLightBrightness 3;
+          _light setLightBrightness 18;
           _light setLightAmbient [1, 1, 1];
           _light setLightUseFlare false;
           _light setLightFlareSize 0;
-          _light setLightFlareMaxDistance 130;
+          _light setLightFlareMaxDistance 230;
           _light setLightColor [1, 0, 0];
           _light lightAttachObject [_shell, [ 0, 0, 0 ]];
           [_shell,_light] spawn {
@@ -93,7 +93,7 @@ for [{_x = 0}, {_x < _artRounds}, {_x = _x+1}] do {
         };
         sleep _sleepTime + random 1;
     };
-    sleep 3 + random 2;
+    sleep 4 + random 4;
 };
 
 

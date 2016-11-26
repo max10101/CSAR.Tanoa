@@ -14,6 +14,7 @@ CSAR_fnc_Arsenal = compile preprocessFile "arsenalfnc.sqf";
 CSAR_fnc_CampGun = compile preprocessFile "camp.sqf"; 
 CSAR_NapalmExec = compileFinal "[_this,CSAR_NapalmTime,CSAR_NapalmSize] execvm ""Napalmnew.sqf""";
 
+CSAR_BIS_fnc_spawnVehicle = compile preprocessFile "bis_fnc_spawnVehicle.sqf"; 
 CSAR_fnc_Arsenal = compile preprocessFile "arsenalfnc.sqf"; 
 CSAR_BanditGroup = ["I_C_Soldier_Bandit_2_F","I_C_Soldier_Bandit_4_F","I_C_Soldier_Bandit_1_F","I_C_Soldier_Bandit_7_F","I_C_Soldier_Bandit_5_F","I_C_Soldier_Bandit_8_F","I_C_Soldier_Bandit_3_F","I_C_Soldier_Bandit_6_F","I_C_Soldier_Bandit_2_F"];
 CSAR_ParaGroup = ["I_C_Soldier_Para_2_F","I_C_Soldier_Para_4_F","I_C_Soldier_Para_1_F","I_C_Soldier_Para_7_F","I_C_Soldier_Para_5_F","I_C_Soldier_Para_8_F","I_C_Soldier_Para_3_F","I_C_Soldier_Para_6_F","I_C_Soldier_Para_2_F"];
@@ -73,6 +74,14 @@ Killsounds = ["A_Kill_1","A_Kill_2","A_Kill_3","A_Kill_4","A_Kill_5","A_Kill_6",
 Losssounds = ["A_Loss_1","A_Loss_2","A_Loss_3","A_Loss_4","A_Loss_5","A_Loss_6","A_Loss_7","A_Loss_8","A_Loss_9","A_Loss_10","A_Loss_11","A_Loss_12","A_Loss_13","A_Loss_14","A_Loss_15"];
 LastVoiceTime = 0;
 SoundDelayTime = 8;
+
+//*********************ZEUS IMPLEMENTATION***************************
+removeallcuratoraddons CSAR_Zeus;
+CSAR_Zeus AddCuratorAddons ["A3_Characters_F_Exp","A3_Modules_F_Curator_Lightning","A3_Soft_F_Offroad_01","A3_Soft_F_Exp_Offroad_02","A3_Soft_F_Exp_Van_01","A3_Modules_F_Curator_SmokeShells","A3_Modules_F_Curator_Misc","A3_Modules_F_Curator_Mines","A3_Modules_F_Curator_Flares","A3_Modules_F_Curator_Chemlights","A3_Modules_F_Curator_CAS","A3_Modules_F_Curator_Animals"];
+csar_zeus allowCuratorLogicIgnoreAreas false;
+
+
+//*********************ZEUS IMPLEMENTATION***************************
 
 wcweather = [0, [0,0,0], 0, [random 3, random 3, true], date];
 EastArtilleryTimer = 0;

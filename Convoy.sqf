@@ -61,6 +61,7 @@ While {_i < _MaxConvoys} do {
 	_vehicle setdir _dir;
 	_vehicle addeventhandler ["Dammaged",{_this execvm "brokenwheel.sqf"}];
 	_vehicle setUnloadInCombat [true, false];
+	csar_zeus addCuratorEditableObjects [[_vehicle],true];
 	IF (_vehicle in ["I_G_Offroad_01_armed_F"]) then {_vehicle addEventHandler ["Fired",{[_this] call RecoilFunction}];};
 	_vehicle limitspeed 30;
 
@@ -76,6 +77,7 @@ While {_i < _MaxConvoys} do {
 		[_vehicle2,_grp] call _fillCar;
 		_dir = ((getpos _vehicle select 0)-(getPos _vehicle2 select 0)) atan2 ((getpos _vehicle select 1)-(getPos _vehicle2 select 1));
 		_vehicle2 setdir _dir;
+		csar_zeus addCuratorEditableObjects [[_vehicle2],true];
 		_vehicle2 addeventhandler ["Dammaged",{_this execvm "brokenwheel.sqf"}];
 		_vehicle2 setUnloadInCombat [true, false];
 		IF (_vehicle2 in ["I_G_Offroad_01_armed_F"]) then {_vehicle2 addEventHandler ["Fired",{[_this] call RecoilFunction}];};

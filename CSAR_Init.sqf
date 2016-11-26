@@ -1,8 +1,8 @@
 
     sleep 2.5;
 
-    {_x call blufor_fnc_initUnit;} forEach list WestUnits;
-    {_x call opfor_fnc_initUnit;} forEach list EastUnits;
+//    {_x call blufor_fnc_initUnit;} forEach list WestUnits;
+//    {[_x,false,false] call opfor_fnc_initUnit;} forEach list EastUnits;
 
     sleep 1;
 

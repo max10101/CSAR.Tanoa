@@ -69,7 +69,7 @@ if (_patrol && {count _units > 1}) then {
         [_x] orderGetIn true;
     } else {
         // 93% chance to occupy a random nearby building position
-        if ((random 1 < 0.93) && { !(_buildings isEqualto []) }) then {
+        if ((random 1 < 0.25) && { !(_buildings isEqualto []) }) then {
             private _building = _buildings call BIS_fnc_selectRandom;
             private _array = _building getVariable ["CBA_taskDefend_positions",[]];
 

@@ -10,11 +10,12 @@ if (typename _this == "ARRAY") then {_unit = _this select 0};
 
 if (!(_unit getVariable ["CSAR_unitInitialized",false]) && Local _unit) then {
 	if (!(_unit isKindOf "man")) then {
-
+		csar_zeus addCuratorEditableObjects [[_unit],true];
 		(vehicle _unit) addEventHandler ["Fired",{[_this] call RecoilFunction}];
 		{_x call opfor_fnc_initUnit2} forEach crew (vehicle _unit);
 	} else {
 		_unit setskill 0.7;
+		csar_zeus addCuratorEditableObjects [[_unit],true];
 		{_unit setskill [_x select 0,_x select 1]} foreach _SkillArray; 
 		_unit setVariable["CSAR_unitInitialized",true];
 		_unit addEventHandler ["Fired",{[_this] call RecoilFunction}];
