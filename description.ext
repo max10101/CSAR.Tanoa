@@ -5,7 +5,7 @@ respawn = 3;
 respawnDelay = 10;
 respawnTemplates[] = {"MenuPosition"};
 respawnOnStart = -1;
-disabledAI = 1;
+disabledAI = 0;
 joinUnassigned = 0;
 enableDebugConsole = 2;
 

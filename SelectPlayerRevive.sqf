@@ -3,7 +3,7 @@
 // DOES NOT NEED TO BE EXECUTED IF PLAYER JUST RESPAWNS AT BASE - vars and EH's seem to carry over if that's the case
 // todo : remove old bis eventhandlers if they exist (would they even? meh), not sure if JIP section is required
 WaitUntil {Alive Player};
-sleep 0.1;
+sleep 0.5;
 IF (count (waypoints (group player)) > 0) then {deletewaypoint [(group player),0]}; 
 IF ((count allPlayers) <= 1) exitwith {Systemchat "No other players - Revive disabled"};
 

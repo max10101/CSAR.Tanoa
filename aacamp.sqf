@@ -28,7 +28,7 @@ _aagun1 = [_aagun1pos,((_aagun1pos select 0)-(getPos _camp select 0)) atan2 ((_a
 _aagun2 = [_aagun2pos,((_aagun2pos select 0)-(getPos _camp select 0)) atan2 ((_aagun2pos select 1)-(getPos _camp select 1)),"AAGun"] call CSAR_fnc_CampGun;
 _aagun3 = [_aagun3pos,((_aagun3pos select 0)-(getPos _camp select 0)) atan2 ((_aagun3pos select 1)-(getPos _camp select 1)),"AAGun"] call CSAR_fnc_CampGun;
 
-_group = [_pos, Independent, CSAR_ParaGroup] call BIS_fnc_spawnGroup;
+_group = [[(_pos select 0)+50-random 100,(_pos select 1)+50-random 100,0], Independent, CSAR_ParaGroup] call BIS_fnc_spawnGroup;
 [_group, _pos, 100,3,true] call CSAR_CBA_fnc_taskDefend;
 
 

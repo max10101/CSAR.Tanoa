@@ -63,13 +63,13 @@ if (_patrol && {count _units > 1}) then {
 };
 
 {
-    // 31% chance to occupy nearest free static weapon
-    if ((random 1 < 0.31) && { !(_statics isEqualto []) }) then {
+    // 61% chance to occupy nearest free static weapon
+    if ((random 1 < 0.61) && { !(_statics isEqualto []) }) then {
         _x assignAsGunner (_statics deleteAt 0);
         [_x] orderGetIn true;
     } else {
-        // 93% chance to occupy a random nearby building position
-        if ((random 1 < 0.25) && { !(_buildings isEqualto []) }) then {
+        // 55% chance to occupy a random nearby building position
+        if ((random 1 < 0.55) && { !(_buildings isEqualto []) }) then {
             private _building = _buildings call BIS_fnc_selectRandom;
             private _array = _building getVariable ["CBA_taskDefend_positions",[]];
 

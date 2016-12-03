@@ -11,5 +11,6 @@ if (!(_this getVariable ["CSAR_unitInitialized",false])) then {
 		_this addEventHandler ["Hit", {_this execvm "sound_hit.sqf"}];
 		_this addeventhandler ["Fired", {_this execvm "sound_fired.sqf"}];
 		_this addEventHandler ["Killed", {_this execvm "sound_killed.sqf"}];
+		_this addEventHandler ["Respawn", {_this execvm "AIRespawn.sqf"}];
 	};
 }
