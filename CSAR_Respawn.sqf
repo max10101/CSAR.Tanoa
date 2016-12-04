@@ -69,7 +69,7 @@ while {true} do {
 
             if (_justDied) then {
                 if (_spawnmarker == "spawn_nearest") then {
-                    [player,_corpse] call CSAR_Respawn_NearestUnit;
+                    [player,_corpse] execvm "CSAR_Respawn_NearestUnit.sqf";
 
                 };
                 _justDied = false;

@@ -77,7 +77,7 @@ SoundDelayTime = 8;
 
 //*********************ZEUS IMPLEMENTATION***************************
 removeallcuratoraddons CSAR_Zeus;
-CSAR_Zeus AddCuratorAddons ["A3_Characters_F_Exp","A3_Modules_F_Curator_Lightning","A3_Soft_F_Offroad_01","A3_Soft_F_Exp_Offroad_02","A3_Soft_F_Exp_Van_01","A3_Modules_F_Curator_SmokeShells","A3_Modules_F_Curator_Misc","A3_Modules_F_Curator_Mines","A3_Modules_F_Curator_Flares","A3_Modules_F_Curator_Chemlights","A3_Modules_F_Curator_CAS","A3_Modules_F_Curator_Animals"];
+CSAR_Zeus AddCuratorAddons ["A3_Structures_F_Mil_Fortification","A3_Characters_F_Exp","A3_Modules_F_Curator_Lightning","A3_Soft_F_Offroad_01","A3_Soft_F_Exp_Offroad_02","A3_Soft_F_Exp_Van_01","A3_Modules_F_Curator_SmokeShells","A3_Modules_F_Curator_Misc","A3_Modules_F_Curator_Mines","A3_Modules_F_Curator_Flares","A3_Modules_F_Curator_Chemlights","A3_Modules_F_Curator_CAS","A3_Modules_F_Curator_Animals"];
 csar_zeus allowCuratorLogicIgnoreAreas false;
 CSAR_Zeus addeventhandler ["CuratorObjectPlaced", {(_this select 1) call opfor_fnc_initUnit}];
 //*********************ZEUS IMPLEMENTATION***************************
@@ -98,8 +98,8 @@ RadioOperator = player;
 RadioChat = "";
 Skipradio = false;
 failedMission = false;
-_groundViewDist = 1800;
-_flyingViewDist = 3000;
+_groundViewDist = 1500;
+_flyingViewDist = 2600;
 
 //Variables that should probably be set this way for JIP compatibility
 if (isNil "IntelMap") then {IntelMap = EastInitOfficer};

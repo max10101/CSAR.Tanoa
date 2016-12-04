@@ -1,3 +1,4 @@
+IF (true) exitwith {};
 sleep (random 5);
 _group = _this select 0;
 IF (!Local (leader _group)) ExitWith {};
