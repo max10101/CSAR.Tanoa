@@ -175,7 +175,14 @@ for "_i" from 0 to ((count _types) - 1) do
 		else
 		{
 		IF (_type == "Land_Scaffolding_F") then {_type = "Land_Obstacle_Bridge_F";};
+		IF (_type in ["Land_d_House_Small_02_V1_F","Land_d_Stone_HouseSmall_V1_F","Land_Unfinished_Building_02_F"]) then {
 			_unit = ([_itemPos, _azimuth, _type, _grp, _precisePosition] call CSAR_BIS_fnc_spawnVehicle) select 0;
+			} else {
+			_obj = createSimpleObject [_type, ([_itempos select 0,_itempos select 1,getTerrainHeightASL [_itempos select 0,_itempos select 1]])];
+			_obj setdir _azimuth;
+			_obj setposATL ([_itempos select 0,_itempos select 1,0]);
+
+			};
 		};
 
 	};

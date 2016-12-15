@@ -1,3 +1,4 @@
+findDisplay 312 closeDisplay 2;
 _camera = "camera" camCreate [11729.42,3030.67,2.02]
 _camera cameraEffect ["internal","back"]
 _win = true
@@ -32,7 +33,6 @@ IF (_win) then {player sideradio "radio10"};
 _camera cameraEffect ["terminate","back"]
 camDestroy _camera
 
-endMission "END1"
-
+IF (_win) then {"end1" call BIS_fnc_endMission} else {"end2" call BIS_fnc_endMission}
 
 exit

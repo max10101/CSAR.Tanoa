@@ -109,7 +109,7 @@ While {_i < _MaxConvoys} do {
 	_wp setWaypointStatements ["true", "this execvm ""ConvoyNewWaypoint.sqf"""];
 	_wp setwaypointtype "MOVE";
 	_wp setWaypointCompletionRadius 30;
-	//{_x limitspeed 20} foreach (units _grp);
+	{_x limitspeed 30} foreach (units _grp);
 	_i = _i + 1;
 	sleep 4;
 	{[_x,false,false] call opfor_fnc_initUnit;_x setcombatmode "RED";} forEach units _grp;

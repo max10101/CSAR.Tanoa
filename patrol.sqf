@@ -102,12 +102,12 @@ IF (_Engageloop) then {
 	IF (({alive _x} count (units _group)) <= 0) Exitwith {};
 	
 	//if anyone in group is fleeing, the whole group will disengage/move back to original patrol after smokebomb and given a 2 min timeout
-	IF (({fleeing _x} count (units _group)) > 0) then {deletewaypoint [_group,_WPIndex];_group setcurrentwaypoint [_group,(_group getvariable "CSAR_OldWP")];_Engageloop = false;[_group,_EngageUnit] spawn CSAR_Smokebomb;CSAR_EngagedGroups = CSAR_EngagedGroups - [[_group,_pos]];sleep 120};
+	IF (({fleeing _x} count (units _group)) > 0) then {deletewaypoint [_group,_WPIndex];_group setcurrentwaypoint [_group,(_group getvariable "CSAR_OldWP")];_Engageloop = false;[_group,_EngageUnit] spawn CSAR_Smokebomb;CSAR_EngagedGroups = CSAR_EngagedGroups - [[_group,_pos]];_group setvariable ["CSAR_ENGAGED",false];sleep 120};
 	
 	//if the unit they are targetting/engaging is dead, next target is the next closest unit that was in that original group to attack
 	IF (!Alive _Engageunit) then {
 	_Engagelist = ([_Engagelist,[],{_x distance (leader _group)},"ASCEND",{Alive _x}] call BIS_fnc_sortBy);
-	IF (count _Engagelist > 0) then {_Engageunit = _Engagelist select 0} else {deletewaypoint [_group,_WPIndex];_group setcurrentwaypoint [_group,(_group getvariable "CSAR_OldWP")];CSAR_EngagedGroups = CSAR_EngagedGroups - [[_group,_pos]];_Engageloop = false;};
+	IF (count _Engagelist > 0) then {_Engageunit = _Engagelist select 0} else {deletewaypoint [_group,_WPIndex];_group setcurrentwaypoint [_group,(_group getvariable "CSAR_OldWP")];CSAR_EngagedGroups = CSAR_EngagedGroups - [[_group,_pos]];_group setvariable ["CSAR_ENGAGED",false];_Engageloop = false;};
 	};
 	
 	//if group to engage moves too far away - disengage
@@ -117,10 +117,10 @@ IF (_Engageloop) then {
 	IF (!(_group getvariable "CSAR_ENGAGED") && _engageloop) then {deletewaypoint [_group,_WPIndex];_group setcurrentwaypoint [_group,(_group getvariable "CSAR_OldWP")];CSAR_EngagedGroups = CSAR_EngagedGroups - [[_group,_pos]];_Engageloop = false;};
 
 	//if unit they are attacking is over 250m from his original position - disengage
-	IF (([waypointposition [_group,_WPIndex],_EngageUnit] call bis_fnc_distance2D) >= _BreakOffDistance && _engageloop) then {deletewaypoint [_group,_WPIndex];_group setcurrentwaypoint [_group,(_group getvariable "CSAR_OldWP")];CSAR_EngagedGroups = CSAR_EngagedGroups - [[_group,_pos]];_Engageloop = false};
+	IF (([waypointposition [_group,_WPIndex],_EngageUnit] call bis_fnc_distance2D) >= _BreakOffDistance && _engageloop) then {deletewaypoint [_group,_WPIndex];_group setcurrentwaypoint [_group,(_group getvariable "CSAR_OldWP")];CSAR_EngagedGroups = CSAR_EngagedGroups - [[_group,_pos]];_group setvariable ["CSAR_ENGAGED",false];_Engageloop = false};
 	
 	//if over x minutes pass, disengage to catch anything i missed
-	IF (_i > (60 * 6)) then {deletewaypoint [_group,_WPIndex];_group setcurrentwaypoint [_group,(_group getvariable "CSAR_OldWP")];_i = 0;CSAR_EngagedGroups = CSAR_EngagedGroups - [[_group,_pos]];_Engageloop = false} else {_i = _i + 10};
+	IF (_i > (60 * 6)) then {deletewaypoint [_group,_WPIndex];_group setcurrentwaypoint [_group,(_group getvariable "CSAR_OldWP")];_i = 0;CSAR_EngagedGroups = CSAR_EngagedGroups - [[_group,_pos]];_group setvariable ["CSAR_ENGAGED",false];_Engageloop = false} else {_i = _i + 10};
 
 	IF (_EngageLoop) then {sleep 20} else {sleep 5};
 };

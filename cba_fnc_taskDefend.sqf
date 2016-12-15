@@ -102,5 +102,5 @@ if (_patrol && {count _units > 1}) then {
 
 // Remaining units will patrol if enabled
 if (_patrol) then {
-    [_group, _position, _radius, 5, "sad", "safe", "red", "limited"] call CBA_fnc_taskPatrol;
+    [_group, _position, _radius, 5, "MOVE", "safe", "red", "limited"] call CBA_fnc_taskPatrol;
 };

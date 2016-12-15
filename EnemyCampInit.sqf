@@ -14,7 +14,7 @@ _POWCamps = ["CampD","CampE","CampE","CampF"];
 _MilCamps = ["CampD","CampE","CampE","CampF"];
 _spawns = CSAR_CampLocations;
 _first = objnull;
-
+_buildingpositions = [];
 
 //SELECT AND PREP X 'LARGE' CAMPS NOT WITHIN CLOSE PROXIMITY TO OTHER LARGE CAMPS (possibility to halt everything here if dist is too big so move on after 25 conflict)
 _conflictmax = 25;
@@ -56,12 +56,18 @@ Sleep 2;
 
 // PREP AND PLACE POW WITHIN CAMP
 _buildings = nearestObjects [_POWCamp, ["Land_d_Windmill01_F","Land_d_House_Small_02_V1_F","Land_d_Stone_HouseSmall_V1_F","Land_Unfinished_Building_02_F"], 25];
-_BuildingPositions = (Selectrandom _buildings) buildingpos -1;
-IF (count _buildingpositions == 0) then {_buildingpositions = [[(getpos _POWCamp select 0)+10,(getpos _POWCamp select 1)+10,0]]};
+
+IF ((count _buildings) >= 0) then {
+	_buildingpositions = (Selectrandom _buildings) buildingpos -1;
+} else {_buildingpositions = [[(getpos _POWCamp select 0)+10,(getpos _POWCamp select 1)+10,0]]};
+
 sleep 2;
+//_buildingpositions = [[(getpos _POWCamp select 0)+10,(getpos _POWCamp select 1)+10,0]];
+_BuildingPositions = (Selectrandom _buildings) buildingpos -1;
 IF (CSAR_DEBUG) then {_marker = createMarkerlocal[format ["POWCAMP (%1)",random 9999], getPos _POWCamp];_marker setMarkerSizeLocal [100,100];_marker setMarkerColorLocal "ColorBlue";_marker setMarkerShapeLocal "ELLIPSE"};
 
 POW setpos (SelectRandom _buildingpositions);
+
 POW setdir (random 360);
 removevest POW;removeheadgear POW;
 POW addvest "V_PlateCarrierSpec_tna_F";pow addheadgear "H_HelmetB_Enh_tna_F";
@@ -92,8 +98,11 @@ _Intelcamp = Selectrandom _spawns;
 [getpos _IntelCamp, west, (configFile >> "CfgGroups" >> "Empty" >> "Guerrilla" >> "Camps" >> (SelectRandom _POWCamps))] spawn CSAR_fnc_SpawnCamps;
 sleep 1;
 _buildings = nearestObjects [_Intelcamp, ["Land_d_House_Small_02_V1_F","Land_d_Stone_HouseSmall_V1_F","Land_Unfinished_Building_02_F"], 25];
+IF ((count _buildings) >= 0) then {
+	_BuildingPositions = (Selectrandom _buildings) buildingpos -1;
+} else {_buildingpositions = [[(getpos _IntelCamp select 0)+10,(getpos _IntelCamp select 1)+10,0],[(getpos _IntelCamp select 0)-10,(getpos _IntelCamp select 1)+10,0],[(getpos _IntelCamp select 0)-15,(getpos _IntelCamp select 1)-15,0]]};
+//_buildingpositions = [[(getpos _IntelCamp select 0)+10,(getpos _IntelCamp select 1)+10,0],[(getpos _IntelCamp select 0)-10,(getpos _IntelCamp select 1)+10,0],[(getpos _IntelCamp select 0)-15,(getpos _IntelCamp select 1)-15,0]];
 _BuildingPositions = (Selectrandom _buildings) buildingpos -1;
-IF (count _buildingpositions == 0) then {_buildingpositions = [[(getpos _IntelCamp select 0)+10,(getpos _IntelCamp select 1)+10,0],[(getpos _IntelCamp select 0)-10,(getpos _IntelCamp select 1)+10,0],[(getpos _IntelCamp select 0)-15,(getpos _IntelCamp select 1)-15,0]]};
 IntelMap = "Mapboard_Seismic_F" createvehicle [0,0,100];Intelmap setpos (SelectRandom _buildingpositions);
 IntelMap setdir (random 360);
 IntelMap enableSimulationGlobal false;

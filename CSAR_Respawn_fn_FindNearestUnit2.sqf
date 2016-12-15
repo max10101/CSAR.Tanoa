@@ -9,4 +9,5 @@ _playerGroup = group _player;
 _close = [units (group _player),[],{(_corpse) distance _x},"ASCEND",{(!IsPlayer _x) && (Alive _x) && (!unitIsUAV (vehicle _x))}] call BIS_fnc_sortBy;
 _close2 = [_westunits,[],{(_corpse) distance _x},"ASCEND",{(!IsPlayer _x) && (Alive _x) && (!unitIsUAV (vehicle _x))}] call BIS_fnc_sortBy;
 _respawnUnit = (_close + _close2) select 0;
+//hint format ["Close\n%1\n\nClose2\n%2",_close,_close2];
 IF ((count (_close + _close2)) > 0) then {_respawnUnit} else {ObjNull}

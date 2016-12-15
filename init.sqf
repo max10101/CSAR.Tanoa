@@ -77,7 +77,7 @@ SoundDelayTime = 8;
 
 //*********************ZEUS IMPLEMENTATION***************************
 removeallcuratoraddons CSAR_Zeus;
-CSAR_Zeus AddCuratorAddons ["A3_Structures_F_Mil_Fortification","A3_Characters_F_Exp","A3_Modules_F_Curator_Lightning","A3_Soft_F_Offroad_01","A3_Soft_F_Exp_Offroad_02","A3_Soft_F_Exp_Van_01","A3_Modules_F_Curator_SmokeShells","A3_Modules_F_Curator_Misc","A3_Modules_F_Curator_Mines","A3_Modules_F_Curator_Flares","A3_Modules_F_Curator_Chemlights","A3_Modules_F_Curator_CAS","A3_Modules_F_Curator_Animals"];
+CSAR_Zeus AddCuratorAddons ["A3_Structures_F_Mil_Fortification","A3_Characters_F_Exp","A3_Modules_F_Curator_Lightning","A3_Soft_F_Offroad_01","A3_Soft_F_Exp_Offroad_02","A3_Soft_F_Exp_Van_01","A3_Modules_F_Curator_SmokeShells","A3_Modules_F_Curator_Misc","A3_Modules_F_Curator_Mines","A3_Modules_F_Curator_Flares","A3_Modules_F_Curator_Chemlights","A3_Modules_F_Curator_CAS","A3_Modules_F_Curator_Animals","CuratorOnly_Structures_F_Mil_BagBunker","CuratorOnly_Structures_F_Mil_BagFence","CuratorOnly_Structures_F_Mil_Cargo","CuratorOnly_Structures_F_Mil_Fortification","CuratorOnly_Structures_F_Mil_Shelters","CuratorOnly_Structures_F_Research","CuratorOnly_Structures_F_Walls","CuratorOnly_Structures_F_Wrecks","A3_Air_F_Heli_Light_02","achilles_modules_f_achilles","achilles_modules_f_ares","achilles_ui_f","AchillesEffects"];
 csar_zeus allowCuratorLogicIgnoreAreas false;
 CSAR_Zeus addeventhandler ["CuratorObjectPlaced", {(_this select 1) call opfor_fnc_initUnit}];
 //*********************ZEUS IMPLEMENTATION***************************
@@ -249,10 +249,12 @@ while {true} do {
             nearPOW = 2; publicVariable "nearPOW";
         };
 
-        if (POWRescued == 1 && (!(isNil "POWRescuer"))) then {
+        if (POWRescued == 1) then {
+			CSAR_MaxKnowsAbout = 0.5;publicvariable "CSAR_MaxKnowsAbout";
             [West,["RTB"],["Return to Base","Return to Base",""],objNull,"Assigned",3,true] call BIS_fnc_taskCreate;
             if (alive POW) then {
                 POWRescued = 2; publicVariable "POWRescued";
+				[west,"HQ"] sideradio "radio9";
                 ["POW","SUCCEEDED"] call BIS_fnc_taskSetState;
                 //[POWRescuer] execVM "Rescue.sqf";
             } else {

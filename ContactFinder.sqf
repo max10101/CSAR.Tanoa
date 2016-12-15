@@ -1,5 +1,5 @@
 _opfor = Independent;
-_MaxKnowsAbout = 3.25;
+CSAR_MaxKnowsAbout = 3.25;
 _triggerarray = [];
 Sleep 2;
 _markerarray = [];
@@ -28,7 +28,7 @@ while {true} do {
 	_SpottedArray = [];
 	
 	//STEP 1 find spotted units
-	{IF (((_opfor knowsabout _x) > _MaxKnowsAbout)) then {_SpottedArray = _SpottedArray + [_x]}} foreach _westunits;
+	{IF (((_opfor knowsabout _x) > CSAR_MaxKnowsAbout)) then {_SpottedArray = _SpottedArray + [_x]}} foreach _westunits;
 	IF (count _spottedarray > 0) then {
 		sleep 0.1;
 		_triggerarray = [];

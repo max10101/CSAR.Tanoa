@@ -25,7 +25,7 @@ if (Local CSAR_HC1) then {
         //This checks to see if any soldiers get added (from reinforcements). If so, we make it re-delete units if possible.
         if (count units _group1 > _group1CountSize && !_fullSize) then {_fullSize = true};
 
-        if ((_enemySpotted > 0) && !_fullSize) then {
+        if (((_enemySpotted > 0) OR (_group1 getvariable "CSAR_ENGAGED")) && !_fullSize) then {
             //Means an enemy is spotted and we have not spawned the units back into action
             if (!((vehicle leader _group1) isKindOf "Man")) then {_vehicle = (vehicle leader _group1)};
             //player sideChat format["Re spawning infantry into: %1 - Array: %2",typeOf _vehicle,_holdArray];
@@ -33,7 +33,7 @@ if (Local CSAR_HC1) then {
                 unit = _group1 createUnit [_x, [(getPos leader _group1 select 0), getPos leader _group1 select 1, 0], [], 20, "FORM"];
                 DeSpawnedInf = DeSpawnedInf - 1;
                 waitUntil {alive unit};
-                unit call opfor_fnc_initUnit;
+                unit spawn opfor_fnc_initUnit;
                 if (!isNil "_vehicle") then {
                     if (alive _vehicle && leader _group1 in _vehicle) then {
                         unit assignAsCargo _vehicle;

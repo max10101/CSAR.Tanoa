@@ -47,7 +47,7 @@ while {true} do {
                     _metadata = ["get",_curSel] call BIS_fnc_showRespawnMenuPositionMetadata;
                     _spawnmarker = (_metadata select 0) select 0;
                 };
-                _nearestUnit = [player,player,list WestContacts] call CSAR_fnc_findNearestUnit;
+                _nearestUnit = [player,player,playableunits] call CSAR_fnc_findNearestUnit;
                 if (!(isNull _nearestUnit)) then {
                     "spawn_nearest" setMarkerPosLocal (getPos _nearestUnit);
                     _name = "";
@@ -74,7 +74,8 @@ while {true} do {
                 };
                 _justDied = false;
                 if (markerAlpha "spawn_nearest" > 0) then {"spawn_nearest" setMarkerAlphaLocal 0;};
-                player call CSAR_fnc_initSpawn;
+				sleep 1;
+                player spawn CSAR_fnc_initSpawn;
             };
         };
 	};
