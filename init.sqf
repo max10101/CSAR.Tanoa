@@ -30,6 +30,7 @@ switchMoveMP = compileFinal "_this select 0 switchMove (_this select 1);";
 CSAR_fnc_initSpawn = compile '
     _unit = _this;
     if (local _unit) then {
+		diag_log format ["INITSPAWN begin for %1 (%2)",_unit,name _unit];
         mattzig_earPlugsInUse = false;
         1 fadeSound 1;
 		_unit setunittrait ["Engineer",1];
@@ -50,6 +51,7 @@ CSAR_fnc_initSpawn = compile '
          };
 		 
         [_unit] execVM "Support\addActions.sqf";
+		diag_log format ["INITSPAWN finished for %1 (%2)",_unit,name _unit];
     };';
 
 	

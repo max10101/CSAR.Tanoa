@@ -8,7 +8,7 @@
 			waitUntil {player == _x && isPlayer _x && local _x};
 			deleteVehicle _unit;
 		}
-	} foreach list WestUnits;
+	} foreach playableunits;
 };
 
 // [_x] remoteExec ["selectPlayer", _unit];

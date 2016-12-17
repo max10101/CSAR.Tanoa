@@ -2,21 +2,26 @@
 // USAGE :  execute locally (no params) after a player switches into a new unit using selectplayer
 // DOES NOT NEED TO BE EXECUTED IF PLAYER JUST RESPAWNS AT BASE - vars and EH's seem to carry over if that's the case
 // todo : remove old bis eventhandlers if they exist (would they even? meh), not sure if JIP section is required
+diag_log "SELECTPLAYER BEGIN";
 WaitUntil {Alive Player};
 sleep 0.5;
 IF (count (waypoints (group player)) > 0) then {deletewaypoint [(group player),0]}; 
 IF ((count allPlayers) <= 1) exitwith {Systemchat "No other players - Revive disabled"};
-
+diag_log "SELECTPLAYER add defines";
 #include "defines.hpp"
+diag_log "SELECTPLAYER setvariable";
 player setvariable ["#rev_enabled",true,true];
 private _playerVar = GET_UNIT_VAR(player);
 //init & reset damage data
+diag_log "SELECTPLAYER call damagereset";
 [] call bis_fnc_reviveDamageReset;
 
 //register everyone localy to player
+diag_log "SELECTPLAYER call initaddplayer";
 [] call bis_fnc_reviveInitAddPlayer;
 
 //register player to everyone ingame
+diag_log "SELECTPLAYER remoteexec";
 [_playerVar] remoteExec ["bis_fnc_reviveInitAddPlayer"];
 
 //setup other players localy for JIPing player; didJIP condition removed to make the code more robust
@@ -52,6 +57,7 @@ GET_UNIT(_playerVar) setVariable ["bis_revive_ehKilled", _ehKilled];
 private _ehRespawn = GET_UNIT(_playerVar) addEventHandler ["Respawn",bis_fnc_reviveOnPlayerRespawn];
 GET_UNIT(_playerVar) setVariable ["bis_revive_ehRespawn", _ehRespawn];
 
+diag_log "SELECTPLAYER finished";
 /*
 {
 	private _xUnit = GET_UNIT(_x);

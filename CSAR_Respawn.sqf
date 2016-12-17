@@ -74,7 +74,7 @@ while {true} do {
                 };
                 _justDied = false;
                 if (markerAlpha "spawn_nearest" > 0) then {"spawn_nearest" setMarkerAlphaLocal 0;};
-				sleep 1;
+				sleep 3;
                 player spawn CSAR_fnc_initSpawn;
             };
         };

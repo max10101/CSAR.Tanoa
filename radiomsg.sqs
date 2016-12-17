@@ -1,4 +1,4 @@
-
+radio_1 say "Mysound2"
 radio say "Mysound2"
 ~18
 IF (!Skipradio) then {radio say3d ["radio1",25,1]}

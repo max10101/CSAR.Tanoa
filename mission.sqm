@@ -8,7 +8,7 @@ class EditorData
 	toggles=1;
 	class ItemIDProvider
 	{
-		nextID=3342;
+		nextID=3343;
 	};
 	class MarkerIDProvider
 	{
@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=2653;
+		nextID=2827;
 	};
 	class Camera
 	{
-		pos[]={11643.696,64.99511,3039.3118};
-		dir[]={0.94664514,-0.28962445,0.14224367};
-		up[]={0.28647017,0.95711458,0.043045111};
-		aside[]={0.14861272,-3.1245872e-007,-0.98902714};
+		pos[]={12436.74,45.950874,14178.665};
+		dir[]={0.88904995,-0.30937129,-0.33749834};
+		up[]={0.28923857,0.95093983,-0.10979979};
+		aside[]={-0.35490912,-1.7136335e-007,-0.93491489};
 	};
 };
 binarizationWanted=0;
@@ -83,7 +83,7 @@ class AddonsMetaData
 			className="A3_Air_F_Beta";
 			name="Arma 3 Beta - Aircrafts";
 			author="Bohemia Interactive";
-			url="http://www.arma3.com";
+			url="https://www.arma3.com";
 		};
 		class Item1
 		{
@@ -540,7 +540,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=168;
+		items=169;
 		class Item0
 		{
 			dataType="Object";
@@ -1165,7 +1165,7 @@ class Mission
 			};
 			id=498;
 			type="EmptyDetectorAreaR250";
-			atlOffset=20.323479;
+			atlOffset=20.446999;
 		};
 		class Item48
 		{
@@ -1450,7 +1450,6 @@ class Mission
 					};
 					id=569;
 					type="O_officer_F";
-					atlOffset=0.009970665;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -1480,7 +1479,6 @@ class Mission
 			{
 			};
 			id=568;
-			atlOffset=0.009970665;
 		};
 		class Item56
 		{
@@ -6249,7 +6247,7 @@ class Mission
 						angles[]={0,2.1808589,0};
 					};
 					side="Independent";
-					flags=3;
+					flags=7;
 					class Attributes
 					{
 						skill=0.67459667;
@@ -6312,7 +6310,6 @@ class Mission
 					};
 					id=1966;
 					type="I_C_Soldier_Para_5_F";
-					atlOffset=8.9917889;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -6346,7 +6343,7 @@ class Mission
 						angles[]={0,2.1315007,0};
 					};
 					side="Independent";
-					flags=1;
+					flags=5;
 					class Attributes
 					{
 						init="dostop this;";
@@ -6354,7 +6351,7 @@ class Mission
 					};
 					id=1967;
 					type="I_C_Soldier_Bandit_2_F";
-					atlOffset=8.9899998;
+					atlOffset=0.00011825562;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -6384,7 +6381,6 @@ class Mission
 			{
 			};
 			id=1964;
-			atlOffset=8.9917889;
 		};
 		class Item117
 		{
@@ -9659,6 +9655,22 @@ class Mission
 			name="Artillery Position";
 			id=3341;
 			atlOffset=60.779999;
+		};
+		class Item168
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={12441.271,44.719887,14175.739};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+				name="radio_1";
+			};
+			id=3342;
+			type="Land_SurvivalRadio_F";
 		};
 	};
 };

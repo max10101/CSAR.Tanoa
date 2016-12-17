@@ -49,12 +49,12 @@ while {true} do {
 			_tmp = _x select 0;
 			_num = {(_x distance _tmp) < CSAR_ContactAreaSize} count _spottedarray;
 			_closeUnits = [_spottedarray,[_x select 0],{_input0 distance _obj},"ASCEND",{(_input0 distance _x) < CSAR_ContactAreaSize}] call BIS_fnc_sortBy;
-			_x set [1,_num];
+			_x set [1,_num + 1];
 			_x set [2,_closeUnits];
 			
 			//no long local only (see last setmarker)
 			IF (CSAR_DEBUG) then {_marker = createMarkerlocal[format ["Detected (%1)",random 9999], getPos _tmp];_marker setMarkerSizeLocal [CSAR_ContactAreaSize, CSAR_ContactAreaSize];_marker setMarkerColorLocal "ColorRed";_marker setMarkerShape "ELLIPSE";_markerarray = _markerarray + [_marker]};
-			IF (CSAR_DEBUG) then {_marker = createMarkerlocal[format ["Detected (%1)",random 9999], getPos _tmp];_marker setMarkerSizeLocal [1, 1];_marker setMarkerColorLocal "ColorRed";_marker setMarkerShapeLocal "ICON";_marker setmarkertypelocal "hd_dot";_marker setmarkertext (str _num);_markerarray = _markerarray + [_marker]};
+			IF (CSAR_DEBUG) then {_marker = createMarkerlocal[format ["Detected (%1)",random 9999], getPos _tmp];_marker setMarkerSizeLocal [1, 1];_marker setMarkerColorLocal "ColorRed";_marker setMarkerShapeLocal "ICON";_marker setmarkertypelocal "hd_dot";_marker setmarkertext (str (_num));_markerarray = _markerarray + [_marker]};
 		} foreach _triggerarray;
 	};
 	CSAR_ContactArray = _triggerarray;
