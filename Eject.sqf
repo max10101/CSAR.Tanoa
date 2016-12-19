@@ -7,7 +7,7 @@ if (local _heli) then {
     _x = 0;
     _dir = getDir _heli + 90;
     _offset = 2;
-    waitUntil {speed _heli < 35 || !alive _heli || _emergency};
+    waitUntil {speed _heli < 35 || !alive _heli || _emergency || !IsEngineOn _heli};
 
     /*while {_x < count _group} do {
         if (((velocity _heli select 2) > -10) || _emergency) then {
